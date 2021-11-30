@@ -1,0 +1,94 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+hide enum methods
+
+
+package menus {
+
+}
+
+package game {
+    package views {
+
+
+
+    }
+
+    package controllers {
+
+        class Game {
+            + dynasty:Boolean
+            + middle:Boolean
+            + harmony:Boolean
+        }
+
+    }
+
+    package models {
+
+        class Player {
+            + name:String
+        }
+
+        class King {
+
+        }
+
+        class Kingdom {
+
+        }
+
+        class Domino {
+            + number:Integer
+        }
+
+        class Tile {
+            + crown:Integer
+        }
+
+        enum Lands {
+            WATER
+            FOREST
+            WHEAT
+            GRASS
+            SWAMP
+            MINE
+            CASTLE
+        }
+
+        enum Colors {
+            BLUE
+            GREEN
+            YELLOW
+            PINK
+        }
+
+    }
+
+    Game *--> Player : " + players" > contains 2, 4
+    Game *--> Domino : " + deck" > contains 0, 48
+    Game *--> Domino : " + draw" > contains 3, 4
+    Game *--> Domino : " + lastDraw" > contains 3, 4
+
+    Player *--> Kingdom : " + kingdom" > contains
+    Player *--> King : " + kings" > contains 1,2
+    Player *-> Colors : " + color" > has
+
+    King o--> Player : " + parent" > knows
+
+    Kingdom o--> Player : " + parent" > knows
+    Kingdom o--> Tile : " + board[5][5]" > contains
+
+    Domino o--> Tile : " + tile1" > contains
+    Domino o--> Tile : " + tile2" > contains
+    Domino o--> King : " + king" > contains
+
+    Tile *--> Lands : " + type" > is
+
+}
+
+@enduml
