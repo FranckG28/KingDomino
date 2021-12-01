@@ -6,59 +6,79 @@ skinparam classAttributeIconSize 0
 skinparam classFontStyle Bold
 hide enum methods
 
-class Kingomino {
+class Kingdomino {
     + {static}main()
 }
 
 package menus {
 
-       class StartMenu {
-           + StartMenu()
-       }
+    class StartMenu {
+       + StartMenu()
+    }
 
-       class EndMenu {
-           + EndMenu()
-       }
+    class EndMenu {
+       + EndMenu()
+    }
+
+    class GameCreator {
+        + GameCreator()
+        + createGame()
+    }
 
 }
 
 package game {
-    package views {
-        class GameView {
-            + GameView()
-        }
-    }
 
-    package controllers {
+package models {
+
+        interface GameObserver {
+            + react(game:Game)
+        }
+
+        interface GameStrategy {
+            + execute(game:Game)
+        }
 
         class Game {
+            + Game(players:Integer, dynasty:Boolean,  middle:Boolean, harmony:Boolean)
+
+            + round:Integer
+
             + dynasty:Boolean
             + middle:Boolean
             + harmony:Boolean
+
+            + notifyObservers()
+            + addObserver(observer:GameObserver)
+
         }
 
-    }
-
-    package models {
+        class StrategyManager {
+            + setGameStrategy(strategy:GameStrategy)
+            + execute(game:Game)
+        }
 
         class Player {
+            + Player()
             + name:String
         }
 
         class King {
-
+            + King(parent:Player)
         }
 
         class Kingdom {
-
+            + Kingdom(parent:Player)
         }
 
         class Domino {
+            + Domino(number:Integer,tile1:Tile, tile2:Tile)
             + number:Integer
         }
 
         class Tile {
-            + crown:Integer
+            + Tile(land:Lands, crowns:Integer)
+            + crowns:Integer
         }
 
         enum Lands {
@@ -80,10 +100,54 @@ package game {
 
     }
 
+    package views {
+        class GameView implements GameObserver {
+            + GameView()
+            + react(game:Game)
+        }
+    }
+
+    package controllers {
+
+        class GameController {
+            + GameController(game:Game)
+        }
+
+        class DrawStrategy implements GameStrategy {
+            + execute(game:Game)
+        }
+
+        class ChooseStrategy implements GameStrategy {
+            + execute(game:Game)
+        }
+
+        class PlaceStrategy implements GameStrategy {
+            + execute(game:Game)
+        }
+
+    }
+
+    Kingdomino ..> StartMenu : "<<use>>"
+
+    GameCreator ..> Game : "<<use>>"
+    GameCreator ..> GameView : "<<use>>"
+    GameCreator ..> GameController : "<<use>>"
+
     Game *--> Player : " + players" > contains 2, 4
     Game *--> Domino : " + deck" > contains 0, 48
     Game *--> Domino : " + draw" > contains 3, 4
     Game *--> Domino : " + lastDraw" > contains 3, 4
+    Game o--> GameObserver : " - observers" > contains *
+
+    GameController o--> Game : " - game" > contains
+    GameController *--> StrategyManager : " - strategy" > contains
+    GameController ..> DrawStrategy : "<<use>>"
+    GameController ..> ChooseStrategy : "<<use>>"
+    GameController ..> PlaceStrategy : "<<use>>"
+
+    StrategyManager o--> GameStrategy : " - strategy" > contains
+
+    StartMenu *--> GameCreator : " - creator" > contains
 
     Player *--> Kingdom : " + kingdom" > contains
     Player *--> King : " + kings" > contains 1,2
@@ -94,11 +158,11 @@ package game {
     Kingdom o--> Player : " + parent" > knows
     Kingdom o--> Tile : " + board[5][5]" > contains
 
-    Domino o--> Tile : " + tile1" > contains
-    Domino o--> Tile : " + tile2" > contains
+    Domino o-> Tile : " + tile1" > contains
+    Domino o-> Tile : " + tile2" > contains
     Domino o--> King : " + king" > contains
 
-    Tile *--> Lands : " + type" > is
+    Tile *-> Lands : " + type" > is
 
 }
 
