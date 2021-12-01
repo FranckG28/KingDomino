@@ -17,7 +17,7 @@ package menus {
     }
 
     class EndMenu {
-       + EndMenu()
+       + EndMenu(game:Game)
     }
 
     class GameCreator {
@@ -48,6 +48,13 @@ package models {
             + middle:Boolean
             + harmony:Boolean
 
+            + getCurrentPlayer():Player
+            + getDraw(): List<Domino>
+            + getLastDraw(): List<Domino>
+
+            + nextPlayer()
+            + setDraw(draw:List<Domino>)
+
             + notifyObservers()
             + addObserver(observer:GameObserver)
 
@@ -59,8 +66,13 @@ package models {
         }
 
         class Player {
-            + Player()
-            + name:String
+            + Player(name:String, kings:List<King>)
+            - name:String
+
+            + getName():String
+            + getColor():Colors
+            + getKings():List<King>
+
         }
 
         class King {
@@ -73,12 +85,20 @@ package models {
 
         class Domino {
             + Domino(number:Integer,tile1:Tile, tile2:Tile)
-            + number:Integer
+            - number:Integer
+
+            + getNumber():Integer
+            + getTile1():Tile
+            + getTile2():Tile
+
         }
 
         class Tile {
             + Tile(land:Lands, crowns:Integer)
-            + crowns:Integer
+            - crowns:Integer
+
+            + getCrowns():Integer
+            + getLand():Lands
         }
 
         enum Lands {
@@ -113,6 +133,10 @@ package models {
             + GameController(game:Game)
         }
 
+        class PlaceCastleStrategy implements GameStrategy {
+            + execute(game:Game)
+        }
+
         class DrawStrategy implements GameStrategy {
             + execute(game:Game)
         }
@@ -135,34 +159,40 @@ package models {
 
     Game *--> Player : " + players" > contains 2, 4
     Game *--> Domino : " + deck" > contains 0, 48
-    Game *--> Domino : " + draw" > contains 3, 4
-    Game *--> Domino : " + lastDraw" > contains 3, 4
+    Game *--> Domino : " - draw" > contains 3, 4
+    Game *--> Domino : " - lastDraw" > contains 3, 4
     Game o--> GameObserver : " - observers" > contains *
+    Game o--> Player : " - currentPlayer" > setGameStrategy *
 
     GameController o--> Game : " - game" > contains
     GameController *--> StrategyManager : " - strategy" > contains
     GameController ..> DrawStrategy : "<<use>>"
     GameController ..> ChooseStrategy : "<<use>>"
     GameController ..> PlaceStrategy : "<<use>>"
+    GameController ..> PlaceCastleStrategy : "<<use>>"
+    GameController ..> EndMenu : "<<use>>"
 
     StrategyManager o--> GameStrategy : " - strategy" > contains
 
     StartMenu *--> GameCreator : " - creator" > contains
 
+    EndMenu ..> Game : "<<use>>"
+    EndMenu ..> StartMenu : "<<use>>"
+
     Player *--> Kingdom : " + kingdom" > contains
-    Player *--> King : " + kings" > contains 1,2
-    Player *-> Colors : " + color" > has
+    Player *--> King : " - kings" > contains 1,2
+    Player *-> Colors : " - color" > has
 
-    King o--> Player : " + parent" > knows
+    King o--> Player : " - parent" > knows
 
-    Kingdom o--> Player : " + parent" > knows
+    Kingdom o--> Player : " - parent" > knows
     Kingdom o--> Tile : " + board[5][5]" > contains
 
-    Domino o-> Tile : " + tile1" > contains
-    Domino o-> Tile : " + tile2" > contains
+    Domino o-> Tile : " - tile1" > contains
+    Domino o-> Tile : " - tile2" > contains
     Domino o--> King : " + king" > contains
 
-    Tile *-> Lands : " + type" > is
+    Tile *-> Lands : " - type" > is
 
 }
 
