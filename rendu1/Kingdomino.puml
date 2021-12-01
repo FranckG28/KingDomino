@@ -6,16 +6,27 @@ skinparam classAttributeIconSize 0
 skinparam classFontStyle Bold
 hide enum methods
 
+class Kingomino {
+    + {static}main()
+}
 
 package menus {
+
+       class StartMenu {
+           + StartMenu()
+       }
+
+       class EndMenu {
+           + EndMenu()
+       }
 
 }
 
 package game {
     package views {
-
-
-
+        class GameView {
+            + GameView()
+        }
     }
 
     package controllers {
