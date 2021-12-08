@@ -12,151 +12,158 @@ class Kingdomino {
 
 package models {
 
-        interface GameObserver {
-            + react(game:Game)
-        }
+    interface GameObserver {
+        + react(game:Game)
+    }
 
-        class Game {
-            + Game(players:List<Player>, dynasty:Boolean,  middle:Boolean, harmony:Boolean)
+    class Game {
+        + Game(players:Player[],  middle:Boolean, harmony:Boolean)
 
-            + round:Integer
+        - round:Integer
 
-            + dynasty:Boolean
-            + middle:Boolean
-            + harmony:Boolean
+        + middle:Boolean
+        + harmony:Boolean
 
-            + getCurrentPlayer():Player
-            + setCurrentPlayer(player:Player)
+        + getCurrentPlayer():Player
+        + setCurrentPlayer(player:Player)
 
-            + getDraw(): List<Domino>
-            + getLastDraw(): List<Domino>
-            + setDraw(draw:List<Domino>)
+        + nextRound()
+        + getRound():Integer
 
-            + notifyObservers()
-            + addObserver(observer:GameObserver)
+        + getDraw(): Domino[]
+        + getLastDraw(): Domino[]
+        + setDraw(draw:Domino[])
 
-        }
-
-        class Player {
-            + Player(name:String, kings:List<King>)
-            - name:String
-
-            + getName():String
-            + getColor():Colors
-            + getKings():List<King>
-
-        }
-
-        class King {
-            + King(parent:Player)
-        }
-
-        class Kingdom {
-            + Kingdom(parent:Player)
-        }
-
-        class Domino {
-            + Domino(number:Integer,tile1:Tile, tile2:Tile)
-            - number:Integer
-
-            + getNumber():Integer
-            + getTile1():Tile
-            + getTile2():Tile
-
-        }
-
-        class Tile {
-            + Tile(land:Lands, crowns:Integer)
-            - crowns:Integer
-
-            + getCrowns():Integer
-            + getLand():Lands
-        }
-
-        enum Lands {
-            WATER
-            FOREST
-            WHEAT
-            GRASS
-            SWAMP
-            MINE
-            CASTLE
-        }
-
-        enum Colors {
-            BLUE
-            GREEN
-            YELLOW
-            PINK
-        }
+        + notifyObservers()
+        + addObserver(observer:GameObserver)
 
     }
 
-    package views {
-        class GameView implements GameObserver {
-            + GameView()
-            + react(game:Game)
-        }
+    class Player {
+        + Player(name:String, color:Colors, kings:King[])
+        - name:String
 
-        class StartMenu {
-            + StartMenu(controller:GameCreator)
-        }
-
-        class EndMenu {
-           + EndMenu(game:Game)
-        }
-    }
-
-    package controllers {
-
-        class GameController {
-            + GameController(game:Game)
-            + makeDraw()
-            + playerPlaceCastle()
-            + playerChooseDomino()
-            + playerPlaceDomino()
-        }
-
-        class GameCreator {
-            + GameCreator()
-            + createGame()
-        }
+        + getName():String
+        + getColor():Colors
+        + getKings():King[]
 
     }
 
-    Kingdomino ..> StartMenu : "<<use>>"
-    Kingdomino ..> GameCreator : "<<use>>"
+    class King {
+        + King(parent:Player)
+        + getParent():Player
+    }
 
-    GameCreator ..> Game : "<<use>>"
-    GameCreator ..> GameView : "<<use>>"
-    GameCreator ..> GameController : "<<use>>"
+    class Kingdom {
+        + Kingdom(parent:Player)
+        + getParent():Player
+    }
 
-    Game *--> Player : " + players" > contains 2, 4
-    Game *--> Domino : " + deck" > contains 0, 48
-    Game *--> Domino : " - draw" > contains 3, 4
-    Game *--> Domino : " - lastDraw" > contains 3, 4
-    Game o--> GameObserver : " - observers" > contains *
-    Game o--> Player : " - currentPlayer" > contains
+    class Domino {
+        + Domino(number:Integer,tile1:Tile, tile2:Tile)
+        - number:Integer
 
-    GameController o--> Game : " - game" > contains
-    GameController ..> EndMenu : "<<use>>"
+        + getNumber():Integer
+        + getTile1():Tile
+        + getTile2():Tile
 
-    EndMenu ..> Game : "<<use>>"
-    EndMenu ..> StartMenu : "<<use>>"
+    }
 
-    Player *--> Kingdom : " + kingdom" > contains
-    Player *--> King : " - kings" > contains 1,2
-    Player *-> Colors : " - color" > has
+    class Tile {
+        + Tile(land:Lands, crowns:Integer)
+        - crowns:Integer
 
-    King o--> Player : " - parent" > knows
+        + getCrowns():Integer
+        + getLand():Lands
+    }
 
-    Kingdom o--> Player : " - parent" > knows
-    Kingdom o--> Tile : " + board[5][5]" > contains
+    enum Lands {
+        WATER
+        FOREST
+        WHEAT
+        GRASS
+        SWAMP
+        MINE
+        CASTLE
+    }
 
-    Domino o-> Tile : " - tile1" > contains
-    Domino o-> Tile : " - tile2" > contains
-    Domino o--> King : " + king" > contains
+    enum Colors {
+        BLUE
+        GREEN
+        YELLOW
+        PINK
+    }
 
-    Tile *-> Lands : " - type" > is
+}
+
+package views {
+
+    class GameView implements GameObserver {
+        + GameView(controller:GameController)
+        + react(game:Game)
+    }
+
+    class StartMenu {
+        + StartMenu(controller:GameCreator)
+    }
+
+    class EndMenu {
+       + EndMenu(game:Game)
+    }
+}
+
+package controllers {
+
+    class GameController {
+        + GameController(game:Game)
+        + makeDraw()
+        + playerPlaceCastle()
+        + playerChooseDomino()
+        + playerPlaceDomino()
+    }
+
+    class GameCreator {
+        + GameCreator()
+        + createGame()
+    }
+
+}
+
+Kingdomino ..> StartMenu : "<<use>>"
+Kingdomino ..> GameCreator : "<<use>>"
+
+GameCreator ..> Game : "<<use>>"
+GameCreator ..> GameView : "<<use>>"
+GameCreator ..> GameController : "<<use>>"
+
+Game " + players" *--> "2, 4" Player : > contains
+Game " + deck" *--> "0, 48" Domino : > contains
+Game " - draw" *--> "3, 4" Domino : > contains
+Game " - lastDraw" *--> "3, 4" Domino : > contains
+Game " - observers" o--> "*" GameObserver : > contains
+Game " - currentPlayer" o--> Player : > contains
+
+GameController " - game" o--> Game : > contains
+GameController ..> EndMenu : "<<use>>"
+
+GameView " - controller" o--> GameController : > contains
+
+EndMenu ..> Game : "<<use>>"
+EndMenu ..> StartMenu : "<<use>>"
+
+Player " + kingdom"  *--> Kingdom : > contains
+Player " - kings" *--> "1,2" King : > contains
+Player " - color" *-> Colors : > has
+
+King " - parent" o--> Player : > knows
+
+Kingdom " - parent" o--> Player : > knows
+Kingdom " + board" o--> "[5][5]" Tile : > contains
+
+Domino " - tile1" o-> Tile : > contains
+Domino " - tile2" o-> Tile : > contains
+Domino " + king" o--> King : > contains
+
+Tile *-> Lands : " - type" > is
 
 @enduml
