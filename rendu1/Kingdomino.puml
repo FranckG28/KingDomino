@@ -61,6 +61,16 @@ package models {
     class Kingdom {
         + Kingdom(parent:Player)
         + getParent():Player
+
+        + getKingdom():Tile[5][5]
+
+        + createPreview(domino:Domino):DominoPreview
+        + getPreview():DominoPreview
+        + applyPreview()
+
+        + addObserver(observer:KingdomObserver)
+        + removeObserver(observer:KingdomObserver)
+        + notifyObservers()
     }
 
     class Domino {
@@ -108,31 +118,34 @@ package models {
         - x:Integer
         - y:Integer
 
-        + DominoPreview(domino:Domino)
+        + DominoPreview(domino:Domino, parent:Kingdom)
         + setPositionX(x:Integer)
         + setPositionY(y:Integer)
         + setOrientation(orientation:Orientations)
+
+        + canGoUp():Boolean
+        + canGoDown():Boolean
+        + canGoLeft():Boolean
+        + canGoRight():Boolean
+        + canBeOriented(orientation:Orientations):Boolean
 
         + getPositionX():Integer
         + getPositionY():Integer
         + getOrientation():Orientations
 
-        + addObserver(observer:DominoPreviewObserver)
-        + notifyObservers()
     }
 
-    interface DominoPreviewObserver {
-        + reactPreview(DominoPreview)
+    interface KingdomObserver {
+        + reactKingdom(kingdom:Kingdom)
     }
 
 }
 
 package views {
 
-    class GameView implements GameObserver, DominoPreviewObserver {
+    class GameView implements GameObserver {
         + GameView(controller:GameController)
         + reactGame(game:Game)
-        + reactPreview(preview:DominoPreview)
     }
 
     class StartMenu {
@@ -151,6 +164,16 @@ package views {
         + getPlayerName():String
         + getPlayerColor():Colors
     }
+
+    class KingdomEditor implements KingdomObserver {
+        + KingdomEditor(controller: KingdomController)
+        + reactKingdom(kingdom:Kingdom)
+    }
+
+    class KingdomView {
+        + KingdomView(kingdom:Kingdom)
+    }
+
 }
 
 package controllers {
@@ -168,6 +191,16 @@ package controllers {
 
         + GameCreator(dominoes:Domino[])
         + createGame(view:StartMenu)
+    }
+
+    class KingdomController {
+        + KingdomController(kingdom:Kingdom)
+        + moveRight()
+        + moveLeft()
+        + moveUp()
+        + moveDown()
+        + setOrientation(orientation:Orientations)
+        + place()
     }
 
 }
@@ -188,12 +221,12 @@ Game " - currentPlayer" o--> Player : > contains
 
 GameController " - game" o--> Game : > contains
 GameController ..> EndMenu : "<<use>>"
-GameController ..> DominoPreview : "<<use>>"
 
 GameView " - controller" o--> GameController : > contains
+GameView " - actualBoard" *--> "1" KingdomEditor : > contains
 GameView ..> Game : "<<use>>"
-GameView ..> DominoPreview : "<<use>>"
-
+GameView ..> KingdomController : "<<use>>"
+GameView ..> KingdomView : "<<use>>"
 StartMenu " + players" *--> "2, 4" PlayerEditor : > contains
 
 EndMenu ..> Game : "<<use>>"
@@ -206,7 +239,15 @@ Player " - color" *-> Colors : > has
 King " - parent" o--> Player : > knows
 
 Kingdom " - parent" o--> Player : > knows
-Kingdom " + board" o--> "[5][5]" Tile : > contains
+Kingdom " - board" o--> "[5][5]" Tile : > contains
+Kingdom " - observers" o--> "*" KingdomObserver : > contains
+Kingdom " - preview" *--> "1" DominoPreview : > contains
+
+KingdomController " - kingdom" o--> "1" Kingdom : > contains
+
+KingdomEditor " - controller" o--> "1" KingdomController : > contains
+KingdomEditor ..> Kingdom : <<use>>
+KingdomEditor ..> KingdomView : <<use>>
 
 Domino " - tile1" o-> Tile : > contains
 Domino " - tile2" o-> Tile : > contains
@@ -214,8 +255,9 @@ Domino " + king" o--> King : > contains
 
 Tile *-> Lands : " - type" > is
 
+DominoPreview " - kingdom" o--> "1" Kingdom : > contains
 DominoPreview " - domino" o--> "1" Domino : > contains
 DominoPreview " - orientation" *-> "1" Orientations : > contains
-DominoPreview " - observers" o--> "*" DominoPreviewObserver : > contains
+
 
 @enduml
