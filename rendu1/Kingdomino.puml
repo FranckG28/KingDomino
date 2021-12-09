@@ -217,23 +217,24 @@ Game " - deck" *--> "0, 48" Domino : > contains
 Game " - draw" *--> "3, 4" Domino : > contains
 Game " - lastDraw" *--> "3, 4" Domino : > contains
 Game " - observers" o--> "*" GameObserver : > contains
-Game " - currentPlayer" o--> Player : > contains
+Game " - currentPlayer" o--> Player : > knows
 
-GameController " - game" o--> Game : > contains
+GameController " - game" o--> Game : > controls
 GameController ..> EndMenu : "<<use>>"
 
-GameView " - controller" o--> GameController : > contains
-GameView " - actualBoard" *--> "1" KingdomEditor : > contains
+GameView " - controller" o--> GameController : > controlled by
 GameView ..> Game : "<<use>>"
 GameView ..> KingdomController : "<<use>>"
 GameView ..> KingdomView : "<<use>>"
+
+StartMenu " - controller" o--> "1" GameCreator : > controlled by
 StartMenu " + players" *--> "2, 4" PlayerEditor : > contains
 
 EndMenu ..> Game : "<<use>>"
 EndMenu ..> StartMenu : "<<use>>"
 
-Player " + kingdom"  *--> Kingdom : > contains
-Player " - kings" *--> "1,2" King : > contains
+Player " + kingdom"  *--> Kingdom : > owns
+Player " - kings" *--> "1,2" King : > has
 Player " - color" *-> Colors : > has
 
 King " - parent" o--> Player : > knows
@@ -243,9 +244,9 @@ Kingdom " - board" o--> "[5][5]" Tile : > contains
 Kingdom " - observers" o--> "*" KingdomObserver : > contains
 Kingdom " - preview" *--> "1" DominoPreview : > contains
 
-KingdomController " - kingdom" o--> "1" Kingdom : > contains
+KingdomController " - kingdom" o--> "1" Kingdom : > controls
 
-KingdomEditor " - controller" o--> "1" KingdomController : > contains
+KingdomEditor " - controller" o--> "1" KingdomController : > controlled by
 KingdomEditor ..> Kingdom : <<use>>
 KingdomEditor ..> KingdomView : <<use>>
 
@@ -255,7 +256,7 @@ Domino " + king" o--> King : > contains
 
 Tile *-> Lands : " - type" > is
 
-DominoPreview " - kingdom" o--> "1" Kingdom : > contains
+DominoPreview " - kingdom" o--> "1" Kingdom : > knows
 DominoPreview " - domino" o--> "1" Domino : > contains
 DominoPreview " - orientation" *-> "1" Orientations : > contains
 
