@@ -1,12 +1,10 @@
 package controllers;
 
+import views.GameView;
+
 public class GameCreator {
 
-    public GameCreator() {
-
-    }
-
-    public void createGame() {
+    public void createGame(GameView view) {
 
     }
 }

@@ -25,7 +25,7 @@ public class Game {
     }
 
     public Player getCurrentPlayer() {
-        return new Player();
+        return currentPlayer;
     }
 
     public void setCurrentPlayer(Player player) {
@@ -41,11 +41,11 @@ public class Game {
     }
 
     public List<Domino> getDraw() {
-
+        return null;
     }
 
     public List<Domino> getLastDraw() {
-
+        return null;
     }
 
     public void setDraw(List<Domino> draw) {

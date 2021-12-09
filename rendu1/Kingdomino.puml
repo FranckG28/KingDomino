@@ -108,7 +108,13 @@ package views {
     }
 
     class EndMenu {
-       + EndMenu(game:Game)
+        + EndMenu(game:Game)
+    }
+
+    class PlayerEditor {
+        + PlayerEditor()
+        + getPlayerName():String
+        + getPlayerColor():Colors
     }
 }
 
@@ -123,7 +129,6 @@ package controllers {
     }
 
     class GameCreator {
-        + GameCreator()
         + createGame()
     }
 
@@ -147,6 +152,8 @@ GameController " - game" o--> Game : > contains
 GameController ..> EndMenu : "<<use>>"
 
 GameView " - controller" o--> GameController : > contains
+
+StartMenu " + players" *--> "2, 4" PlayerEditor : > contains
 
 EndMenu ..> Game : "<<use>>"
 EndMenu ..> StartMenu : "<<use>>"
