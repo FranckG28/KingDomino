@@ -36,7 +36,6 @@ package models {
 
         + notifyObservers()
         + addObserver(observer:GameObserver)
-
     }
 
     class Player {
@@ -46,7 +45,6 @@ package models {
         + getName():String
         + getColor():Colors
         + getKings():King[]
-
     }
 
     class King {
@@ -66,7 +64,6 @@ package models {
         + getNumber():Integer
         + getTile1():Tile
         + getTile2():Tile
-
     }
 
     class Tile {
@@ -129,6 +126,9 @@ package controllers {
     }
 
     class GameCreator {
+        - dominoes:Domino[]
+
+        + GameCreator(dominoes:Domino[])
         + createGame()
     }
 
