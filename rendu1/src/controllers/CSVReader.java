@@ -14,8 +14,8 @@ import java.util.Stack;
 
 public class CSVReader {
 
-    private static ArrayList<String> CSVtoListString() {
-        String path = "C:\\Users\\jeans\\Documents\\A31\\a31\\TEST\\src\\Dominos.csv";
+    private static ArrayList<String> csvToListString() {
+        String path = "..\\..\\Dominos.csv";
         String line = "";
 
         ArrayList<String> res = new ArrayList<>();
