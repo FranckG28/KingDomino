@@ -4,10 +4,7 @@ import models.Domino;
 import models.Lands;
 import models.Tile;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
@@ -15,7 +12,8 @@ import java.util.Stack;
 public class CSVReader {
 
     private static ArrayList<String> csvToListString() {
-        String path = "..\\..\\Dominos.csv";
+        
+        String path = "rendu1/Dominos.csv";
         String line = "";
 
         ArrayList<String> res = new ArrayList<>();
@@ -52,7 +50,7 @@ public class CSVReader {
     }
 
     public static Stack<Domino> getDominos() {
-        return setDominos(CSVtoListString());
+        return setDominos(csvToListString());
     }
 }
 
