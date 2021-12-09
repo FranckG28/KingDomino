@@ -1,6 +1,7 @@
 package models;
 
 import java.util.List;
+import java.util.Stack;
 
 public class Game {
 
@@ -12,9 +13,9 @@ public class Game {
     public boolean harmony;
 
     private List<GameObserver> observers;
-    public List<Domino> deck;
-    private List<Domino> draw;
-    private List<Domino> Lastdraw;
+    public Stack<Domino> deck;
+    private Stack<Domino> draw;
+    private Stack<Domino> Lastdraw;
     private Player currentPlayer;
 
 
@@ -40,11 +41,11 @@ public class Game {
         return this.round;
     }
 
-    public List<Domino> getDraw() {
+    public Stack<Domino> getDraw() {
         return null;
     }
 
-    public List<Domino> getLastDraw() {
+    public Stack<Domino> getLastDraw() {
         return null;
     }
 

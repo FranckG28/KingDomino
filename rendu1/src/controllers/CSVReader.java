@@ -10,11 +10,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Stack;
 
 public class CSVReader {
 
     private static ArrayList<String> CSVtoListString() {
-        String path = "C:\\Users\\jeans\\a31-kingdomino\\rendu1\\src\\Dominos.csv";
+        String path = "C:\\Users\\jeans\\Documents\\A31\\a31\\TEST\\src\\Dominos.csv";
         String line = "";
 
         ArrayList<String> res = new ArrayList<>();
@@ -38,8 +39,8 @@ public class CSVReader {
         return new ArrayList<>(Arrays.asList(sep));
     }
 
-    private static ArrayList<Domino> setDominos(ArrayList<String> listStringDomino) {
-        ArrayList<Domino> listDomino = new ArrayList<>();
+    private static Stack<Domino> setDominos(ArrayList<String> listStringDomino) {
+        Stack<Domino> listDomino = new Stack<>();
         for(int i = 1; i < listStringDomino.size(); i++) {
             ArrayList<String> line = splitString(listStringDomino.get(i));
             int numTuile = Integer.parseInt(line.get(0));
@@ -50,7 +51,8 @@ public class CSVReader {
         return listDomino;
     }
 
-    public static ArrayList<Domino> getDominos() {
+    public static Stack<Domino> getDominos() {
         return setDominos(CSVtoListString());
     }
 }
+
