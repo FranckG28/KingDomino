@@ -3,14 +3,14 @@ package controllers;
 import models.Domino;
 import views.GameView;
 
-import java.util.List;
+import java.util.Stack;
 
 public class GameCreator {
 
-    private List<Domino> dominoes;
+    private Stack<Domino> dominos;
 
-    public GameCreator(List<Domino> dominoes) {
-        this.dominoes = dominoes;
+    public GameCreator(Stack<Domino> dominos) {
+        this.dominos = dominos;
     }
 
     public void createGame(GameView view) {
