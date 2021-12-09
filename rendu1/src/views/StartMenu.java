@@ -2,6 +2,7 @@ package views;
 
 
 import controllers.GameCreator;
+import models.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,6 +28,18 @@ public class StartMenu extends JFrame {
         setTitle("KingDomino - Menu principal");
         setVisible(true);
 
+    }
+
+    public java.util.List<Player> getPlayers() {
+        return null;
+    }
+
+    public boolean isMiddle() {
+        return false;
+    }
+
+    public boolean isHarmony() {
+        return false;
     }
 
 }
