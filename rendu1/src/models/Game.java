@@ -58,8 +58,8 @@ public class Game {
     }
 
     public void notifyObservers() {
-        for (GameObserver item: observers) {
-            item.react(this);
+        for (GameObserver item: this.observers) {
+            item.reactGame(this);
         }
     }
 

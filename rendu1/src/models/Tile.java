@@ -11,11 +11,13 @@ public class Tile {
     }
 
     public int getCrowns() {
-        return crowns;
+        return this.crowns;
     }
 
     public Lands getLand() {
-        return type;
+        return this.type;
     }
+
+
 
 }

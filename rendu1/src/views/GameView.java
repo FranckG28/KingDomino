@@ -1,11 +1,9 @@
 package views;
 
 import controllers.GameController;
-import models.Game;
-import models.GameObserver;
-import models.Player;
+import models.*;
 
-public class GameView implements GameObserver {
+public class GameView implements GameObserver, DominoPreviewsObserver {
 
     private GameController controller;
 
@@ -13,8 +11,12 @@ public class GameView implements GameObserver {
         this.controller = controller;
     }
 
-    public void react(Game game) {
+    public void reactGame(Game game) {
 
     }
 
+    @Override
+    public void reactPreview(DominoPreview preview) {
+
+    }
 }

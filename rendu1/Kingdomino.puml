@@ -13,7 +13,7 @@ class Kingdomino {
 package models {
 
     interface GameObserver {
-        + react(game:Game)
+        + reactGame(game:Game)
     }
 
     class Game {
@@ -97,13 +97,42 @@ package models {
         PINK
     }
 
+    enum Orientations {
+        SOUTH
+        WEST
+        EAST
+        NORTH
+    }
+
+    class DominoPreview {
+        - x:Integer
+        - y:Integer
+
+        + DominoPreview(domino:Domino)
+        + setPositionX(x:Integer)
+        + setPositionY(y:Integer)
+        + setOrientation(orientation:Orientations)
+
+        + getPositionX():Integer
+        + getPositionY():Integer
+        + getOrientation():Orientations
+
+        + addObserver(observer:DominoPreviewObserver)
+        + notifyObservers()
+    }
+
+    interface DominoPreviewObserver {
+        + reactPreview(DominoPreview)
+    }
+
 }
 
 package views {
 
-    class GameView implements GameObserver {
+    class GameView implements GameObserver, DominoPreviewObserver {
         + GameView(controller:GameController)
-        + react(game:Game)
+        + reactGame(game:Game)
+        + reactPreview(preview:DominoPreview)
     }
 
     class StartMenu {
@@ -159,8 +188,11 @@ Game " - currentPlayer" o--> Player : > contains
 
 GameController " - game" o--> Game : > contains
 GameController ..> EndMenu : "<<use>>"
+GameController ..> DominoPreview : "<<use>>"
 
 GameView " - controller" o--> GameController : > contains
+GameView ..> Game : "<<use>>"
+GameView ..> DominoPreview : "<<use>>"
 
 StartMenu " + players" *--> "2, 4" PlayerEditor : > contains
 
@@ -181,5 +213,9 @@ Domino " - tile2" o-> Tile : > contains
 Domino " + king" o--> King : > contains
 
 Tile *-> Lands : " - type" > is
+
+DominoPreview " - domino" o--> "1" Domino : > contains
+DominoPreview " - orientation" *-> "1" Orientations : > contains
+DominoPreview " - observers" o--> "*" DominoPreviewObserver : > contains
 
 @enduml
