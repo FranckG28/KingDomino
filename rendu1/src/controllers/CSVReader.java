@@ -13,8 +13,8 @@ import java.util.Arrays;
 
 public class CSVReader {
 
-    private static ArrayList<String> CSVtoListString() {
-        String path = "C:\\Users\\jeans\\a31-kingdomino\\rendu1\\src\\Dominos.csv";
+    private static ArrayList<String> csvToListString() {
+        String path = "..\\..\\Dominos.csv";
         String line = "";
 
         ArrayList<String> res = new ArrayList<>();
@@ -51,6 +51,6 @@ public class CSVReader {
     }
 
     public static ArrayList<Domino> getDominos() {
-        return setDominos(CSVtoListString());
+        return setDominos(csvToListString());
     }
 }
