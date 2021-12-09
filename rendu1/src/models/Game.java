@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
@@ -7,20 +8,21 @@ public class Game {
 
     private int round;
 
-    public List<Player> players;
-
-    public boolean middle;
-    public boolean harmony;
-
-    private List<GameObserver> observers;
-    public Stack<Domino> deck;
-    private Stack<Domino> draw;
-    private Stack<Domino> Lastdraw;
+    private List<Player> players;
     private Player currentPlayer;
 
+    private boolean middle;
+    private boolean harmony;
 
-    public Game(List<Player> players, boolean middle, boolean harmony) {
+    private Stack<Domino> deck;
+    private Stack<Domino> draw;
+    private Stack<Domino> lastDraw;
+
+    private List<GameObserver> observers = new ArrayList<>();
+
+    public Game(List<Player> players, Stack<Domino> deck, boolean middle, boolean harmony) {
         this.players = players;
+        this.deck = deck;
         this.middle = middle;
         this.harmony = harmony;
     }
@@ -30,34 +32,54 @@ public class Game {
     }
 
     public void setCurrentPlayer(Player player) {
-
+        this.currentPlayer = player;
+        notifyObservers();
     }
     
     public void nextRound() {
         round ++;
+        notifyObservers();
     }
 
     public int getRound() {
         return this.round;
     }
-
     public Stack<Domino> getDraw() {
-        return null;
+        return this.draw;
     }
-
     public Stack<Domino> getLastDraw() {
-        return null;
+        return this.lastDraw;
     }
 
-    public void setDraw(List<Domino> draw) {
-
+    public void setDraw(Stack<Domino> draw) {
+        this.lastDraw = this.draw;
+        this.draw = draw;
+        notifyObservers();
     }
 
     public void notifyObservers() {
-
+        for (GameObserver item: observers) {
+            item.react(this);
+        }
     }
 
     public void addObserver(GameObserver observer) {
+        observers.add(observer);
+    }
 
+    public boolean isMiddle() {
+        return this.middle;
+    }
+
+    public boolean isHarmony() {
+        return this.harmony;
+    };
+
+    public Stack<Domino> getDeck() {
+        return this.deck;
+    }
+
+    public List<Player> getPlayers() {
+        return this.players;
     }
 }

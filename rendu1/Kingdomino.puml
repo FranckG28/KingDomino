@@ -17,15 +17,16 @@ package models {
     }
 
     class Game {
-        + Game(players:Player[],  middle:Boolean, harmony:Boolean)
+        + Game(players:Player[], deck:Domino[], middle:Boolean, harmony:Boolean)
 
         - round:Integer
 
-        + middle:Boolean
-        + harmony:Boolean
+        - middle:Boolean
+        - harmony:Boolean
 
         + getCurrentPlayer():Player
         + setCurrentPlayer(player:Player)
+        + getAllPlayers():Player[]
 
         + nextRound()
         + getRound():Integer
@@ -33,6 +34,11 @@ package models {
         + getDraw(): Domino[]
         + getLastDraw(): Domino[]
         + setDraw(draw:Domino[])
+
+        + getDeck(): Domino[]
+
+        + isMiddle():Boolean
+        + isHarmony():Boolean
 
         + notifyObservers()
         + addObserver(observer:GameObserver)
@@ -102,6 +108,9 @@ package views {
 
     class StartMenu {
         + StartMenu(controller:GameCreator)
+        + getPlayers():Player[]
+        + isMiddle():Boolean
+        + isHarmony():Boolean
     }
 
     class EndMenu {
@@ -129,7 +138,7 @@ package controllers {
         - dominoes:Domino[]
 
         + GameCreator(dominoes:Domino[])
-        + createGame()
+        + createGame(view:StartMenu)
     }
 
 }
@@ -141,8 +150,8 @@ GameCreator ..> Game : "<<use>>"
 GameCreator ..> GameView : "<<use>>"
 GameCreator ..> GameController : "<<use>>"
 
-Game " + players" *--> "2, 4" Player : > contains
-Game " + deck" *--> "0, 48" Domino : > contains
+Game " - players" *--> "2, 4" Player : > contains
+Game " - deck" *--> "0, 48" Domino : > contains
 Game " - draw" *--> "3, 4" Domino : > contains
 Game " - lastDraw" *--> "3, 4" Domino : > contains
 Game " - observers" o--> "*" GameObserver : > contains

@@ -3,6 +3,7 @@ package views;
 import controllers.GameController;
 import models.Game;
 import models.GameObserver;
+import models.Player;
 
 public class GameView implements GameObserver {
 
