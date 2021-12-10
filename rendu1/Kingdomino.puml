@@ -4,6 +4,7 @@
 skinparam style strictuml
 skinparam classAttributeIconSize 0
 skinparam classFontStyle Bold
+skinparam roundcorner 10
 hide enum methods
 
 class Kingdomino {
@@ -203,10 +204,18 @@ package controllers {
         + place()
     }
 
+    abstract class CSVReader {
+        - {static} csvToListString():String[]
+        - {static} splitString(line:String):String[]
+        - {static} setDominos(listStringDomino:String[])
+        + {static} getDomines():Domino[]
+    }
+
 }
 
 Kingdomino ..> StartMenu : "<<use>>"
 Kingdomino ..> GameCreator : "<<use>>"
+Kingdomino ..> CSVReader : "<<use>>"
 
 GameCreator ..> Game : "<<use>>"
 GameCreator ..> GameView : "<<use>>"

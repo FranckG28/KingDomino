@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
 
-public class CSVReader {
+public abstract class CSVReader {
 
     private static ArrayList<String> csvToListString() {
         
