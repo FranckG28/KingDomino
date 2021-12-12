@@ -150,10 +150,14 @@ package views {
     }
 
     class StartMenu {
+        - playerFrame:JPanel
+        - removePlayerButton:JButton
+        - addPlayerButton:JButton
         + StartMenu(controller:GameCreator)
         + getPlayers():Player[]
         + isMiddle():Boolean
         + isHarmony():Boolean
+        + refreshPlayers(players:PlayerEditor[])
     }
 
     class EndMenu {
@@ -188,9 +192,16 @@ package controllers {
     }
 
     class GameCreator {
-        - dominoes:Domino[]
 
         + GameCreator(dominoes:Domino[])
+
+        + setView(view:StartMenu)
+
+        + canAddPlayer():boolean
+        + canRemovePlayer():boolean
+
+        + addPlayer()
+        + removePlayer()
         + createGame(view:StartMenu)
     }
 
@@ -217,6 +228,9 @@ Kingdomino ..> StartMenu : "<<use>>"
 Kingdomino ..> GameCreator : "<<use>>"
 Kingdomino ..> CSVReader : "<<use>>"
 
+GameCreator " - dominos" o--> "*" Domino : > contains
+GameCreator " - players" *--> "2, 3" PlayerEditor : > contains
+GameCreator " - view" o--> "1" StartMenu : > contains
 GameCreator ..> Game : "<<use>>"
 GameCreator ..> GameView : "<<use>>"
 GameCreator ..> GameController : "<<use>>"
@@ -237,7 +251,6 @@ GameView ..> KingdomController : "<<use>>"
 GameView ..> KingdomView : "<<use>>"
 
 StartMenu " - controller" o--> "1" GameCreator : > controlled by
-StartMenu " + players" *--> "2, 4" PlayerEditor : > contains
 
 EndMenu ..> Game : "<<use>>"
 EndMenu ..> StartMenu : "<<use>>"

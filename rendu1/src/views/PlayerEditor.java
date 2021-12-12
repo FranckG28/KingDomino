@@ -10,14 +10,13 @@ public class PlayerEditor extends JPanel {
 
     public PlayerEditor() {
 
-        JPanel container = new JPanel();
-        container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
+        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
-        name = new JTextField();
+        name = new JTextField("", 10);
         color = new JComboBox<>(Colors.values());
 
-        container.add(name);
-        container.add(color);
+        add(name);
+        add(color);
 
     }
 
