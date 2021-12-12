@@ -178,6 +178,14 @@ package views {
         + KingdomView(kingdom:Kingdom)
     }
 
+    class DrawView {
+        + DrawView(dominos:Domino[])
+    }
+
+    class DominoView {
+        + DominoView(domino:Domino)
+    }
+
 }
 
 package controllers {
@@ -250,6 +258,7 @@ GameView " - controller" o--> GameController : > controlled by
 GameView ..> Game : "<<use>>"
 GameView ..> KingdomController : "<<use>>"
 GameView ..> KingdomView : "<<use>>"
+GameView ..> DrawView : <<use>>
 
 StartMenu " - controller" o--> "1" GameCreator : > controlled by
 
@@ -272,6 +281,10 @@ KingdomController " - kingdom" o--> "1" Kingdom : > controls
 KingdomEditor " - controller" o--> "1" KingdomController : > controlled by
 KingdomEditor ..> Kingdom : <<use>>
 KingdomEditor ..> KingdomView : <<use>>
+
+KingdomView ..> DominoView : <<use>>
+
+DrawView ..> DominoView : "<<use>>"
 
 Domino " - tile1" o-> Tile : > contains
 Domino " - tile2" o-> Tile : > contains
