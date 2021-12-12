@@ -46,7 +46,7 @@ package models {
     }
 
     class Player {
-        + Player(name:String, color:Colors, kings:King[])
+        + Player(name:String, color:Colors, numberOfKings:Integer)
         - name:String
 
         + getName():String
@@ -154,7 +154,6 @@ package views {
         - removePlayerButton:JButton
         - addPlayerButton:JButton
         + StartMenu(controller:GameCreator)
-        + getPlayers():Player[]
         + isMiddle():Boolean
         + isHarmony():Boolean
         + refreshPlayers(players:PlayerEditor[])
@@ -202,6 +201,8 @@ package controllers {
 
         + addPlayer()
         + removePlayer()
+        + getPlayers():Player[]
+
         + createGame(view:StartMenu)
     }
 

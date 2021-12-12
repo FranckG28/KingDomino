@@ -2,11 +2,15 @@ package controllers;
 
 import models.Domino;
 import models.Game;
+import models.Player;
 import views.GameView;
 import views.PlayerEditor;
 import views.StartMenu;
 
+import javax.swing.*;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Stack;
 
 public class GameCreator {
@@ -45,6 +49,14 @@ public class GameCreator {
         return (this.players.size() > 2);
     }
 
+    public java.util.List<Player> getPlayers() {
+        ArrayList<Player> list = new ArrayList<>();
+        for (PlayerEditor item:players) {
+            list.add(new Player(item.getPlayerName(), item.getPlayerColor(), 1));
+        }
+        return list;
+    }
+
     public void createGame(StartMenu view) {
 
         // Définition de la pioche :
@@ -53,8 +65,25 @@ public class GameCreator {
 
         // TODO: ATTENTION A NE PAS DONNER TOUS LES DOMINOS SELON LE NB DE JOUEURS
 
+        // Obtention des joueurs
+        List<Player> playersList = getPlayers();
+
+        // On vérifie que tous les joueurs ont une couleur différente
+        for (Player p: playersList) {
+            for (Player p2: playersList) {
+                if (!p.equals(p2)) {
+                    if (p.getColor().equals(p2.getColor())) {
+                        // On affiche un message d'erreur et on annule la création de la partie
+                        JOptionPane.showMessageDialog(null, "Veuillez choisir une couleur différente pour chaque joueur !");
+                        return;
+                    }
+                }
+
+            }
+        }
+
         // Créer le jeu (Game)
-        Game game = new Game(view.getPlayers(), gameDeck,view.isMiddle(), view.isHarmony());
+        Game game = new Game(playersList, gameDeck, view.isMiddle(), view.isHarmony());
 
         // Créer son controller (GameController)
         GameController controller = new GameController(game);
@@ -65,6 +94,8 @@ public class GameCreator {
         // Ajout de la vue en observer de Game
         game.addObserver(gameView);
 
+        // Fermeture du menu principal
+        view.setVisible(false);
 
     }
 
