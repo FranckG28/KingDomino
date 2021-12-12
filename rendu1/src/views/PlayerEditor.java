@@ -12,8 +12,7 @@ public class PlayerEditor extends JPanel {
 
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
-        name = new JTextField();
-        name.setSize(70, 10);
+        name = new JTextField("", 10);
         color = new JComboBox<>(Colors.values());
 
         add(name);

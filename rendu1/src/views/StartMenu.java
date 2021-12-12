@@ -15,8 +15,11 @@ import java.util.Stack;
 public class StartMenu extends JFrame {
 
     private final JPanel playersPanel = new JPanel();
-    private final JButton addPlayerButton = new JButton("Ajouter un joueur");
-    private final JButton removePlayerButton = new JButton("Supprimer un joueur");
+    private final JButton addPlayerButton = new JButton("+");
+    private final JButton removePlayerButton = new JButton("-");
+
+    private final JCheckBox middleCheckBox = new JCheckBox("Empire du milieu");
+    private final JCheckBox harmonyCheckBox = new JCheckBox("Harmonie");
 
     private final GameCreator controller;
 
@@ -29,19 +32,44 @@ public class StartMenu extends JFrame {
 
         // HEADER
 
-        mainPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        mainPanel.setBorder(new EmptyBorder(20, 10, 10, 10));
 
         JLabel title = new JLabel("Kingdomino", SwingConstants.CENTER);
         Font font = new Font("Space Grotesk", Font.BOLD,30);
         title.setFont(font);
         mainPanel.add(title, BorderLayout.PAGE_START);
 
+        // REGLES PERSO
+
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new GridBagLayout());
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.anchor = GridBagConstraints.NORTH;
+        constraints.weightx = 1;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridwidth = 2;
+        constraints.gridx = 0;
+
+        constraints.insets = new Insets(10,0,0,0);
+        JLabel rulesTitle = new JLabel("Règles :");
+        centerPanel.add(rulesTitle, constraints);
+
+        constraints.insets = new Insets(0,0,0,0);
+        constraints.gridy = 1;
+        centerPanel.add(middleCheckBox, constraints);
+        constraints.gridy = 2;
+        constraints.insets = new Insets(0,0,10,0);
+        centerPanel.add(harmonyCheckBox, constraints);
+
         // JOUEURS
 
-        JPanel playersSection = new JPanel();
-        playersSection.setLayout(new BoxLayout(playersSection, BoxLayout.Y_AXIS));
-
-        playersPanel.setLayout(new BoxLayout(playersPanel, BoxLayout.Y_AXIS));
+        constraints.insets = new Insets(0, 0,0,0);
+        constraints.gridy = 3;
+        constraints.gridwidth = 1;
+        constraints.weightx = 1;
+        JLabel playerText = new JLabel("Joueurs :");
+        centerPanel.add(playerText, constraints);
 
         JPanel playerBtnPanel = new JPanel();
         playerBtnPanel.setLayout(new BoxLayout(playerBtnPanel, BoxLayout.X_AXIS));
@@ -65,14 +93,33 @@ public class StartMenu extends JFrame {
         playerBtnPanel.add(addPlayerButton);
         playerBtnPanel.add(removePlayerButton);
 
-        playersSection.add(playersPanel);
-        playersSection.add(playerBtnPanel);
+        constraints.weightx = 0;
+        constraints.gridx = 1;
+        centerPanel.add(playerBtnPanel, constraints);
 
-        mainPanel.add(playersSection, BorderLayout.CENTER);
+        constraints.gridwidth = 2;
+        constraints.gridx = 0;
+        constraints.gridy = 4;
+        constraints.weightx = 1;
+        constraints.insets = new Insets(10,0,0,0);
+        playersPanel.setLayout(new BoxLayout(playersPanel, BoxLayout.Y_AXIS));
+        centerPanel.add(playersPanel, constraints);
+
+        constraints.weighty = 1;
+        centerPanel.add(new JPanel(), constraints);
+
+        mainPanel.add(centerPanel, BorderLayout.CENTER);
 
         // JOUER
 
         JButton playButton = new JButton("Jouer !");
+        class PlayButtonListener implements ActionListener {
+            @Override
+            public void actionPerformed( ActionEvent actionEvent ) {
+                controller.createGame(StartMenu.this);
+            }
+        }
+        playButton.addActionListener( new PlayButtonListener());
 
         mainPanel.add(playButton, BorderLayout.PAGE_END);
 
@@ -103,15 +150,12 @@ public class StartMenu extends JFrame {
         playersPanel.removeAll();
         for (PlayerEditor p:players) {
             playersPanel.add(p);
-            System.out.println("Player ajouté");
         }
 
         playersPanel.setMaximumSize( playersPanel.getPreferredSize() );
 
         this.getContentPane().validate();
         this.getContentPane().repaint();
-
-
 
         addPlayerButton.setEnabled(controller.canAddPlayer());
         removePlayerButton.setEnabled(controller.canRemovePlayer());
