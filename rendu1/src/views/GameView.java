@@ -27,7 +27,7 @@ public class GameView extends JFrame implements GameObserver {
         // CREATION DES KINGDOMVIEWS QUI OBSERVENT LEURS ROYAUMES
 
         JPanel kingdomGrid = new JPanel(new GridLayout(2,2));
-        for (Player p:game.getPlayers()) {
+        for (Player p:game.getAllPlayers()) {
             Kingdom kingdom = p.getKingdom();
             KingdomView kview = new KingdomView(kingdom);
             kingdom.addObserver(kview);

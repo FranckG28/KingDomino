@@ -88,7 +88,7 @@ public class GameCreator {
         GameController controller = new GameController(game);
 
         // Créer la vue (GameView)
-        GameView gameView = new GameView(controller);
+        GameView gameView = new GameView(controller, game);
 
         // Ajout de la vue en observer de Game
         game.addObserver(gameView);

@@ -1,6 +1,7 @@
 package views;
 
 import models.Kingdom;
+import models.KingdomObserver;
 import models.Tile;
 
 import javax.swing.*;

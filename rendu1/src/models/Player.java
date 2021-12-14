@@ -35,4 +35,6 @@ public class Player {
         return this.kings;
     }
 
+    public Kingdom getKingdom() { return this.kingdom; }
+
 }
