@@ -34,19 +34,23 @@ public class DominoPreview {
     }
 
     public boolean canGoUp() {
-
+        return true;
     }
+
     public boolean canGoDown() {
-
+        return true;
     }
+
     public boolean canGoLeft() {
-
+        return true;
     }
+
     public boolean canGoRight() {
-
+        return true;
     }
-    public boolean canBeOriented(Orientations orientation) {
 
+    public boolean canBeOriented(Orientations orientation) {
+        return true;
     }
 
     public int getPositionX() {
