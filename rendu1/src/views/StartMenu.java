@@ -134,16 +134,12 @@ public class StartMenu extends JFrame {
 
     }
 
-    public java.util.List<Player> getPlayers() {
-        return null;
-    }
-
     public boolean isMiddle() {
-        return false;
+        return middleCheckBox.isSelected();
     }
 
     public boolean isHarmony() {
-        return false;
+        return harmonyCheckBox.isSelected();
     }
 
     public void refreshPlayers(Stack<PlayerEditor> players) {
