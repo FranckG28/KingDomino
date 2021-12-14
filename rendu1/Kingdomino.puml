@@ -52,6 +52,7 @@ package models {
         + getName():String
         + getColor():Colors
         + getKings():King[]
+        + getKingdom():Kingdom
     }
 
     class King {
@@ -137,7 +138,7 @@ package models {
     }
 
     interface KingdomObserver {
-        + reactKingdom(kingdom:Kingdom)
+        + updateKingdom(kingdom:Kingdom)
     }
 
 }
@@ -145,7 +146,7 @@ package models {
 package views {
 
     class GameView implements GameObserver {
-        + GameView(controller:GameController)
+        + GameView(controller:GameController, game:GameView)
         + reactGame(game:Game)
     }
 
@@ -169,13 +170,13 @@ package views {
         + getPlayerColor():Colors
     }
 
-    class KingdomEditor implements KingdomObserver {
+    class KingdomEditor {
         + KingdomEditor(controller: KingdomController)
-        + reactKingdom(kingdom:Kingdom)
     }
 
     class KingdomView {
         + KingdomView(kingdom:Kingdom)
+        + updateKingdom(kingdom:Kingdom)
     }
 
     class DrawView {
@@ -184,6 +185,12 @@ package views {
 
     class DominoView {
         + DominoView(domino:Domino)
+        + getDomino():Domino
+    }
+
+    class TileView {
+        + TileView(tile:Tile)
+        + getTile():Tile
     }
 
 }
@@ -265,7 +272,7 @@ StartMenu " - controller" o--> "1" GameCreator : > controlled by
 EndMenu ..> Game : "<<use>>"
 EndMenu ..> StartMenu : "<<use>>"
 
-Player " + kingdom"  *--> Kingdom : > owns
+Player " - kingdom"  *--> Kingdom : > owns
 Player " - kings" *--> "1,2" King : > has
 Player " - color" *-> Colors : > has
 
@@ -286,11 +293,16 @@ KingdomView ..> DominoView : <<use>>
 
 DrawView ..> DominoView : "<<use>>"
 
+DominoView " - domino" o--> "1" Domino : > contains
+DominoView ..> TileView : <<use>>
+
 Domino " - tile1" o-> Tile : > contains
 Domino " - tile2" o-> Tile : > contains
 Domino " + king" o--> King : > contains
 
 Tile *-> Lands : " - type" > is
+
+TileView " -tile" o--> "1" Tile : > contains
 
 DominoPreview " - kingdom" o--> "1" Kingdom : > knows
 DominoPreview " - domino" o--> "1" Domino : > contains
