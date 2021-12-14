@@ -52,6 +52,7 @@ package models {
         + getName():String
         + getColor():Colors
         + getKings():King[]
+        + getKingdom():Kingdom
     }
 
     class King {
@@ -137,7 +138,7 @@ package models {
     }
 
     interface KingdomObserver {
-        + reactKingdom(kingdom:Kingdom)
+        + updateKingdom(kingdom:Kingdom)
     }
 
 }
@@ -200,7 +201,7 @@ package controllers {
 
     class GameCreator {
 
-        + GameCreator(dominoes:Domino[])
+        + GameCreator(dominos:Domino[])
 
         + setView(view:StartMenu)
 
@@ -228,7 +229,7 @@ package controllers {
         - {static} csvToListString():String[]
         - {static} splitString(line:String):String[]
         - {static} setDominos(listStringDomino:String[])
-        + {static} getDomines():Domino[]
+        + {static} getDominos():Domino[]
     }
 
 }
@@ -265,7 +266,7 @@ StartMenu " - controller" o--> "1" GameCreator : > controlled by
 EndMenu ..> Game : "<<use>>"
 EndMenu ..> StartMenu : "<<use>>"
 
-Player " + kingdom"  *--> Kingdom : > owns
+Player " - kingdom"  *--> Kingdom : > owns
 Player " - kings" *--> "1,2" King : > has
 Player " - color" *-> Colors : > has
 

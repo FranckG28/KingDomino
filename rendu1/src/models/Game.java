@@ -35,6 +35,10 @@ public class Game {
         this.currentPlayer = player;
         notifyObservers();
     }
+
+    public List<Player> getAllPlayers() {
+        return this.players;
+    }
     
     public void nextRound() {
         round ++;
@@ -77,9 +81,5 @@ public class Game {
 
     public Stack<Domino> getDeck() {
         return this.deck;
-    }
-
-    public List<Player> getPlayers() {
-        return this.players;
     }
 }

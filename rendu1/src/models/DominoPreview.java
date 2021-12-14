@@ -11,47 +11,52 @@ public class DominoPreview {
     // EAST par défaut
     private Orientations orientation = Orientations.EAST;
 
+    private Kingdom kingdom;
+
     private Domino domino;
     private List<DominoPreviewsObserver> observers = new ArrayList<>();
 
-    public DominoPreview(Domino domino) {
+    public DominoPreview(Domino domino, Kingdom kingdom) {
         this.domino = domino;
+        this.kingdom = kingdom;
     }
-
     public void setPositionX(int x) {
         this.x = x;
-        notifyObservers();
+        kingdom.notifyObservers();
     }
-
     public void setPositionY(int y) {
         this.y = y;
-        notifyObservers();
+        kingdom.notifyObservers();
+    }
+    public void setOrientation(Orientations orientation) {
+        this.orientation = orientation;
+        kingdom.notifyObservers();
+    }
+
+    public boolean canGoUp() {
+
+    }
+    public boolean canGoDown() {
+
+    }
+    public boolean canGoLeft() {
+
+    }
+    public boolean canGoRight() {
+
+    }
+    public boolean canBeOriented(Orientations orientation) {
+
     }
 
     public int getPositionX() {
         return this.x;
     }
-
     public int getPositionY() {
         return this.y;
     }
-
-    public void setOrientation(Orientations orientation) {
-        this.orientation = orientation;
-        notifyObservers();
-    }
-
     public Orientations getOrientation() {
         return this.orientation;
     }
 
-    public void addObserver(DominoPreviewsObserver observer) {
-        this.observers.add(observer);
-    }
-
-    public void notifyObservers() {
-        for (DominoPreviewsObserver item: this.observers) {
-            item.reactPreview(this);
-        }
-    }
 }

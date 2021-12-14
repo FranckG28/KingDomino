@@ -8,6 +8,7 @@ public class Player {
     private final String name;
     private final List<King> kings;
     private final Colors color;
+    private Kingdom kingdom;
 
     public Player(String name, Colors color, int numberOfKings) {
         this.name = name;
@@ -19,6 +20,7 @@ public class Player {
             kingList.add(new King(this));
         }
         this.kings = kingList;
+        this.kingdom = new Kingdom(this);
     }
 
     public String getName() {
