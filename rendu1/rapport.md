@@ -61,9 +61,9 @@ Au lancement du jeu, notre main, implémentée dans la classe KingDomino utilise
 
 Pour cela, ce dernier crée le modèle Game configuré conformément aux choix de l'utilisateur sur le menu principal, et crée un GameController, qui contrôle la vue principale de la partie, GameView. Afin de refléter en direct l'état du jeu, cette dernière observe le modèle Game.
 
-Le modèle game contient tous les éléments d'un jeu. Les joueurs Player de la partie possèdent leur royaume Kingdom ainsi qu'un ou deux rois King. 
+Le modèle Game contient tous les éléments d'un jeu. Les joueurs Player de la partie possèdent leur royaume Kingdom ainsi qu'un ou deux rois King. 
 
-Pour que les vues affichent toujours le dernier état du domino pioché, ainsi que le joueur à qui c'est le tour et l'action qu'il doit effectuer, la vie GameView implémentera l'interface GameObserver, qui est déclenchée par le modèle Game.
+Pour que les vues affichent toujours le dernier état du domino pioché, ainsi que le joueur qui doit jouer et l'action qu'il doit effectuer, la view GameView implémentera l'interface GameObserver, qui est déclenchée par le modèle Game.
 
 Un domino est composé de deux cases, et est numéroté. Chacune des cases et d'un type de terrain Land, et possède un nombre de couronnes. 
 
@@ -71,7 +71,7 @@ Un royaume est un tableau de cases, car une fois posé, seules les cases compten
 
 Ainsi, nous pouvons seulement modéliser le royaume d'un joueur en un tableau 2D de cases Tile.
 
-Afin de gérer le placement des dominos par l'utilisateur, nous avons créé un modèle DominoPreview qui contient toutes les informations nécessaires au placement d'un Domino. Il est créé par le modèle du Royaume lui-même. Le placement d'un Domino est proposé à l'utilisateur via la vue KingdomEditor, et les actions de l'utilisateur sont gérés par le KingdomController qui manipule un DominoPreview.
+Afin de gérer le placement des dominos par l'utilisateur, nous avons créé un modèle DominoPreview qui contient toutes les informations nécessaires au placement d'un Domino. Il est créé par le modèle du Royaume lui-même. Le placement d'un Domino est proposé à l'utilisateur via la vue KingdomEditor, et les actions de l'utilisateur sont gérées par le KingdomController qui manipule un DominoPreview.
 
 Nous avons créé une vue KingdomView, qui implémente l'interface KingdomObserver afin de se mettre à jour à chaque modification d'un Kingdom d'un joueur. 
 
