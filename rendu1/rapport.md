@@ -32,7 +32,7 @@ Le 8 décembre nous avons montré à notre professeur l’avancé de notre proje
 
 **GameController** : Nous avons enlevé le patron Strategy, et avons pris la décision de tout diviser en fonction simple.
 
-Nous avions créé un **package menu** pour … , cependant, ce dernier ne respectait pas le découpage MVC. Il a donc été supprimé et intégré dans les packages views, models et controllers.
+Nous avions créé un **package menu**, cependant, ce dernier ne respectait pas le découpage MVC. Il a donc été supprimé et intégré dans les packages views, models et controllers.
 
 Une fois ces changements faits, le diagramme a été validé par notre professeur et nous avons commencé à coder.
 
