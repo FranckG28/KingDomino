@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1974px" preserveAspectRatio="none" style="width:3290px;height:1974px;background:#FFFFFF;" version="1.1" viewBox="0 0 3290 1974" width="3290px" zoomAndPan="magnify"><defs/><g><!--MD5=[a60570e4b426f702ccbb0d459e3b9417]
+cluster models--><polygon fill="#FFFFFF" points="824,434,888,434,895,456.2969,2100,456.2969,2100,1967,824,1967,824,434" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="824" x2="895" y1="456.2969" y2="456.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="58" x="828" y="448.9951">models</text><!--MD5=[e2a75efa8a0f57c2afae8bf75386f79c]
+cluster views--><polygon fill="#FFFFFF" points="2124,181,2175,181,2182,203.2969,3185,203.2969,3185,1239,2124,1239,2124,181" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="2124" x2="2182" y1="203.2969" y2="203.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="45" x="2128" y="195.9951">views</text><!--MD5=[f4e70ef68289585296b9045165e58692]
+cluster controllers--><polygon fill="#FFFFFF" points="16,123,111,123,118,145.2969,800,145.2969,800,723,16,723,16,123" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="16" x2="118" y1="145.2969" y2="145.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="89" x="20" y="137.9951">controllers</text><!--MD5=[40edf2d5b661eac2d8316c33afefb6e2]
+class GameObserver--><rect codeLine="15" fill="#FEFECE" height="52.7734" id="GameObserver" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="164" x="1920" y="931"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="101" x="1951.5" y="947.1387">GameObserver</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1921" x2="2083" y1="954.9688" y2="954.9688"/><line style="stroke:#A80036;stroke-width:1.5;" x1="1921" x2="2083" y1="962.9688" y2="962.9688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="152" x="1926" y="977.1792">+reactGame(game:Game)</text><!--MD5=[b6dcce5e5ef3c84b0b048d11301373dd]
+class Game--><rect codeLine="19" fill="#FEFECE" height="334.4766" id="Game" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="444" x="1531" y="488"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="40" x="1733" y="504.1387">Game</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1532" x2="1974" y1="511.9688" y2="511.9688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="80" x="1537" y="526.1792">-round:Integer</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="0" x="1541" y="538.9839"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="93" x="1537" y="551.7886">-middle:Boolean</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="104" x="1537" y="564.5933">-harmony:Boolean</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1532" x2="1974" y1="571.1875" y2="571.1875"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="432" x="1537" y="585.3979">+Game(players:Player[], deck:Domino[], middle:Boolean, harmony:Boolean)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="151" x="1537" y="598.2026">+getCurrentPlayer():Player</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="186" x="1537" y="611.0073">+setCurrentPlayer(player:Player)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="137" x="1537" y="623.812">+getAllPlayers():Player[]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="0" x="1541" y="636.6167"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="78" x="1537" y="649.4214">+nextRound()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="115" x="1537" y="662.2261">+getRound():Integer</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="0" x="1541" y="675.0308"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="124" x="1537" y="687.8354">+getDraw(): Domino[]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="147" x="1537" y="700.6401">+getLastDraw(): Domino[]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="146" x="1537" y="713.4448">+setDraw(draw:Domino[])</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="0" x="1541" y="726.2495"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="124" x="1537" y="739.0542">+getDeck(): Domino[]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="0" x="1541" y="751.8589"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="113" x="1537" y="764.6636">+isMiddle():Boolean</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="127" x="1537" y="777.4683">+isHarmony():Boolean</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="0" x="1541" y="790.2729"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="108" x="1537" y="803.0776">+notifyObservers()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="233" x="1537" y="815.8823">+addObserver(observer:GameObserver)</text><!--MD5=[2cb47ba637a0d19583e6199456f6ad0b]
+class Player--><rect codeLine="47" fill="#FEFECE" height="116.7969" id="Player" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="343" x="1256.5" y="899"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="46" x="1405" y="915.1387">Player</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1257.5" x2="1598.5" y1="922.9688" y2="922.9688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="73" x="1262.5" y="937.1792">-name:String</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1257.5" x2="1598.5" y1="943.7734" y2="943.7734"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="331" x="1262.5" y="957.9839">+Player(name:String, color:Colors, numberOfKings:Integer)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="106" x="1262.5" y="970.7886">+getName():String</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="103" x="1262.5" y="983.5933">+getColor():Colors</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="101" x="1262.5" y="996.3979">+getKings():King[]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="137" x="1262.5" y="1009.2026">+getKingdom():Kingdom</text><!--MD5=[76412a1b87b0f1c748604a3142aab9ae]
+class King--><rect codeLine="57" fill="#FEFECE" height="65.5781" id="King" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="128" x="956" y="1885"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="31" x="1004.5" y="1901.1387">King</text><line style="stroke:#A80036;stroke-width:1.5;" x1="957" x2="1083" y1="1908.9688" y2="1908.9688"/><line style="stroke:#A80036;stroke-width:1.5;" x1="957" x2="1083" y1="1916.9688" y2="1916.9688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="116" x="962" y="1931.1792">+King(parent:Player)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="110" x="962" y="1943.9839">+getParent():Player</text><!--MD5=[533af354d02e6d43948fcd0c902abd7a]
+class Kingdom--><rect codeLine="62" fill="#FEFECE" height="193.625" id="Kingdom" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="292" x="1350" y="1093"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="61" x="1465.5" y="1109.1387">Kingdom</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1351" x2="1641" y1="1116.9688" y2="1116.9688"/><line style="stroke:#A80036;stroke-width:1.5;" x1="1351" x2="1641" y1="1124.9688" y2="1124.9688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="141" x="1356" y="1139.1792">+Kingdom(parent:Player)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="110" x="1356" y="1151.9839">+getParent():Player</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="0" x="1360" y="1164.7886"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="139" x="1356" y="1177.5933">+getKingdom():Tile[5][5]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="0" x="1360" y="1190.3979"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="280" x="1356" y="1203.2026">+createPreview(domino:Domino):DominoPreview</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="173" x="1356" y="1216.0073">+getPreview():DominoPreview</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="93" x="1356" y="1228.812">+applyPreview()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="0" x="1360" y="1241.6167"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="247" x="1356" y="1254.4214">+addObserver(observer:KingdomObserver)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="271" x="1356" y="1267.2261">+removeObserver(observer:KingdomObserver)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="108" x="1356" y="1280.0308">+notifyObservers()</text><!--MD5=[93b0c5861eb80280293937e64ab530f7]
+class Domino--><rect codeLine="77" fill="#FEFECE" height="103.9922" id="Domino" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="269" x="1395.5" y="1695"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="53" x="1503.5" y="1711.1387">Domino</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1396.5" x2="1663.5" y1="1718.9688" y2="1718.9688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="92" x="1401.5" y="1733.1792">-number:Integer</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1396.5" x2="1663.5" y1="1739.7734" y2="1739.7734"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="257" x="1401.5" y="1753.9839">+Domino(number:Integer,tile1:Tile, tile2:Tile)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="125" x="1401.5" y="1766.7886">+getNumber():Integer</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="88" x="1401.5" y="1779.5933">+getTile1():Tile</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="88" x="1401.5" y="1792.3979">+getTile2():Tile</text><!--MD5=[18e4d9ca2a6cdced7b66e5fef94ef6f6]
+class Tile--><rect codeLine="86" fill="#FEFECE" height="91.1875" id="Tile" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="200" x="1768" y="1701.5"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="27" x="1854.5" y="1717.6387">Tile</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1769" x2="1967" y1="1725.4688" y2="1725.4688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="87" x="1774" y="1739.6792">-crowns:Integer</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1769" x2="1967" y1="1746.2734" y2="1746.2734"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="188" x="1774" y="1760.4839">+Tile(land:Lands, crowns:Integer)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="121" x="1774" y="1773.2886">+getCrowns():Integer</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="99" x="1774" y="1786.0933">+getLand():Lands</text><!--MD5=[588eb6639fd97f3255413de3905b83dc]
+class Lands--><rect codeLine="94" fill="#FEFECE" height="121.6016" id="Lands" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="56" x="2028" y="1686"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="43" x="2034.5" y="1702.1387">Lands</text><line style="stroke:#A80036;stroke-width:1.5;" x1="2029" x2="2083" y1="1709.9688" y2="1709.9688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="40" x="2034" y="1724.1792">WATER</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="44" x="2034" y="1736.9839">FOREST</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="41" x="2034" y="1749.7886">WHEAT</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="40" x="2034" y="1762.5933">GRASS</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="42" x="2034" y="1775.3979">SWAMP</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="2034" y="1788.2026">MINE</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="44" x="2034" y="1801.0073">CASTLE</text><!--MD5=[c4df9b95f6f4e4e1c32bb5a44abd175a]
+class Colors--><rect codeLine="104" fill="#FEFECE" height="83.1875" id="Colors" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="58" x="1672" y="916"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="46" x="1678" y="932.1387">Colors</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1673" x2="1729" y1="939.9688" y2="939.9688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="29" x="1678" y="954.1792">BLUE</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="38" x="1678" y="966.9839">GREEN</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="46" x="1678" y="979.7886">YELLOW</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="24" x="1678" y="992.5933">PINK</text><!--MD5=[316db2c4d6fd2bd6a317a2acffe770c9]
+class Orientations--><rect codeLine="111" fill="#FEFECE" height="83.1875" id="Orientations" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="99" x="1771.5" y="1445"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="93" x="1774.5" y="1461.1387">Orientations</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1772.5" x2="1869.5" y1="1468.9688" y2="1468.9688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="40" x="1777.5" y="1483.1792">SOUTH</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="33" x="1777.5" y="1495.9839">WEST</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="30" x="1777.5" y="1508.7886">EAST</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="39" x="1777.5" y="1521.5933">NORTH</text><!--MD5=[7edc3b638f73670062b0777a502f2c85]
+class DominoPreview--><rect codeLine="118" fill="#FEFECE" height="244.8438" id="DominoPreview" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="303" x="1364.5" y="1364"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="110" x="1461" y="1380.1387">DominoPreview</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1365.5" x2="1666.5" y1="1387.9688" y2="1387.9688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="55" x="1370.5" y="1402.1792">-x:Integer</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="55" x="1370.5" y="1414.9839">-y:Integer</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1365.5" x2="1666.5" y1="1421.5781" y2="1421.5781"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="291" x="1370.5" y="1435.7886">+DominoPreview(domino:Domino, parent:Kingdom)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="137" x="1370.5" y="1448.5933">+setPositionX(x:Integer)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="136" x="1370.5" y="1461.3979">+setPositionY(y:Integer)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="231" x="1370.5" y="1474.2026">+setOrientation(orientation:Orientations)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="0" x="1374.5" y="1487.0073"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="118" x="1370.5" y="1499.812">+canGoUp():Boolean</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="135" x="1370.5" y="1512.6167">+canGoDown():Boolean</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="125" x="1370.5" y="1525.4214">+canGoLeft():Boolean</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="131" x="1370.5" y="1538.2261">+canGoRight():Boolean</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="286" x="1370.5" y="1551.0308">+canBeOriented(orientation:Orientations):Boolean</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="0" x="1374.5" y="1563.8354"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="131" x="1370.5" y="1576.6401">+getPositionX():Integer</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="130" x="1370.5" y="1589.4448">+getPositionY():Integer</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="171" x="1370.5" y="1602.2495">+getOrientation():Orientations</text><!--MD5=[f67d9b02ff37c1123ce4477d68e602e6]
+class KingdomObserver--><rect codeLine="139" fill="#FEFECE" height="52.7734" id="KingdomObserver" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="218" x="1111" y="1460"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="123" x="1158.5" y="1476.1387">KingdomObserver</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1112" x2="1328" y1="1483.9688" y2="1483.9688"/><line style="stroke:#A80036;stroke-width:1.5;" x1="1112" x2="1328" y1="1491.9688" y2="1491.9688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="206" x="1117" y="1506.1792">+updateKingdom(kingdom:Kingdom)</text><!--MD5=[5d3822d29342fbd355d1b65ea3562ec9]
+class GameView--><rect codeLine="147" fill="#FEFECE" height="65.5781" id="GameView" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="344" x="2516" y="241"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="73" x="2651.5" y="257.1387">GameView</text><line style="stroke:#A80036;stroke-width:1.5;" x1="2517" x2="2859" y1="264.9688" y2="264.9688"/><line style="stroke:#A80036;stroke-width:1.5;" x1="2517" x2="2859" y1="272.9688" y2="272.9688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="332" x="2522" y="287.1792">+GameView(controller:GameController, game:GameView)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="152" x="2522" y="299.9839">+reactGame(game:Game)</text><!--MD5=[296c1c04a0ba2a53f72e1241681ca4ec]
+class StartMenu--><rect codeLine="152" fill="#FEFECE" height="129.6016" id="StartMenu" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="231" x="2190.5" y="590"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="78" x="2267" y="606.1387">StartMenu</text><line style="stroke:#A80036;stroke-width:1.5;" x1="2191.5" x2="2420.5" y1="613.9688" y2="613.9688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="113" x="2196.5" y="628.1792">-playerFrame:JPanel</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="164" x="2196.5" y="640.9839">-removePlayerButton:JButton</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="140" x="2196.5" y="653.7886">-addPlayerButton:JButton</text><line style="stroke:#A80036;stroke-width:1.5;" x1="2191.5" x2="2420.5" y1="660.3828" y2="660.3828"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="208" x="2196.5" y="674.5933">+StartMenu(controller:GameCreator)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="113" x="2196.5" y="687.3979">+isMiddle():Boolean</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="127" x="2196.5" y="700.2026">+isHarmony():Boolean</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="219" x="2196.5" y="713.0073">+refreshPlayers(players:PlayerEditor[])</text><!--MD5=[853e6744dbcddb4d2f91a45648966b68]
+class EndMenu--><rect codeLine="162" fill="#FEFECE" height="52.7734" id="EndMenu" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="152" x="2329" y="247.5"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="65" x="2372.5" y="263.6387">EndMenu</text><line style="stroke:#A80036;stroke-width:1.5;" x1="2330" x2="2480" y1="271.4688" y2="271.4688"/><line style="stroke:#A80036;stroke-width:1.5;" x1="2330" x2="2480" y1="279.4688" y2="279.4688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="140" x="2335" y="293.6792">+EndMenu(game:Game)</text><!--MD5=[932d6b4897a69277673124a69ceb2ceb]
+class PlayerEditor--><rect codeLine="166" fill="#FEFECE" height="78.3828" id="PlayerEditor" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="153" x="2140.5" y="235"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="90" x="2172" y="251.1387">PlayerEditor</text><line style="stroke:#A80036;stroke-width:1.5;" x1="2141.5" x2="2292.5" y1="258.9688" y2="258.9688"/><line style="stroke:#A80036;stroke-width:1.5;" x1="2141.5" x2="2292.5" y1="266.9688" y2="266.9688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="84" x="2146.5" y="281.1792">+PlayerEditor()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="141" x="2146.5" y="293.9839">+getPlayerName():String</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="138" x="2146.5" y="306.7886">+getPlayerColor():Colors</text><!--MD5=[d2aec36b438e4d6b31ebdb172a3ce31d]
+class KingdomEditor--><rect codeLine="172" fill="#FEFECE" height="52.7734" id="KingdomEditor" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="274" x="2895" y="247.5"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="105" x="2979.5" y="263.6387">KingdomEditor</text><line style="stroke:#A80036;stroke-width:1.5;" x1="2896" x2="3168" y1="271.4688" y2="271.4688"/><line style="stroke:#A80036;stroke-width:1.5;" x1="2896" x2="3168" y1="279.4688" y2="279.4688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="262" x="2901" y="293.6792">+KingdomEditor(controller: KingdomController)</text><!--MD5=[bd72cc0c164e6c99ead846105398b099]
+class KingdomView--><rect codeLine="176" fill="#FEFECE" height="65.5781" id="KingdomView" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="218" x="2681" y="622"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="94" x="2743" y="638.1387">KingdomView</text><line style="stroke:#A80036;stroke-width:1.5;" x1="2682" x2="2898" y1="645.9688" y2="645.9688"/><line style="stroke:#A80036;stroke-width:1.5;" x1="2682" x2="2898" y1="653.9688" y2="653.9688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="194" x="2687" y="668.1792">+KingdomView(kingdom:Kingdom)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="206" x="2687" y="680.9839">+updateKingdom(kingdom:Kingdom)</text><!--MD5=[7d3ba289d657c27fb033064307919940]
+class DrawView--><rect codeLine="181" fill="#FEFECE" height="52.7734" id="DrawView" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="189" x="2456.5" y="628.5"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="70" x="2516" y="644.6387">DrawView</text><line style="stroke:#A80036;stroke-width:1.5;" x1="2457.5" x2="2644.5" y1="652.4688" y2="652.4688"/><line style="stroke:#A80036;stroke-width:1.5;" x1="2457.5" x2="2644.5" y1="660.4688" y2="660.4688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="177" x="2462.5" y="674.6792">+DrawView(dominos:Domino[])</text><!--MD5=[d7e182de57ee7a787464a1cb3e882448]
+class DominoView--><rect codeLine="185" fill="#FEFECE" height="65.5781" id="DominoView" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="190" x="2382" y="924.5"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="86" x="2434" y="940.6387">DominoView</text><line style="stroke:#A80036;stroke-width:1.5;" x1="2383" x2="2571" y1="948.4688" y2="948.4688"/><line style="stroke:#A80036;stroke-width:1.5;" x1="2383" x2="2571" y1="956.4688" y2="956.4688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="178" x="2388" y="970.6792">+DominoView(domino:Domino)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="127" x="2388" y="983.4839">+getDomino():Domino</text><!--MD5=[e71ff297333f1678963bdf742565e820]
+class TileView--><rect codeLine="190" fill="#FEFECE" height="65.5781" id="TileView" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="120" x="2369" y="1157"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="60" x="2399" y="1173.1387">TileView</text><line style="stroke:#A80036;stroke-width:1.5;" x1="2370" x2="2488" y1="1180.9688" y2="1180.9688"/><line style="stroke:#A80036;stroke-width:1.5;" x1="2370" x2="2488" y1="1188.9688" y2="1188.9688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="108" x="2375" y="1203.1792">+TileView(tile:Tile)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="81" x="2375" y="1215.9839">+getTile():Tile</text><!--MD5=[82d9c97a467af7c0b2c072e754b85475]
+class GameController--><rect codeLine="199" fill="#FEFECE" height="103.9922" id="GameController" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="190" x="594" y="603"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="114" x="632" y="619.1387">GameController</text><line style="stroke:#A80036;stroke-width:1.5;" x1="595" x2="783" y1="626.9688" y2="626.9688"/><line style="stroke:#A80036;stroke-width:1.5;" x1="595" x2="783" y1="634.9688" y2="634.9688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="178" x="600" y="649.1792">+GameController(game:Game)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="78" x="600" y="661.9839">+makeDraw()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="119" x="600" y="674.7886">+playerPlaceCastle()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="140" x="600" y="687.5933">+playerChooseDomino()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="127" x="600" y="700.3979">+playerPlaceDomino()</text><!--MD5=[da5d610690c6c6a4045f13201f095350]
+class GameCreator--><rect codeLine="207" fill="#FEFECE" height="193.625" id="GameCreator" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="209" x="574.5" y="177"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="97" x="630.5" y="193.1387">GameCreator</text><line style="stroke:#A80036;stroke-width:1.5;" x1="575.5" x2="782.5" y1="200.9688" y2="200.9688"/><line style="stroke:#A80036;stroke-width:1.5;" x1="575.5" x2="782.5" y1="208.9688" y2="208.9688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="197" x="580.5" y="223.1792">+GameCreator(dominos:Domino[])</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="0" x="584.5" y="235.9839"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="151" x="580.5" y="248.7886">+setView(view:StartMenu)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="0" x="584.5" y="261.5933"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="143" x="580.5" y="274.3979">+canAddPlayer():boolean</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="169" x="580.5" y="287.2026">+canRemovePlayer():boolean</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="0" x="584.5" y="300.0073"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="73" x="580.5" y="312.812">+addPlayer()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="97" x="580.5" y="325.6167">+removePlayer()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="123" x="580.5" y="338.4214">+getPlayers():Player[]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="0" x="584.5" y="351.2261"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="177" x="580.5" y="364.0308">+createGame(view:StartMenu)</text><!--MD5=[f2259e34480e6550def369db844ffed9]
+class KingdomController--><rect codeLine="223" fill="#FEFECE" height="129.6016" id="KingdomController" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="243" x="296.5" y="209"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="135" x="350.5" y="225.1387">KingdomController</text><line style="stroke:#A80036;stroke-width:1.5;" x1="297.5" x2="538.5" y1="232.9688" y2="232.9688"/><line style="stroke:#A80036;stroke-width:1.5;" x1="297.5" x2="538.5" y1="240.9688" y2="240.9688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="221" x="302.5" y="255.1792">+KingdomController(kingdom:Kingdom)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="78" x="302.5" y="267.9839">+moveRight()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="72" x="302.5" y="280.7886">+moveLeft()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="65" x="302.5" y="293.5933">+moveUp()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="82" x="302.5" y="306.3979">+moveDown()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="231" x="302.5" y="319.2026">+setOrientation(orientation:Orientations)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="48" x="302.5" y="332.0073">+place()</text><!--MD5=[60b59e3d7d8b95aff167b5157d975660]
+class CSVReader--><rect codeLine="233" fill="#FEFECE" height="91.1875" id="CSVReader" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="229" x="32.5" y="228.5"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="75" x="109.5" y="244.6387">CSVReader</text><line style="stroke:#A80036;stroke-width:1.5;" x1="33.5" x2="260.5" y1="252.4688" y2="252.4688"/><line style="stroke:#A80036;stroke-width:1.5;" x1="33.5" x2="260.5" y1="260.4688" y2="260.4688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" text-decoration="underline" textLength="141" x="38.5" y="274.6792">-csvToListString():String[]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" text-decoration="underline" textLength="169" x="38.5" y="287.4839">-splitString(line:String):String[]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" text-decoration="underline" textLength="217" x="38.5" y="300.2886">-setDominos(listStringDomino:String[])</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" text-decoration="underline" textLength="141" x="38.5" y="313.0933">+getDominos():Domino[]</text><!--MD5=[8ea6f553f11300408d975c238103e94b]
+class Kingdomino--><rect codeLine="9" fill="#FEFECE" height="52.7734" id="Kingdomino" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="89" x="1005.5" y="7"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="83" x="1008.5" y="23.1387">Kingdomino</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1006.5" x2="1093.5" y1="30.9688" y2="30.9688"/><line style="stroke:#A80036;stroke-width:1.5;" x1="1006.5" x2="1093.5" y1="38.9688" y2="38.9688"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" text-decoration="underline" textLength="45" x="1011.5" y="53.1792">+main()</text><!--MD5=[6bc9faa8f5e64dc55f6f7b1d3d1a3d5a]
+reverse link GameObserver to GameView--><path d="M2004.09,910.86 C2010.62,790.42 2034.96,468.65 2111,401 C2175.61,343.52 2415.74,394.36 2499,371 C2548.96,356.98 2601.22,329.28 2638.09,307.23 " fill="none" id="GameObserver-backto-GameView" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="2011.08,911.28,2003.07,930.9,1997.09,910.57,2011.08,911.28" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[9c78e2dbf672d62eac7552ee5a7b822a]
+link Kingdomino to StartMenu--><path codeLine="242" d="M1094.88,34.45 C1395.92,34.31 3111.83,36.95 3187,115 C3265.92,196.95 3257.24,281.49 3187,371 C3132.76,440.11 3082.14,406.85 2995,418 C2979.68,419.96 2452.34,418.21 2439,426 C2380.32,460.27 2345,531.33 2325.66,585.06 " fill="none" id="Kingdomino-to-StartMenu" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="2323.95,589.88,2330.7344,582.7405,2325.6253,585.169,2323.1968,580.06,2323.95,589.88" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="3243" y="278.5669">«use»</text><!--MD5=[b220bce887a8a48aedfed6a1a6f43c55]
+link Kingdomino to GameCreator--><path codeLine="243" d="M1040.8,60.15 C1034.33,75.28 1024.44,93.96 1011,107 C948.341,167.81 859.003,210.76 788.781,237.71 " fill="none" id="Kingdomino-to-GameCreator" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="783.759,239.62,793.5934,240.1532,788.4313,237.8397,790.7449,232.6776,783.759,239.62" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="1025" y="103.0669">«use»</text><!--MD5=[06c7fce0a1155e65561da2dccb36a1cb]
+link Kingdomino to CSVReader--><path codeLine="244" d="M1005.32,34.82 C860.532,36.51 406.246,47.22 279,115 C233.073,139.46 196.693,187.2 173.854,223.83 " fill="none" id="Kingdomino-to-CSVReader" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="171.136,228.24,179.2678,222.6836,173.7629,223.9856,172.4608,218.4807,171.136,228.24" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="339" y="103.0669">«use»</text><!--MD5=[806808ac8f2e549f6423557c9dd7f911]
+link GameCreator to Domino--><path codeLine="246" d="M597.9592,381.6334 C597.9592,381.6334 581.785,411.32 576,426 C538.405,521.38 541,551.48 541,654 C541,654 541,654 541,1487.5 C541,1659.218 1106.15,1719.037 1382.01,1738.008 " fill="none" id="GameCreator-Domino" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1395.33,1738.907,1386.6234,1734.3031,1390.3416,1738.5663,1386.0784,1742.2845,1395.33,1738.907" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1390.3416" x2="1382.36" y1="1738.5663" y2="1738.0315"/><polygon fill="#FFFFFF" points="604.144,371.35,597.6238,374.4301,597.9592,381.6334,604.4794,378.5533,604.144,371.35" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="548.5023,1058.8952,546.52,1049.5935,541.4312,1052.5351,548.5023,1058.8952" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="555" y="1059.0669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="64" x="532.4901" y="390.807">- dominos</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="1380.342" y="1750.9437">*</text><!--MD5=[2abb989fe01303402770edef9384c006]
+link GameCreator to PlayerEditor--><path codeLine="247" d="M795.504,274 C795.504,274 1863.54,274 2127.12,274 " fill="none" id="GameCreator-PlayerEditor" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="2140.4,274,2131.4,270,2135.4,274,2131.4,278,2140.4,274" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="2135.4" x2="2127.4" y1="274" y2="274"/><polygon fill="#A80036" points="783.504,274,789.504,278,795.504,274,789.504,270,783.504,274" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1437.5,262.5664,1428.4549,259.6275,1428.4549,265.5053,1437.5,262.5664" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="1441.5" y="267.0669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="56" x="795.7003" y="270.6253">- players</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="2108.5091" y="270.3878">2, 3</text><!--MD5=[ee322ab62ffbafd839d077a6302911e3]
+link GameCreator to StartMenu--><path codeLine="248" d="M795.3618,307.0042 C795.3618,307.0042 1155.89,396.17 1354,418 C1374.6,420.27 2081.11,417.49 2100,426 C2169.7,457.41 2225.92,525.1 2261.91,578.61 " fill="none" id="GameCreator-StartMenu" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="2269.28,589.8,2267.6692,580.0838,2266.5294,585.6246,2260.9886,584.4847,2269.28,589.8" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="2266.5294" x2="2262.125" y1="585.6246" y2="578.94"/><polygon fill="#FFFFFF" points="783.757,303.95,788.5414,309.3454,795.3618,307.0042,790.5775,301.6088,783.757,303.95" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1363.9164,410.4769,1355.5577,405.94,1354.4874,411.7196,1363.9164,410.4769" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="1368" y="414.0669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="795.4508" y="318.3145">- view</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="2265.7013" y="578.9444">1</text><!--MD5=[b5e370f05692621de77251ccf30f1afd]
+link StartMenu to GameCreator--><path codeLine="269" d="M2262.6554,579.8211 C2262.6554,579.8211 2169.66,457.5 2100,426 C2069.57,412.24 1532.14,422.08 1499,418 C1466.37,413.98 1459.23,407.51 1427,401 C1205.38,356.22 944.572,314.83 796.831,292.43 " fill="none" id="StartMenu-GameCreator" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="783.767,290.45,792.0677,295.7507,788.7108,291.1976,793.2639,287.8407,783.767,290.45" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="788.7108" x2="796.6205" y1="291.1976" y2="292.39"/><polygon fill="#FFFFFF" points="2269.26,589.84,2269.2974,582.629,2262.6554,579.8211,2262.6181,587.0321,2269.26,589.84" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1499.0934,408.6044,1507.4041,413.2287,1508.535,407.4607,1499.0934,408.6044" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="83" x="1513" y="414.0669">controlled by</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="69" x="2192.2494" y="578.9888">- controller</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="791.4147" y="288.164">1</text><!--MD5=[9996b17f22f5a8e3af516e5f4205ae10]
+link GameCreator to Game--><path codeLine="249" d="M783.935,312.03 C954.877,372.35 1297.29,493.19 1525.86,573.85 " fill="none" id="GameCreator-to-Game" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="1530.9,575.62,1523.754,568.8425,1526.1874,573.9492,1521.0807,576.3826,1530.9,575.62" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="1059" y="414.0669">«use»</text><!--MD5=[955c2b64607bb66ca6cef07777a8cc3d]
+link GameCreator to GameView--><path codeLine="250" d="M783.888,259.84 C1021.71,228.53 1620.37,154.21 2124,129 C2290.46,120.67 2341.18,75.43 2499,129 C2561.54,150.22 2619.59,201.39 2654.43,236.88 " fill="none" id="GameCreator-to-GameView" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="2658.14,240.7,2654.7348,231.4585,2654.6548,237.1148,2648.9985,237.0348,2658.14,240.7" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="819.5" y="103.0669">«use»</text><!--MD5=[0561bcdb2634f7f4c07131abf3071617]
+link GameCreator to GameController--><path codeLine="251" d="M681.536,371.13 C683.424,442.65 685.935,537.84 687.51,597.52 " fill="none" id="GameCreator-to-GameController" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="687.65,602.82,691.4173,593.7201,687.5214,597.8217,683.4199,593.9258,687.65,602.82" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="684" y="414.0669">«use»</text><!--MD5=[6b6b9e8ceff4e9e58f06e15491e15318]
+link Game to Player--><path codeLine="253" d="M1564.5749,830.2121 C1564.5749,830.2121 1519.27,872.11 1499.95,889.97 " fill="none" id="Game-Player" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1490.38,898.82,1499.7028,895.6443,1494.0502,895.4245,1494.27,889.7719,1490.38,898.82" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1494.0502" x2="1499.93" y1="895.4245" y2="889.99"/><polygon fill="#A80036" points="1573.39,822.07,1566.2684,823.2027,1564.5749,830.2121,1571.6965,829.0794,1573.39,822.07" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1535.3289,863.961,1543.9652,859.9779,1539.9747,855.6623,1535.3289,863.961" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="1548" y="865.0669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="56" x="1507.237" y="842.5843">- players</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="1472.5201" y="887.8417">2, 4</text><!--MD5=[6b6b9e8ceff4e9e58f06e15491e15318]
+link Game to Player--><path codeLine="258" d="M1647.9039,831.4154 C1647.9039,831.4154 1623.71,857.98 1611,869 C1601.62,877.13 1591.35,884.69 1580.62,891.66 " fill="none" id="Game-Player-1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1569.29,898.73,1579.0426,897.3565,1573.5312,896.082,1574.8058,890.5706,1569.29,898.73" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1573.5312" x2="1580.32" y1="896.082" y2="891.85"/><polygon fill="#FFFFFF" points="1655.59,822.2,1648.6751,824.2457,1647.9039,831.4154,1654.8188,829.3697,1655.59,822.2" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1628.275,863.9017,1636.974,860.0576,1633.0532,855.6786,1628.275,863.9017" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="41" x="1641" y="865.0669">knows</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="95" x="1657.2694" y="842.7206">- currentPlayer</text><!--MD5=[4347d70e4d258c13236b06640c773ed6]
+link Game to Domino--><path codeLine="254" d="M1519.3847,704.6341 C1519.3847,704.6341 1034.95,874.69 902,1093 C782.474,1289.271 723.929,1430.778 869,1609 C932.44,1686.937 1207.52,1721.935 1382.21,1736.548 " fill="none" id="Game-Domino" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1395.4,1737.628,1386.7551,1732.9093,1390.4166,1737.2214,1386.1045,1740.8828,1395.4,1737.628" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1390.4166" x2="1382.44" y1="1737.2214" y2="1736.5665"/><polygon fill="#A80036" points="1530.96,701.47,1524.1176,699.1936,1519.3847,704.6341,1526.227,706.9105,1530.96,701.47" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="906.3411,1195.0228,910.4463,1186.4439,904.6197,1185.6693,906.3411,1195.0228" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="916" y="1194.5669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="1483.9688" y="699.81">- deck</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="32" x="1355.6347" y="1733.8286">0, 48</text><!--MD5=[4347d70e4d258c13236b06640c773ed6]
+link Game to Domino--><path codeLine="255" d="M1756.454,834.2674 C1756.454,834.2674 1798.84,1153.059 1889,1287 C1922.94,1337.416 1973.6,1310.273 2002,1364 C2052.89,1460.264 2067.39,1521.931 2002,1609 C1996.88,1615.823 1813.77,1667.636 1677.17,1705.534 " fill="none" id="Game-Domino-1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1664.52,1709.041,1674.2613,1710.4923,1669.3384,1707.7058,1672.125,1702.7828,1664.52,1709.041" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1669.3384" x2="1677.045" y1="1707.7058" y2="1705.5685"/><polygon fill="#A80036" points="1755.57,822.3,1752.0229,828.5784,1756.454,834.2674,1760.0011,827.989,1755.57,822.3" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1893.5469,1195.0458,1897.2934,1186.3043,1891.4397,1185.7716,1893.5469,1195.0458" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="1903" y="1194.5669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="41" x="1760.706" y="842.2797">- draw</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="1672.5328" y="1719.446">3, 4</text><!--MD5=[4347d70e4d258c13236b06640c773ed6]
+link Game to Domino--><path codeLine="256" d="M1815.3794,833.3326 C1815.3794,833.3326 1868.97,959.26 1902,1016 C1923.83,1053.495 1942.77,1054.107 1962,1093 C2013.29,1196.762 2100.68,1515.101 2033,1609 C1956.78,1714.746 1876.7,1655.366 1750,1686 C1726.41,1691.704 1701.5,1698.118 1677.25,1704.574 " fill="none" id="Game-Domino-2" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1664.64,1707.95,1674.3694,1709.4795,1669.469,1706.6535,1672.2949,1701.7531,1664.64,1707.95" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1669.469" x2="1677.2" y1="1706.6535" y2="1704.587"/><polygon fill="#A80036" points="1810.95,822.18,1809.4472,829.2328,1815.3794,833.3326,1816.8822,826.2798,1810.95,822.18" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="2031.2171,1195.0047,2035.5361,1186.5314,2029.7307,1185.611,2031.2171,1195.0047" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="2041" y="1194.5669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="66" x="1819.4523" y="842.6996">- lastDraw</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="1672.6594" y="1702.475">3, 4</text><!--MD5=[3fb9bde8448fc97c3695824efe6b5db0]
+link Game to GameObserver--><path codeLine="257" d="M1898.2597,831.3156 C1898.2597,831.3156 1953.26,897.68 1972.28,920.64 " fill="none" id="Game-GameObserver" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1980.75,930.86,1978.0879,921.3777,1977.5599,927.0099,1971.9278,926.4819,1980.75,930.86" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1977.5599" x2="1972.46" y1="927.0099" y2="920.85"/><polygon fill="#FFFFFF" points="1890.61,822.07,1891.353,829.2427,1898.2597,831.3156,1897.5167,824.1429,1890.61,822.07" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1937.1903,864.4163,1933.6819,855.5765,1929.1561,859.327,1937.1903,864.4163" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="1943" y="865.0669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="73" x="1903.1403" y="842.5843">- observers</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="1968.0266" y="920.0736">*</text><!--MD5=[75a3713b03f00079dc01e09775ea4a63]
+link GameController to Game--><path codeLine="260" d="M796.359,655 C796.359,655 1293.27,655 1517.58,655 " fill="none" id="GameController-Game" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1530.86,655,1521.86,651,1525.86,655,1521.86,659,1530.86,655" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1525.86" x2="1517.86" y1="655" y2="655"/><polygon fill="#FFFFFF" points="784.359,655,790.359,659,796.359,655,790.359,651,784.359,655" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1134.5,643.5664,1125.4549,640.6275,1125.4549,646.5053,1134.5,643.5664" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="51" x="1138.5" y="648.0669">controls</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="46" x="796.0695" y="651.5909">- game</text><!--MD5=[9ceaa5fa1a500201aecfc39a1d1e3d09]
+link GameController to EndMenu--><path codeLine="261" d="M702.961,602.93 C720.952,548.19 758.054,464.04 824,426 C842.696,415.21 1579.52,420.1 1601,418 C1641.95,414 1651.14,405.78 1692,401 C1760.39,392.99 2248.19,399.21 2311,371 C2342.25,356.96 2368.58,327.44 2385.35,304.81 " fill="none" id="GameController-to-EndMenu" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="2388.37,300.68,2379.8281,305.5827,2385.4181,304.7156,2386.2852,310.3057,2388.37,300.68" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="1693" y="414.0669">«use»</text><!--MD5=[9e2c34abc69c4f0d4198a9a2cc8e019b]
+link GameView to GameController--><path codeLine="263" d="M2628.695,313.3787 C2628.695,313.3787 2544.6,358.97 2499,371 C2218.08,445.11 2131.13,345.23 1846,401 C1823.79,405.34 1820.29,414.08 1798,418 C1771.35,422.69 847.45,412.5 824,426 C762.783,461.23 726.435,536.22 707.147,590.6 " fill="none" id="GameView-GameController" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="702.946,602.9,709.6392,595.675,704.5614,598.1681,702.0682,593.0903,702.946,602.9" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="704.5614" x2="707.146" y1="598.1681" y2="590.6"/><polygon fill="#FFFFFF" points="2639,307.23,2631.7979,306.8693,2628.695,313.3787,2635.8971,313.7394,2639,307.23" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1846.0512,410.2804,1855.4233,411.8976,1854.584,406.08,1846.0512,410.2804" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="83" x="1860" y="414.0669">controlled by</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="69" x="2554.7703" y="326.6013">- controller</text><!--MD5=[ca04c0eda4482e2f74e8c9b82fcb79bf]
+link GameView to Game--><path codeLine="264" d="M2638.96,307.06 C2602.09,329.34 2549.45,357.38 2499,371 C2386.39,401.39 2079.83,349.86 1975,401 C1935,420.51 1899.16,450.8 1868.53,483.74 " fill="none" id="GameView-to-Game" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="1864.82,487.76,1873.8543,483.838,1868.2025,484.0778,1867.9627,478.426,1864.82,487.76" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="1976" y="414.0669">«use»</text><!--MD5=[489d1063fdc5f9c8fb8194a386b0639e]
+link GameView to KingdomController--><path codeLine="265" d="M2658.14,240.7 C2623.82,205.16 2563.81,151 2499,129 C2396.84,94.32 656.235,86.66 557,129 C520.011,144.78 488.14,175.77 464.282,205.06 " fill="none" id="GameView-to-KingdomController" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="461.117,208.99,469.8812,204.4969,464.2565,205.0985,463.6548,199.4737,461.117,208.99" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="969.5" y="103.0669">«use»</text><!--MD5=[e22d223862f6ddb7111afbb76ef446dd]
+link GameView to KingdomView--><path codeLine="266" d="M2696.7,307.31 C2715.52,377.24 2759.93,542.26 2779.93,616.58 " fill="none" id="GameView-to-KingdomView" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="2781.33,621.77,2782.8527,612.0396,2780.0301,616.9419,2775.1278,614.1194,2781.33,621.77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="2724" y="414.0669">«use»</text><!--MD5=[875d8eb1cf071a0affde64923988feac]
+link GameView to DrawView--><path codeLine="267" d="M2676.32,307.31 C2650.22,379.51 2587.48,553.09 2562.01,623.53 " fill="none" id="GameView-to-DrawView" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="2560.25,628.42,2567.0727,621.3172,2561.9507,623.7181,2559.5497,618.5961,2560.25,628.42" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="2640" y="414.0669">«use»</text><!--MD5=[75b833ee9e05d4ad769c558851956f66]
+link EndMenu to Game--><path codeLine="271" d="M2388.35,300.64 C2371.81,323.63 2344.15,356 2311,371 C2254.43,396.59 1795.71,355.93 1753,401 C1731.86,423.3 1722.28,452.31 1719.51,482.69 " fill="none" id="EndMenu-to-Game" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="1719.1,487.97,1723.7823,479.3053,1719.4857,482.9849,1715.8061,478.6883,1719.1,487.97" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="1754" y="414.0669">«use»</text><!--MD5=[eb3b106dc7b25f53231d24ff800edaea]
+link EndMenu to StartMenu--><path codeLine="272" d="M2398.27,300.75 C2383.21,358.42 2346.35,499.54 2324.04,584.94 " fill="none" id="EndMenu-to-StartMenu" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="2322.72,589.97,2328.8799,582.2852,2323.9932,585.1348,2321.1436,580.2481,2322.72,589.97" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="2372" y="414.0669">«use»</text><!--MD5=[d2428e26b4bbe79e700ebc016d7506d0]
+link Player to Kingdom--><path codeLine="274" d="M1407.8794,1028.0103 C1407.8794,1028.0103 1407.72,1052.261 1411,1063 C1412.83,1068.993 1415.06,1074.959 1417.58,1080.85 " fill="none" id="Player-Kingdom" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1423.17,1092.824,1422.9927,1082.9767,1421.0574,1088.2922,1415.7419,1086.3569,1423.17,1092.824" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1421.0574" x2="1417.675" y1="1088.2922" y2="1081.043"/><polygon fill="#A80036" points="1409.26,1016.09,1404.5963,1021.59,1407.8794,1028.0103,1412.5431,1022.5104,1409.26,1016.09" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1416.9028,1059.4842,1418.1602,1050.0571,1412.379,1051.1185,1416.9028,1059.4842" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="34" x="1425" y="1059.0669">owns</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="64" x="1339.1619" y="1035.818">- kingdom</text><!--MD5=[740ebcf79b237886881c653d149e9c9f]
+link Kingdom to Player--><path codeLine="280" d="M1473.8927,1080.9925 C1473.8927,1080.9925 1467.42,1056.842 1464,1046 C1462.23,1040.384 1460.25,1034.626 1458.15,1028.875 " fill="none" id="Kingdom-Player" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1453.42,1016.354,1452.8659,1026.1873,1455.1904,1021.0301,1460.3476,1023.3546,1453.42,1016.354" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1455.1904" x2="1458.015" y1="1021.0301" y2="1028.512"/><polygon fill="#FFFFFF" points="1476.8,1092.635,1479.2272,1085.8446,1473.8927,1080.9925,1471.4655,1087.7829,1476.8,1092.635" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1472.5542,1049.78,1472.3563,1059.2885,1477.983,1057.5889,1472.5542,1049.78" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="41" x="1483" y="1059.0669">knows</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="51" x="1422.3705" y="1082.0195">- parent</text><!--MD5=[6e89e8889910a53943882f169d436260]
+link Player to King--><path codeLine="275" d="M1244.5883,976.3284 C1244.5883,976.3284 1043.42,1011.625 1011,1046 C936.695,1124.788 1006.26,1183.31 975,1287 C964.096,1323.17 947.195,1327.122 939,1364 C915.379,1470.296 925.037,1501.01 939,1609 C951.359,1704.585 984.443,1812.804 1004.3,1872.133 " fill="none" id="Player-King" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1008.56,1884.7286,1009.464,1874.9213,1006.9573,1879.9924,1001.8862,1877.4857,1008.56,1884.7286" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1006.9573" x2="1004.39" y1="1879.9924" y2="1872.4145"/><polygon fill="#A80036" points="1256.48,974.72,1249.998,971.5603,1244.5883,976.3284,1251.0703,979.4881,1256.48,974.72" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="942.7046,1491.3957,947.8866,1483.4208,942.2094,1481.898,942.7046,1491.3957" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="23" x="953" y="1491.0669">has</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="42" x="1206.2737" y="972.204">- kings</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="984.3402" y="1873.8237">1,2</text><!--MD5=[5d664f2425b05d2c65dace684359cc52]
+link King to Player--><path codeLine="278" d="M1020,1872.916 C1020,1872.916 1020,1789.904 1020,1748 C1020,1189 1020,1189 1020,1189 C1020,1078.168 1135.54,1020.021 1243.65,989.872 " fill="none" id="King-Player" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1256.45,986.421,1246.7188,984.903,1251.6225,987.7232,1248.8023,992.6269,1256.45,986.421" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1251.6225" x2="1243.895" y1="987.7232" y2="989.805"/><polygon fill="#FFFFFF" points="1020,1884.916,1024,1878.916,1020,1872.916,1016,1878.916,1020,1884.916" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1026.2276,1481.7194,1021.1579,1489.7661,1026.8558,1491.2092,1026.2276,1481.7194" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="41" x="1034" y="1491.0669">knows</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="51" x="1029.4141" y="1874.0475">- parent</text><!--MD5=[ce1962170f2afe0961c3b95540be9a77]
+link Player to Colors--><path codeLine="276" d="M1611.73,957.5 C1611.73,957.5 1645.39,957.5 1658.73,957.5 " fill="none" id="Player-Colors" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1671.73,957.5,1662.73,953.5,1666.73,957.5,1662.73,961.5,1671.73,957.5" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1666.73" x2="1658.73" y1="957.5" y2="957.5"/><polygon fill="#A80036" points="1599.73,957.5,1605.73,961.5,1611.73,957.5,1605.73,953.5,1599.73,957.5" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1626.75,946.0664,1617.7049,943.1275,1617.7049,949.0053,1626.75,946.0664" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="23" x="1630.75" y="950.5669">has</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="40" x="1611.2976" y="969.8664">- color</text><!--MD5=[4b126f9d988f8f844fc07b0aace123e3]
+link Kingdom to Tile--><path codeLine="281" d="M1653.7229,1217.875 C1653.7229,1217.875 1836.37,1284.782 1888,1364 C1952.49,1462.95 1917.72,1608.783 1890.48,1688.6 " fill="none" id="Kingdom-Tile" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1886.02,1701.297,1892.7783,1694.1328,1887.6781,1696.5799,1885.231,1691.4798,1886.02,1701.297" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1887.6781" x2="1890.33" y1="1696.5799" y2="1689.032"/><polygon fill="#FFFFFF" points="1642.13,1214.776,1646.8935,1220.1898,1653.7229,1217.875,1648.9595,1212.4612,1642.13,1214.776" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1932.2466,1491.0332,1930.808,1481.6321,1925.5569,1484.2732,1932.2466,1491.0332" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="1939" y="1491.0669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="46" x="1653.8843" y="1212.6372">- board</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="36" x="1850.0229" y="1690.5457">[5][5]</text><!--MD5=[28dbbb7425dc991cda5acad017a4d515]
+link Kingdom to KingdomObserver--><path codeLine="282" d="M1382.8157,1295.6302 C1382.8157,1295.6302 1368.42,1310.225 1362,1317 C1320.58,1360.737 1276.39,1414.417 1248.51,1449.263 " fill="none" id="Kingdom-KingdomObserver" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1240.06,1459.878,1248.7987,1455.3354,1243.1774,1455.9688,1242.5441,1450.3475,1240.06,1459.878" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1243.1774" x2="1248.155" y1="1455.9688" y2="1449.709"/><polygon fill="#FFFFFF" points="1391.33,1287.174,1384.2541,1288.564,1382.8157,1295.6302,1389.8916,1294.2402,1391.33,1287.174" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1363.7092,1329.3308,1371.875,1324.4553,1367.4497,1320.5867,1363.7092,1329.3308" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="1376" y="1330.0669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="73" x="1308.2634" y="1306.6186">- observers</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="1236.8895" y="1449.0957">*</text><!--MD5=[7f987583bbb79609d5026ad8b8a2339b]
+link Kingdom to DominoPreview--><path codeLine="283" d="M1503.7759,1299.2779 C1503.7759,1299.2779 1504.63,1311.585 1505,1317 C1505.74,1327.826 1506.5,1339.044 1507.25,1350.315 " fill="none" id="Kingdom-DominoPreview" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1508.13,1363.549,1511.5238,1354.3034,1507.7981,1358.56,1503.5415,1354.8343,1508.13,1363.549" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1507.7981" x2="1507.27" y1="1358.56" y2="1350.578"/><polygon fill="#A80036" points="1502.94,1287.307,1499.3676,1293.571,1503.7759,1299.2779,1507.3482,1293.0138,1502.94,1287.307" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1511.3396,1330.5549,1513.6574,1321.3311,1507.7931,1321.7303,1511.3396,1330.5549" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="1520" y="1330.0669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="60" x="1509.678" y="1306.761">- preview</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="1499.4438" y="1353.0826">1</text><!--MD5=[62331ac1f3cb48b867739f1e8e31845d]
+link DominoPreview to Kingdom--><path codeLine="306" d="M1446.0776,1352.2801 C1446.0776,1352.2801 1442.33,1339.7 1441,1334 C1438.41,1322.924 1438.22,1311.557 1439.7,1300.307 " fill="none" id="DominoPreview-Kingdom" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1442.16,1287.178,1436.5709,1295.2874,1441.2392,1292.0925,1444.4341,1296.7607,1442.16,1287.178" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1441.2392" x2="1439.765" y1="1292.0925" y2="1299.9555"/><polygon fill="#FFFFFF" points="1449.9,1363.655,1451.7804,1356.6934,1446.0776,1352.2801,1444.1972,1359.2417,1449.9,1363.655" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1445.391,1320.6036,1443.5756,1329.9393,1449.4097,1329.2234,1445.391,1320.6036" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="41" x="1455" y="1330.0669">knows</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="64" x="1379.8002" y="1352.7878">- kingdom</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="1430.0931" y="1306.6229">1</text><!--MD5=[57fde80bea5f0f3fc685e5807b979834]
+link KingdomController to Kingdom--><path codeLine="285" d="M396.3728,350.7007 C396.3728,350.7007 289.074,888.91 498,1063 C536.839,1095.362 901.811,1086.932 952,1093 C1082.26,1108.75 1228.66,1135.084 1336.75,1156.192 " fill="none" id="KingdomController-Kingdom" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1349.74,1158.739,1341.6772,1153.0829,1344.8333,1157.7774,1340.1388,1160.9335,1349.74,1158.739" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1344.8333" x2="1336.985" y1="1157.7774" y2="1156.237"/><polygon fill="#FFFFFF" points="399.366,339.08,393.9958,343.8926,396.3728,350.7007,401.743,345.8881,399.366,339.08" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="385.7974,863.8191,380.8397,855.7029,377.016,860.167,385.7974,863.8191" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="51" x="391" y="865.0669">controls</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="64" x="329.9381" y="358.6591">- kingdom</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="1333.9922" y="1153.8204">1</text><!--MD5=[dfb6d5374262c28ad95f7387ab63f43a]
+link KingdomEditor to KingdomController--><path codeLine="287" d="M3006.6716,237.7563 C3006.6716,237.7563 2932.44,150.6 2878,129 C2758.14,81.45 675.601,78.4 557,129 C522.728,143.62 492.85,171.3 469.669,198.58 " fill="none" id="KingdomEditor-KingdomController" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="461.117,208.99,469.922,204.5772,464.2919,205.1274,463.7417,199.4973,461.117,208.99" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="464.2919" x2="469.369" y1="205.1274" y2="198.95"/><polygon fill="#FFFFFF" points="3013.88,247.35,3013.4737,240.1504,3006.6716,237.7563,3007.0779,244.956,3013.88,247.35" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="865.0006,98.4892,873.9992,101.5674,874.09,95.6903,865.0006,98.4892" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="83" x="879" y="103.0669">controlled by</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="69" x="2932.2491" y="236.5613">- controller</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="457.3954" y="198.1552">1</text><!--MD5=[91befb3ee2f8ab8c262f502e2756ea2a]
+link KingdomEditor to Kingdom--><path codeLine="288" d="M3001.3,300.68 C2971.78,323.72 2924.84,356.11 2878,371 C2728.24,418.61 2283.59,314.36 2173,426 C1987.08,613.67 2274.12,816.46 2101,1016 C2014.73,1115.431 1941.6,1056.918 1815,1093 C1760.17,1108.626 1700.28,1126.452 1647.34,1142.466 " fill="none" id="KingdomEditor-to-Kingdom" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="1642.24,1144.01,1652.0115,1145.2418,1647.0272,1142.5667,1649.7023,1137.5823,1642.24,1144.01" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="2161" y="865.0669">«use»</text><!--MD5=[865d7636a773d414ea36126c0c0ec5cc]
+link KingdomEditor to KingdomView--><path codeLine="289" d="M3015.56,300.75 C2973.52,366.58 2862.03,541.19 2813.32,617.48 " fill="none" id="KingdomEditor-to-KingdomView" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="2810.49,621.92,2818.7001,616.4799,2813.1772,617.7035,2811.9536,612.1805,2810.49,621.92" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="2947" y="414.0669">«use»</text><!--MD5=[a564f44738559113c7b79854ef9708bd]
+link KingdomView to DominoView--><path codeLine="291" d="M2769.53,688.18 C2746.26,723.35 2705.9,780.24 2663,822 C2623.76,860.19 2573.05,896.14 2534.5,921.24 " fill="none" id="KingdomView-to-DominoView" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="2529.86,924.25,2539.5863,922.7012,2534.0529,921.5261,2535.228,915.9926,2529.86,924.25" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="2626" y="865.0669">«use»</text><!--MD5=[62ab8427172b66615d1be4b01b6cc58a]
+link DrawView to DominoView--><path codeLine="293" d="M2544.69,681.62 C2531.6,734.77 2501.45,857.22 2486.2,919.16 " fill="none" id="DrawView-to-DominoView" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="2484.94,924.24,2490.9603,916.4454,2486.1258,919.3826,2483.1885,914.5481,2484.94,924.24" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="2501" y="865.0669">«use»</text><!--MD5=[7109f08013787e04032f2f34f0a6d22e]
+link DominoView to Domino--><path codeLine="295" d="M2432.4218,999.0257 C2432.4218,999.0257 2373.96,1058.861 2351,1093 C2197.31,1321.563 2317.19,1497.412 2092,1656 C2029.62,1699.928 1825.1,1672.576 1750,1686 C1726.38,1690.222 1701.61,1695.808 1677.57,1701.875 " fill="none" id="DominoView-Domino" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1664.68,1705.188,1674.3933,1706.8167,1669.522,1703.9408,1672.3978,1699.0695,1664.68,1705.188" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1669.522" x2="1677.275" y1="1703.9408" y2="1701.9505"/><polygon fill="#FFFFFF" points="2441.08,990.717,2433.9813,991.9853,2432.4218,999.0257,2439.5205,997.7574,2441.08,990.717" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="2265.3407,1328.9736,2273.9632,1324.9608,2269.9577,1320.659,2265.3407,1328.9736" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="2278" y="1330.0669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="57" x="2372.2489" y="1010.086">- domino</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="1672.6066" y="1696.2536">1</text><!--MD5=[de82a280af9535357dd77df4a9fce4a5]
+link DominoView to TileView--><path codeLine="296" d="M2470.33,990.55 C2461.52,1032.834 2446.05,1107.113 2436.74,1151.818 " fill="none" id="DominoView-to-TileView" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="2435.69,1156.851,2441.438,1148.8534,2436.7076,1151.9556,2433.6054,1147.2253,2435.69,1156.851" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="2460" y="1059.0669">«use»</text><!--MD5=[2549229c814d16e95a410630ddbc9cd2]
+link Domino to Tile--><path codeLine="298" d="M1676.56,1747 C1676.56,1747 1730.07,1747 1754.68,1747 " fill="none" id="Domino-Tile" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1767.76,1747,1758.76,1743,1762.76,1747,1758.76,1751,1767.76,1747" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1762.76" x2="1754.76" y1="1747" y2="1747"/><polygon fill="#FFFFFF" points="1664.56,1747,1670.56,1751,1676.56,1747,1670.56,1743,1664.56,1747" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1691.75,1735.5664,1682.7049,1732.6275,1682.7049,1738.5053,1691.75,1735.5664" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="1695.75" y="1740.0669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="36" x="1676.5295" y="1743.6838">- tile1</text><!--MD5=[2549229c814d16e95a410630ddbc9cd2]
+link Domino to Tile--><path codeLine="299" d="M1676.4956,1767.4688 C1676.4956,1767.4688 1727.1,1769.002 1750.75,1767 C1752.05,1766.89 1753.36,1766.773 1754.68,1766.649 " fill="none" id="Domino-Tile-1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1767.72,1765.25,1758.3449,1762.2321,1762.7485,1765.783,1759.1977,1770.1866,1767.72,1765.25" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1762.7485" x2="1754.795" y1="1765.783" y2="1766.636"/><polygon fill="#FFFFFF" points="1664.52,1766.704,1670.2529,1771.0783,1676.4956,1767.4688,1670.7627,1763.0945,1664.52,1766.704" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1691.7497,1758.514,1682.6743,1755.6701,1682.736,1761.5476,1691.7497,1758.514" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="1695.75" y="1763.0669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="36" x="1676.4874" y="1780.1772">- tile2</text><!--MD5=[79a9a6f37252e6322cf3ed5140072bc2]
+link Domino to King--><path codeLine="300" d="M1383.9482,1796.3958 C1383.9482,1796.3958 1172.45,1866.484 1096.97,1891.494 " fill="none" id="Domino-King" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1084.3,1895.6922,1094.1011,1896.6607,1089.0466,1894.1206,1091.5866,1889.0661,1084.3,1895.6922" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1089.0466" x2="1096.64" y1="1894.1206" y2="1891.603"/><polygon fill="#FFFFFF" points="1395.34,1792.624,1388.3868,1790.7126,1383.9482,1796.3958,1390.9013,1798.3072,1395.34,1792.624" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1245.2538,1848.1392,1254.7642,1848.0837,1252.9153,1842.5043,1245.2538,1848.1392" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="1259" y="1851.0669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="40" x="1347.2622" y="1791.6603">+ king</text><!--MD5=[c604e7c7c43a94b1b03c96e83bde00ab]
+link Tile to Lands--><path codeLine="302" d="M1980.05,1747 C1980.05,1747 2004.38,1747 2014.6,1747 " fill="none" id="Tile-Lands" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="2027.7,1747,2018.7,1743,2022.7,1747,2018.7,1751,2027.7,1747" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="2022.7" x2="2014.7" y1="1747" y2="1747"/><polygon fill="#A80036" points="1968.05,1747,1974.05,1751,1980.05,1747,1974.05,1743,1968.05,1747" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1995.5,1735.5664,1986.4549,1732.6275,1986.4549,1738.5053,1995.5,1735.5664" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="10" x="1999.5" y="1740.0669">is</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="38" x="1980.183" y="1759.569">- type</text><!--MD5=[b25066f4b7112daeef4a50c693d4a3f4]
+link TileView to Tile--><path codeLine="304" d="M2422.495,1234.99 C2422.495,1234.99 2353.07,1550.793 2212,1656 C2139.24,1710.261 2097.39,1661.475 2010,1686 C1999.14,1689.047 1988.01,1692.717 1976.99,1696.722 " fill="none" id="TileView-Tile" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1964.62,1701.371,1974.4518,1701.9508,1969.3007,1699.6128,1971.6386,1694.4617,1964.62,1701.371" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1969.3007" x2="1976.78" y1="1699.6128" y2="1696.7995"/><polygon fill="#FFFFFF" points="2424.49,1223.157,2419.5482,1228.4085,2422.495,1234.99,2427.4368,1229.7385,2424.49,1223.157" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="2393.5283,1490.1646,2401.9237,1485.696,2397.6937,1481.6148,2393.5283,1490.1646" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="2406" y="1491.0669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="2397.0772" y="1242.7712">-tile</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="1970.8024" y="1690.2983">1</text><!--MD5=[9f3002e78d8fe8201db1090dab373d07]
+link DominoPreview to Domino--><path codeLine="307" d="M1523.2399,1621.1634 C1523.2399,1621.1634 1525.54,1663.594 1526.52,1681.808 " fill="none" id="DominoPreview-Domino" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1527.23,1694.936,1530.7372,1685.7328,1526.9595,1689.9433,1522.7489,1686.1656,1527.23,1694.936" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1526.9595" x2="1526.53" y1="1689.9433" y2="1681.955"/><polygon fill="#FFFFFF" points="1522.59,1609.181,1518.9208,1615.3888,1523.2399,1621.1634,1526.9091,1614.9556,1522.59,1609.181" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1531.27,1652.5591,1533.7162,1643.3685,1527.8469,1643.686,1531.27,1652.5591" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="1540" y="1652.0669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="57" x="1464.2077" y="1628.7823">- domino</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="1518.3203" y="1684.0084">1</text><!--MD5=[874de42d4f912c0d5039b710479a3225]
+link DominoPreview to Orientations--><path codeLine="308" d="M1679.61,1486.5 C1679.61,1486.5 1735.22,1486.5 1758.03,1486.5 " fill="none" id="DominoPreview-Orientations" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1771.31,1486.5,1762.31,1482.5,1766.31,1486.5,1762.31,1490.5,1771.31,1486.5" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1766.31" x2="1758.31" y1="1486.5" y2="1486.5"/><polygon fill="#A80036" points="1667.61,1486.5,1673.61,1490.5,1679.61,1486.5,1673.61,1482.5,1667.61,1486.5" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#000000" points="1695,1475.0664,1685.9549,1472.1275,1685.9549,1478.0053,1695,1475.0664" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="1699" y="1479.5669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="78" x="1679.7357" y="1498.8894">- orientation</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="1755.4243" y="1482.4613">1</text><!--MD5=[6f6ef66e1b7df4deeb1c8ae4c400b4f6]
+@startuml
+'https://plantuml.com/class-diagram
+
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam roundcorner 10
+hide enum methods
+
+class Kingdomino {
+    + {static}main()
+}
+
+package models {
+
+    interface GameObserver {
+        + reactGame(game:Game)
+    }
+
+    class Game {
+        + Game(players:Player[], deck:Domino[], middle:Boolean, harmony:Boolean)
+
+        - round:Integer
+
+        - middle:Boolean
+        - harmony:Boolean
+
+        + getCurrentPlayer():Player
+        + setCurrentPlayer(player:Player)
+        + getAllPlayers():Player[]
+
+        + nextRound()
+        + getRound():Integer
+
+        + getDraw(): Domino[]
+        + getLastDraw(): Domino[]
+        + setDraw(draw:Domino[])
+
+        + getDeck(): Domino[]
+
+        + isMiddle():Boolean
+        + isHarmony():Boolean
+
+        + notifyObservers()
+        + addObserver(observer:GameObserver)
+    }
+
+    class Player {
+        + Player(name:String, color:Colors, numberOfKings:Integer)
+        - name:String
+
+        + getName():String
+        + getColor():Colors
+        + getKings():King[]
+        + getKingdom():Kingdom
+    }
+
+    class King {
+        + King(parent:Player)
+        + getParent():Player
+    }
+
+    class Kingdom {
+        + Kingdom(parent:Player)
+        + getParent():Player
+
+        + getKingdom():Tile[5][5]
+
+        + createPreview(domino:Domino):DominoPreview
+        + getPreview():DominoPreview
+        + applyPreview()
+
+        + addObserver(observer:KingdomObserver)
+        + removeObserver(observer:KingdomObserver)
+        + notifyObservers()
+    }
+
+    class Domino {
+        + Domino(number:Integer,tile1:Tile, tile2:Tile)
+        - number:Integer
+
+        + getNumber():Integer
+        + getTile1():Tile
+        + getTile2():Tile
+    }
+
+    class Tile {
+        + Tile(land:Lands, crowns:Integer)
+        - crowns:Integer
+
+        + getCrowns():Integer
+        + getLand():Lands
+    }
+
+    enum Lands {
+        WATER
+        FOREST
+        WHEAT
+        GRASS
+        SWAMP
+        MINE
+        CASTLE
+    }
+
+    enum Colors {
+        BLUE
+        GREEN
+        YELLOW
+        PINK
+    }
+
+    enum Orientations {
+        SOUTH
+        WEST
+        EAST
+        NORTH
+    }
+
+    class DominoPreview {
+        - x:Integer
+        - y:Integer
+
+        + DominoPreview(domino:Domino, parent:Kingdom)
+        + setPositionX(x:Integer)
+        + setPositionY(y:Integer)
+        + setOrientation(orientation:Orientations)
+
+        + canGoUp():Boolean
+        + canGoDown():Boolean
+        + canGoLeft():Boolean
+        + canGoRight():Boolean
+        + canBeOriented(orientation:Orientations):Boolean
+
+        + getPositionX():Integer
+        + getPositionY():Integer
+        + getOrientation():Orientations
+
+    }
+
+    interface KingdomObserver {
+        + updateKingdom(kingdom:Kingdom)
+    }
+
+}
+
+package views {
+
+    class GameView implements GameObserver {
+        + GameView(controller:GameController, game:GameView)
+        + reactGame(game:Game)
+    }
+
+    class StartMenu {
+        - playerFrame:JPanel
+        - removePlayerButton:JButton
+        - addPlayerButton:JButton
+        + StartMenu(controller:GameCreator)
+        + isMiddle():Boolean
+        + isHarmony():Boolean
+        + refreshPlayers(players:PlayerEditor[])
+    }
+
+    class EndMenu {
+        + EndMenu(game:Game)
+    }
+
+    class PlayerEditor {
+        + PlayerEditor()
+        + getPlayerName():String
+        + getPlayerColor():Colors
+    }
+
+    class KingdomEditor {
+        + KingdomEditor(controller: KingdomController)
+    }
+
+    class KingdomView {
+        + KingdomView(kingdom:Kingdom)
+        + updateKingdom(kingdom:Kingdom)
+    }
+
+    class DrawView {
+        + DrawView(dominos:Domino[])
+    }
+
+    class DominoView {
+        + DominoView(domino:Domino)
+        + getDomino():Domino
+    }
+
+    class TileView {
+        + TileView(tile:Tile)
+        + getTile():Tile
+    }
+
+}
+
+package controllers {
+
+    class GameController {
+        + GameController(game:Game)
+        + makeDraw()
+        + playerPlaceCastle()
+        + playerChooseDomino()
+        + playerPlaceDomino()
+    }
+
+    class GameCreator {
+
+        + GameCreator(dominos:Domino[])
+
+        + setView(view:StartMenu)
+
+        + canAddPlayer():boolean
+        + canRemovePlayer():boolean
+
+        + addPlayer()
+        + removePlayer()
+        + getPlayers():Player[]
+
+        + createGame(view:StartMenu)
+    }
+
+    class KingdomController {
+        + KingdomController(kingdom:Kingdom)
+        + moveRight()
+        + moveLeft()
+        + moveUp()
+        + moveDown()
+        + setOrientation(orientation:Orientations)
+        + place()
+    }
+
+    abstract class CSVReader {
+        - {static} csvToListString():String[]
+        - {static} splitString(line:String):String[]
+        - {static} setDominos(listStringDomino:String[])
+        + {static} getDominos():Domino[]
+    }
+
+}
+
+Kingdomino ..> StartMenu : "<<use>>"
+Kingdomino ..> GameCreator : "<<use>>"
+Kingdomino ..> CSVReader : "<<use>>"
+
+GameCreator " - dominos" o- -> "*" Domino : > contains
+GameCreator " - players" *- -> "2, 3" PlayerEditor : > contains
+GameCreator " - view" o- -> "1" StartMenu : > contains
+GameCreator ..> Game : "<<use>>"
+GameCreator ..> GameView : "<<use>>"
+GameCreator ..> GameController : "<<use>>"
+
+Game " - players" *- -> "2, 4" Player : > contains
+Game " - deck" *- -> "0, 48" Domino : > contains
+Game " - draw" *- -> "3, 4" Domino : > contains
+Game " - lastDraw" *- -> "3, 4" Domino : > contains
+Game " - observers" o- -> "*" GameObserver : > contains
+Game " - currentPlayer" o- -> Player : > knows
+
+GameController " - game" o- -> Game : > controls
+GameController ..> EndMenu : "<<use>>"
+
+GameView " - controller" o- -> GameController : > controlled by
+GameView ..> Game : "<<use>>"
+GameView ..> KingdomController : "<<use>>"
+GameView ..> KingdomView : "<<use>>"
+GameView ..> DrawView : <<use>>
+
+StartMenu " - controller" o- -> "1" GameCreator : > controlled by
+
+EndMenu ..> Game : "<<use>>"
+EndMenu ..> StartMenu : "<<use>>"
+
+Player " - kingdom"  *- -> Kingdom : > owns
+Player " - kings" *- -> "1,2" King : > has
+Player " - color" *-> Colors : > has
+
+King " - parent" o- -> Player : > knows
+
+Kingdom " - parent" o- -> Player : > knows
+Kingdom " - board" o- -> "[5][5]" Tile : > contains
+Kingdom " - observers" o- -> "*" KingdomObserver : > contains
+Kingdom " - preview" *- -> "1" DominoPreview : > contains
+
+KingdomController " - kingdom" o- -> "1" Kingdom : > controls
+
+KingdomEditor " - controller" o- -> "1" KingdomController : > controlled by
+KingdomEditor ..> Kingdom : <<use>>
+KingdomEditor ..> KingdomView : <<use>>
+
+KingdomView ..> DominoView : <<use>>
+
+DrawView ..> DominoView : "<<use>>"
+
+DominoView " - domino" o- -> "1" Domino : > contains
+DominoView ..> TileView : <<use>>
+
+Domino " - tile1" o-> Tile : > contains
+Domino " - tile2" o-> Tile : > contains
+Domino " + king" o- -> King : > contains
+
+Tile *-> Lands : " - type" > is
+
+TileView " -tile" o- -> "1" Tile : > contains
+
+DominoPreview " - kingdom" o- -> "1" Kingdom : > knows
+DominoPreview " - domino" o- -> "1" Domino : > contains
+DominoPreview " - orientation" *-> "1" Orientations : > contains
+@enduml
+
+@startuml
+
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam roundcorner 10
+hide enum methods
+
+class Kingdomino {
+    + {static}main()
+}
+
+package models {
+
+    interface GameObserver {
+        + reactGame(game:Game)
+    }
+
+    class Game {
+        + Game(players:Player[], deck:Domino[], middle:Boolean, harmony:Boolean)
+
+        - round:Integer
+
+        - middle:Boolean
+        - harmony:Boolean
+
+        + getCurrentPlayer():Player
+        + setCurrentPlayer(player:Player)
+        + getAllPlayers():Player[]
+
+        + nextRound()
+        + getRound():Integer
+
+        + getDraw(): Domino[]
+        + getLastDraw(): Domino[]
+        + setDraw(draw:Domino[])
+
+        + getDeck(): Domino[]
+
+        + isMiddle():Boolean
+        + isHarmony():Boolean
+
+        + notifyObservers()
+        + addObserver(observer:GameObserver)
+    }
+
+    class Player {
+        + Player(name:String, color:Colors, numberOfKings:Integer)
+        - name:String
+
+        + getName():String
+        + getColor():Colors
+        + getKings():King[]
+        + getKingdom():Kingdom
+    }
+
+    class King {
+        + King(parent:Player)
+        + getParent():Player
+    }
+
+    class Kingdom {
+        + Kingdom(parent:Player)
+        + getParent():Player
+
+        + getKingdom():Tile[5][5]
+
+        + createPreview(domino:Domino):DominoPreview
+        + getPreview():DominoPreview
+        + applyPreview()
+
+        + addObserver(observer:KingdomObserver)
+        + removeObserver(observer:KingdomObserver)
+        + notifyObservers()
+    }
+
+    class Domino {
+        + Domino(number:Integer,tile1:Tile, tile2:Tile)
+        - number:Integer
+
+        + getNumber():Integer
+        + getTile1():Tile
+        + getTile2():Tile
+    }
+
+    class Tile {
+        + Tile(land:Lands, crowns:Integer)
+        - crowns:Integer
+
+        + getCrowns():Integer
+        + getLand():Lands
+    }
+
+    enum Lands {
+        WATER
+        FOREST
+        WHEAT
+        GRASS
+        SWAMP
+        MINE
+        CASTLE
+    }
+
+    enum Colors {
+        BLUE
+        GREEN
+        YELLOW
+        PINK
+    }
+
+    enum Orientations {
+        SOUTH
+        WEST
+        EAST
+        NORTH
+    }
+
+    class DominoPreview {
+        - x:Integer
+        - y:Integer
+
+        + DominoPreview(domino:Domino, parent:Kingdom)
+        + setPositionX(x:Integer)
+        + setPositionY(y:Integer)
+        + setOrientation(orientation:Orientations)
+
+        + canGoUp():Boolean
+        + canGoDown():Boolean
+        + canGoLeft():Boolean
+        + canGoRight():Boolean
+        + canBeOriented(orientation:Orientations):Boolean
+
+        + getPositionX():Integer
+        + getPositionY():Integer
+        + getOrientation():Orientations
+
+    }
+
+    interface KingdomObserver {
+        + updateKingdom(kingdom:Kingdom)
+    }
+
+}
+
+package views {
+
+    class GameView implements GameObserver {
+        + GameView(controller:GameController, game:GameView)
+        + reactGame(game:Game)
+    }
+
+    class StartMenu {
+        - playerFrame:JPanel
+        - removePlayerButton:JButton
+        - addPlayerButton:JButton
+        + StartMenu(controller:GameCreator)
+        + isMiddle():Boolean
+        + isHarmony():Boolean
+        + refreshPlayers(players:PlayerEditor[])
+    }
+
+    class EndMenu {
+        + EndMenu(game:Game)
+    }
+
+    class PlayerEditor {
+        + PlayerEditor()
+        + getPlayerName():String
+        + getPlayerColor():Colors
+    }
+
+    class KingdomEditor {
+        + KingdomEditor(controller: KingdomController)
+    }
+
+    class KingdomView {
+        + KingdomView(kingdom:Kingdom)
+        + updateKingdom(kingdom:Kingdom)
+    }
+
+    class DrawView {
+        + DrawView(dominos:Domino[])
+    }
+
+    class DominoView {
+        + DominoView(domino:Domino)
+        + getDomino():Domino
+    }
+
+    class TileView {
+        + TileView(tile:Tile)
+        + getTile():Tile
+    }
+
+}
+
+package controllers {
+
+    class GameController {
+        + GameController(game:Game)
+        + makeDraw()
+        + playerPlaceCastle()
+        + playerChooseDomino()
+        + playerPlaceDomino()
+    }
+
+    class GameCreator {
+
+        + GameCreator(dominos:Domino[])
+
+        + setView(view:StartMenu)
+
+        + canAddPlayer():boolean
+        + canRemovePlayer():boolean
+
+        + addPlayer()
+        + removePlayer()
+        + getPlayers():Player[]
+
+        + createGame(view:StartMenu)
+    }
+
+    class KingdomController {
+        + KingdomController(kingdom:Kingdom)
+        + moveRight()
+        + moveLeft()
+        + moveUp()
+        + moveDown()
+        + setOrientation(orientation:Orientations)
+        + place()
+    }
+
+    abstract class CSVReader {
+        - {static} csvToListString():String[]
+        - {static} splitString(line:String):String[]
+        - {static} setDominos(listStringDomino:String[])
+        + {static} getDominos():Domino[]
+    }
+
+}
+
+Kingdomino ..> StartMenu : "<<use>>"
+Kingdomino ..> GameCreator : "<<use>>"
+Kingdomino ..> CSVReader : "<<use>>"
+
+GameCreator " - dominos" o- -> "*" Domino : > contains
+GameCreator " - players" *- -> "2, 3" PlayerEditor : > contains
+GameCreator " - view" o- -> "1" StartMenu : > contains
+GameCreator ..> Game : "<<use>>"
+GameCreator ..> GameView : "<<use>>"
+GameCreator ..> GameController : "<<use>>"
+
+Game " - players" *- -> "2, 4" Player : > contains
+Game " - deck" *- -> "0, 48" Domino : > contains
+Game " - draw" *- -> "3, 4" Domino : > contains
+Game " - lastDraw" *- -> "3, 4" Domino : > contains
+Game " - observers" o- -> "*" GameObserver : > contains
+Game " - currentPlayer" o- -> Player : > knows
+
+GameController " - game" o- -> Game : > controls
+GameController ..> EndMenu : "<<use>>"
+
+GameView " - controller" o- -> GameController : > controlled by
+GameView ..> Game : "<<use>>"
+GameView ..> KingdomController : "<<use>>"
+GameView ..> KingdomView : "<<use>>"
+GameView ..> DrawView : <<use>>
+
+StartMenu " - controller" o- -> "1" GameCreator : > controlled by
+
+EndMenu ..> Game : "<<use>>"
+EndMenu ..> StartMenu : "<<use>>"
+
+Player " - kingdom"  *- -> Kingdom : > owns
+Player " - kings" *- -> "1,2" King : > has
+Player " - color" *-> Colors : > has
+
+King " - parent" o- -> Player : > knows
+
+Kingdom " - parent" o- -> Player : > knows
+Kingdom " - board" o- -> "[5][5]" Tile : > contains
+Kingdom " - observers" o- -> "*" KingdomObserver : > contains
+Kingdom " - preview" *- -> "1" DominoPreview : > contains
+
+KingdomController " - kingdom" o- -> "1" Kingdom : > controls
+
+KingdomEditor " - controller" o- -> "1" KingdomController : > controlled by
+KingdomEditor ..> Kingdom : <<use>>
+KingdomEditor ..> KingdomView : <<use>>
+
+KingdomView ..> DominoView : <<use>>
+
+DrawView ..> DominoView : "<<use>>"
+
+DominoView " - domino" o- -> "1" Domino : > contains
+DominoView ..> TileView : <<use>>
+
+Domino " - tile1" o-> Tile : > contains
+Domino " - tile2" o-> Tile : > contains
+Domino " + king" o- -> King : > contains
+
+Tile *-> Lands : " - type" > is
+
+TileView " -tile" o- -> "1" Tile : > contains
+
+DominoPreview " - kingdom" o- -> "1" Kingdom : > knows
+DominoPreview " - domino" o- -> "1" Domino : > contains
+DominoPreview " - orientation" *-> "1" Orientations : > contains
+@enduml
+
+PlantUML version 1.2021.17beta3(Unknown compile time)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
