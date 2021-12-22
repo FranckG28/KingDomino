@@ -22,9 +22,10 @@ public class KingDominoDesign {
     public final Font textFont;
 
     // TAILLES D'ECRITURES
-    public final int textLg = 30;
-    public final int textMd = 20;
-    public final int textSm = 10;
+    public final float textLg = 40F;
+    public final float textMd = 25F;
+    public final float textBase = 16F;
+    public final float textSm = 10F;
 
     // INSTANCE DE LA CLASSE
     private static KingDominoDesign instance;
@@ -39,11 +40,9 @@ public class KingDominoDesign {
             File titleFontFile = new File("rendu2/src/v2/Bagnard.ttf");
             File textFontFile = new File("rendu2/src/v2/Baloo2.ttf");
 
-            System.out.println(titleFontFile.getAbsolutePath());
-
             // Création des fonts
-            titleFont = Font.createFont(Font.TRUETYPE_FONT, titleFontFile);
-            textFont = Font.createFont(Font.TRUETYPE_FONT, textFontFile);
+            titleFont = Font.createFont(Font.TRUETYPE_FONT, titleFontFile).deriveFont(textBase);
+            textFont = Font.createFont(Font.TRUETYPE_FONT, textFontFile).deriveFont(textBase);
             
             // Enregistrement des fonts
             GraphicsEnvironment ge =

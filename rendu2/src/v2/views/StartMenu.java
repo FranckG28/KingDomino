@@ -14,8 +14,8 @@ import java.util.Stack;
 public class StartMenu extends JFrame {
 
     private final JPanel playersPanel = new JPanel();
-    private final JButton addPlayerButton = new JButton("+");
-    private final JButton removePlayerButton = new JButton("-");
+    private final JButton addPlayerButton = new KingButton("+");
+    private final JButton removePlayerButton = new KingButton("-");
 
     private final JCheckBox middleCheckBox = new JCheckBox("Empire du milieu");
     private final JCheckBox harmonyCheckBox = new JCheckBox("Harmonie");
@@ -26,22 +26,23 @@ public class StartMenu extends JFrame {
 
         this.controller = controller;
 
-        setBackground(KingDominoDesign.BLACK);
-
         JPanel mainPanel = new JPanel();
+        mainPanel.setBackground(KingDominoDesign.BLACK);
         mainPanel.setLayout(new BorderLayout());
 
         // HEADER
 
-        mainPanel.setBorder(new EmptyBorder(20, 10, 10, 10));
+        mainPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
 
         JLabel title = new JLabel("Kingdomino", SwingConstants.CENTER);
-        title.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(30));
+        title.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(KingDominoDesign.getInstance().textLg));
+        title.setForeground(KingDominoDesign.YELLOW);
         mainPanel.add(title, BorderLayout.PAGE_START);
 
         // REGLES PERSO
 
         JPanel centerPanel = new JPanel();
+        centerPanel.setBackground(KingDominoDesign.BLACK);
         centerPanel.setLayout(new GridBagLayout());
 
         GridBagConstraints constraints = new GridBagConstraints();
@@ -53,7 +54,16 @@ public class StartMenu extends JFrame {
 
         constraints.insets = new Insets(10,0,0,0);
         JLabel rulesTitle = new JLabel("Règles :");
+        rulesTitle.setFont(KingDominoDesign.getInstance().textFont.deriveFont(Font.BOLD));
+        rulesTitle.setForeground(KingDominoDesign.RED);
         centerPanel.add(rulesTitle, constraints);
+
+        middleCheckBox.setBackground(KingDominoDesign.BLACK);
+        middleCheckBox.setFont(KingDominoDesign.getInstance().textFont);
+        middleCheckBox.setForeground(Color.white);
+        harmonyCheckBox.setBackground(KingDominoDesign.BLACK);
+        harmonyCheckBox.setFont(KingDominoDesign.getInstance().textFont);
+        harmonyCheckBox.setForeground(Color.white);
 
         constraints.insets = new Insets(0,0,0,0);
         constraints.gridy = 1;
@@ -69,6 +79,8 @@ public class StartMenu extends JFrame {
         constraints.gridwidth = 1;
         constraints.weightx = 1;
         JLabel playerText = new JLabel("Joueurs :");
+        playerText.setFont(KingDominoDesign.getInstance().textFont.deriveFont(Font.BOLD));
+        playerText.setForeground(KingDominoDesign.RED);
         centerPanel.add(playerText, constraints);
 
         JPanel playerBtnPanel = new JPanel();
@@ -112,7 +124,8 @@ public class StartMenu extends JFrame {
 
         // JOUER
 
-        JButton playButton = new JButton("Jouer !");
+        JButton playButton = new KingButton("Jouer !");
+        playButton.setFont(KingDominoDesign.getInstance().textFont.deriveFont(KingDominoDesign.getInstance().textMd).deriveFont(Font.BOLD));
         class PlayButtonListener implements ActionListener {
             @Override
             public void actionPerformed( ActionEvent actionEvent ) {
@@ -127,7 +140,7 @@ public class StartMenu extends JFrame {
 
         add(mainPanel);
 
-        setSize(400, 400);
+        setSize(600, 450);
 
         setTitle("KingDomino - Menu principal");
         setVisible(true);

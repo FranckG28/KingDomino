@@ -1,24 +1,35 @@
 package v2.views;
 
 import v2.models.Colors;
+
 import javax.swing.*;
+import java.awt.*;
 
 public class PlayerEditor extends JPanel {
 
-    private final JTextField name;
+    private final PlaceholderTextField name;
     private Colors color;
 
-    private final JLabel colorLabel = new JLabel("•");
+    private final JPanel colorIndicator = new JPanel();
 
     public PlayerEditor() {
 
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        setBackground(KingDominoDesign.BLACK);
 
         // INDICATEUR DE COULEUR
-        add(colorLabel);
+        colorIndicator.setSize(60,60);
+        add(colorIndicator);
+
+        add(Box.createRigidArea(new Dimension(5,0)));
 
         // ENTREE DU NOM DU JOUEUR
-        name = new JTextField("", 10);
+        name = new PlaceholderTextField("", 10);
+        name.setPlaceholder("Entrez un pseudo");
+        name.setFont(KingDominoDesign.getInstance().titleFont);
+        name.setForeground(Color.WHITE);
+        name.setOpaque(false);
+        name.setBorder(BorderFactory.createEmptyBorder());
         add(name);
 
 
@@ -34,7 +45,7 @@ public class PlayerEditor extends JPanel {
 
     public void setPlayerColor(Colors color) {
         this.color = color;
-        colorLabel.setForeground(KingDominoDesign.getColor(this.color));
+        colorIndicator.setBackground(KingDominoDesign.getColor(this.color));
     }
 
 }
