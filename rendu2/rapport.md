@@ -32,7 +32,7 @@ Le 8 décembre nous avons montré à notre professeur l’avancé de notre proje
 
 **GameController** : Nous avons enlevé le patron Strategy, et avons pris la décision de tout diviser en fonction simple.
 
-Nous avions créé un **package menu**, cependant, ce dernier ne respectait pas le découpage MVC. Il a donc été supprimé et intégré dans les packages views, models et controllers.
+Nous avions créé un **package menu**, cependant, ce dernier ne respectait pas le découpage MVC. Il a donc été supprimé et intégré dans les packages v1.views, v1.models et v1.controllers.
 
 Une fois ces changements faits, le diagramme a été validé par notre professeur et nous avons commencé à coder.
 
@@ -78,7 +78,7 @@ Nous avons créé une vue KingdomView, qui implémente l'interface KingdomObserv
 
 ## **L'exécutable**
 
-Pour l’instant, notre exécutable est le fichier “Kingdomino” trouvable dans le dossier “src” du rendu1. 
+Pour l’instant, notre exécutable est le fichier “v1.Kingdomino” trouvable dans le dossier “src” du rendu1. 
 
 Pour le moment, seul le menu principal avec la sélection du nombre de joueurs, leurs noms et leurs couleurs, ainsi que le choix des règles sont implémentés.
 
