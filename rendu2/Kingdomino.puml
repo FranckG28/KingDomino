@@ -1,0 +1,313 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam roundcorner 10
+hide enum methods
+
+class Kingdomino {
+    + {static}main()
+}
+
+package models {
+
+    interface GameObserver {
+        + reactGame(game:Game)
+    }
+
+    class Game {
+        + Game(players:Player[], deck:Domino[], middle:Boolean, harmony:Boolean)
+
+        - round:Integer
+
+        - middle:Boolean
+        - harmony:Boolean
+
+        + getCurrentPlayer():Player
+        + setCurrentPlayer(player:Player)
+        + getAllPlayers():Player[]
+
+        + nextRound()
+        + getRound():Integer
+
+        + getDraw(): Domino[]
+        + getLastDraw(): Domino[]
+        + setDraw(draw:Domino[])
+
+        + getDeck(): Domino[]
+
+        + isMiddle():Boolean
+        + isHarmony():Boolean
+
+        + notifyObservers()
+        + addObserver(observer:GameObserver)
+    }
+
+    class Player {
+        + Player(name:String, color:Colors, numberOfKings:Integer)
+        - name:String
+
+        + getName():String
+        + getColor():Colors
+        + getKings():King[]
+        + getKingdom():Kingdom
+    }
+
+    class King {
+        + King(parent:Player)
+        + getParent():Player
+    }
+
+    class Kingdom {
+        + Kingdom(parent:Player)
+        + getParent():Player
+
+        + getKingdom():Tile[5][5]
+
+        + createPreview(domino:Domino):DominoPreview
+        + getPreview():DominoPreview
+        + applyPreview()
+
+        + addObserver(observer:KingdomObserver)
+        + removeObserver(observer:KingdomObserver)
+        + notifyObservers()
+    }
+
+    class Domino {
+        + Domino(number:Integer,tile1:Tile, tile2:Tile)
+        - number:Integer
+
+        + getNumber():Integer
+        + getTile1():Tile
+        + getTile2():Tile
+    }
+
+    class Tile {
+        + Tile(land:Lands, crowns:Integer)
+        - crowns:Integer
+
+        + getCrowns():Integer
+        + getLand():Lands
+    }
+
+    enum Lands {
+        WATER
+        FOREST
+        WHEAT
+        GRASS
+        SWAMP
+        MINE
+        CASTLE
+    }
+
+    enum Colors {
+        BLUE
+        GREEN
+        YELLOW
+        PINK
+    }
+
+    enum Orientations {
+        SOUTH
+        WEST
+        EAST
+        NORTH
+    }
+
+    class DominoPreview {
+        - x:Integer
+        - y:Integer
+
+        + DominoPreview(domino:Domino, parent:Kingdom)
+        + setPositionX(x:Integer)
+        + setPositionY(y:Integer)
+        + setOrientation(orientation:Orientations)
+
+        + canGoUp():Boolean
+        + canGoDown():Boolean
+        + canGoLeft():Boolean
+        + canGoRight():Boolean
+        + canBeOriented(orientation:Orientations):Boolean
+
+        + getPositionX():Integer
+        + getPositionY():Integer
+        + getOrientation():Orientations
+
+    }
+
+    interface KingdomObserver {
+        + updateKingdom(kingdom:Kingdom)
+    }
+
+}
+
+package views {
+
+    class GameView implements GameObserver {
+        + GameView(controller:GameController, game:GameView)
+        + reactGame(game:Game)
+    }
+
+    class StartMenu {
+        - playerFrame:JPanel
+        - removePlayerButton:JButton
+        - addPlayerButton:JButton
+        + StartMenu(controller:GameCreator)
+        + isMiddle():Boolean
+        + isHarmony():Boolean
+        + refreshPlayers(players:PlayerEditor[])
+    }
+
+    class EndMenu {
+        + EndMenu(game:Game)
+    }
+
+    class PlayerEditor {
+        + PlayerEditor()
+        + getPlayerName():String
+        + getPlayerColor():Colors
+        + setPlayerColor(color:Colors)
+    }
+
+    class KingdomEditor {
+        + KingdomEditor(controller: KingdomController)
+    }
+
+    class KingdomView {
+        + KingdomView(kingdom:Kingdom)
+        + updateKingdom(kingdom:Kingdom)
+    }
+
+    class DrawView {
+        + DrawView(dominos:Domino[])
+    }
+
+    class DominoView {
+        + DominoView(domino:Domino)
+        + getDomino():Domino
+    }
+
+    class TileView {
+        + TileView(tile:Tile)
+        + getTile():Tile
+    }
+
+}
+
+package controllers {
+
+    class GameController {
+        + GameController(game:Game)
+        + makeDraw()
+        + playerPlaceCastle()
+        + playerChooseDomino()
+        + playerPlaceDomino()
+    }
+
+    class GameCreator {
+
+        + GameCreator(dominos:Domino[])
+
+        + setView(view:StartMenu)
+
+        + canAddPlayer():boolean
+        + canRemovePlayer():boolean
+
+        + addPlayer()
+        + removePlayer()
+        + getPlayers():Player[]
+
+        + createGame(view:StartMenu)
+    }
+
+    class KingdomController {
+        + KingdomController(kingdom:Kingdom)
+        + moveRight()
+        + moveLeft()
+        + moveUp()
+        + moveDown()
+        + setOrientation(orientation:Orientations)
+        + place()
+    }
+
+    abstract class CSVReader {
+        - {static} csvToListString():String[]
+        - {static} splitString(line:String):String[]
+        - {static} setDominos(listStringDomino:String[])
+        + {static} getDominos():Domino[]
+    }
+
+}
+
+Kingdomino ..> StartMenu : "<<use>>"
+Kingdomino ..> GameCreator : "<<use>>"
+Kingdomino ..> CSVReader : "<<use>>"
+
+GameCreator " - dominos" o--> "*" Domino : > contains
+GameCreator " - players" *--> "2, 3" PlayerEditor : > contains
+GameCreator " - view" o--> "1" StartMenu : > contains
+GameCreator ..> Game : "<<use>>"
+GameCreator ..> GameView : "<<use>>"
+GameCreator ..> GameController : "<<use>>"
+
+Game " - players" *--> "2, 4" Player : > contains
+Game " - deck" *--> "0, 48" Domino : > contains
+Game " - draw" *--> "3, 4" Domino : > contains
+Game " - lastDraw" *--> "3, 4" Domino : > contains
+Game " - observers" o--> "*" GameObserver : > contains
+Game " - currentPlayer" o--> Player : > knows
+
+GameController " - game" o--> Game : > controls
+GameController ..> EndMenu : "<<use>>"
+
+GameView " - controller" o--> GameController : > controlled by
+GameView ..> Game : "<<use>>"
+GameView ..> KingdomController : "<<use>>"
+GameView ..> KingdomView : "<<use>>"
+GameView ..> DrawView : <<use>>
+
+StartMenu " - controller" o--> "1" GameCreator : > controlled by
+
+EndMenu ..> Game : "<<use>>"
+EndMenu ..> StartMenu : "<<use>>"
+
+Player " - kingdom"  *--> Kingdom : > owns
+Player " - kings" *--> "1,2" King : > has
+Player " - color" *-> Colors : > has
+
+King " - parent" o--> Player : > knows
+
+Kingdom " - parent" o--> Player : > knows
+Kingdom " - board" o--> "[5][5]" Tile : > contains
+Kingdom " - observers" o--> "*" KingdomObserver : > contains
+Kingdom " - preview" *--> "1" DominoPreview : > contains
+
+KingdomController " - kingdom" o--> "1" Kingdom : > controls
+
+KingdomEditor " - controller" o--> "1" KingdomController : > controlled by
+KingdomEditor ..> Kingdom : <<use>>
+KingdomEditor ..> KingdomView : <<use>>
+
+KingdomView ..> DominoView : <<use>>
+
+DrawView ..> DominoView : "<<use>>"
+
+DominoView " - domino" o--> "1" Domino : > contains
+DominoView ..> TileView : <<use>>
+
+Domino " - tile1" o-> Tile : > contains
+Domino " - tile2" o-> Tile : > contains
+Domino " + king" o--> King : > contains
+
+Tile *-> Lands : " - type" > is
+
+TileView " -tile" o--> "1" Tile : > contains
+
+DominoPreview " - kingdom" o--> "1" Kingdom : > knows
+DominoPreview " - domino" o--> "1" Domino : > contains
+DominoPreview " - orientation" *-> "1" Orientations : > contains
+
+
+@enduml
