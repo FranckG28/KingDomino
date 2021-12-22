@@ -150,6 +150,7 @@ package views {
 
     class GameView implements GameObserver {
         + GameView(controller:GameController, game:GameView)
+        + setAction(action: String)
         + reactGame(game:Game)
     }
 
@@ -184,7 +185,7 @@ package views {
     }
 
     class DrawView {
-        + DrawView(dominos:Domino[])
+        + DrawView(dominos:Domino[], title:String)
     }
 
     class DominoView {
@@ -204,6 +205,7 @@ package controllers {
 
     class GameController {
         + GameController(game:Game)
+        + setView(view:GameView)
         + makeDraw()
         + playerPlaceCastle()
         + playerChooseDomino()
@@ -264,6 +266,7 @@ Game " - observers" o--> "*" GameObserver : > contains
 Game " - currentPlayer" o--> Player : > knows
 
 GameController " - game" o--> Game : > controls
+GameController " - view" o--> GameView : > contains
 GameController ..> EndMenu : "<<use>>"
 
 GameView " - controller" o--> GameController : > controlled by

@@ -15,8 +15,10 @@ public class TileView extends JPanel {
 
         this.tile = tile;
 
+        // TAILLE DE LA TUILE
         setPreferredSize(new Dimension(tileSize, tileSize));
 
+        // COULEUR DE LA TUILE
         setBackground(
                 tile == null
                 ? KingDominoDesign.BLACK
@@ -31,6 +33,14 @@ public class TileView extends JPanel {
                     default -> KingDominoDesign.BLACK;
                 }
         );
+
+        // AFFICHAGE DU NOMBRE DE COURONNE SI IL Y EN A
+        if (tile != null && tile.getCrowns() != 0) {
+            JLabel c = new JLabel(String.valueOf(tile.getCrowns()));
+            c.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(KingDominoDesign.getInstance().textSm));
+            c.setForeground(KingDominoDesign.BLACK);
+            add(c);
+        }
 
     }
 

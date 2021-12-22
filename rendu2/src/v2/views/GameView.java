@@ -18,8 +18,8 @@ public class GameView extends JFrame implements GameObserver {
     private JLabel gameLabel = new JLabel("Instruction");
     private JLabel playerLabel = new JLabel("Joueur");
 
-    private DrawView oldDraw = new DrawView();
-    private DrawView actualDraw = new DrawView();
+    private JPanel oldDraw = new JPanel();
+    private JPanel actualDraw = new JPanel();
 
     public GameView(GameController controller, Game game) {
 
@@ -81,7 +81,7 @@ public class GameView extends JFrame implements GameObserver {
         gamePanel.add(gameLabel);
 
         contentGbc.gridx = 2;
-        contentGbc.gridwidth = 3;
+        contentGbc.weightx = 1;
         contentPanel.add(gamePanel, contentGbc);
 
         mainContainer.add(contentPanel, BorderLayout.CENTER);
@@ -110,17 +110,30 @@ public class GameView extends JFrame implements GameObserver {
         add(mainContainer);
 
         setSize(1200, 800);
-
         setTitle("KingDomino - Jeu");
         setVisible(true);
 
     }
 
     public void reactGame(Game game) {
-        // REFRESH CURRENT PLAYER + INSTRUCTIONS
 
-        // REFRESH DRAW
+        // TODO: Actualisation des instructions
 
+        // Actualisation du joueur actuel
+        playerLabel.setText("C'est au tour de " + game.getCurrentPlayer().getName());
+
+        // Actualisation de la pioche
+        oldDraw = new DrawView(game.getLastDraw(), "Pioche précédente");
+        actualDraw = new DrawView(game.getDraw(), "Pioche");
+
+        // Actualisation de la fenêtre
+        this.getContentPane().validate();
+        this.getContentPane().repaint();
+
+    }
+
+    public void setAction(String action) {
+        gameLabel.setText(action);
     }
 
 }
