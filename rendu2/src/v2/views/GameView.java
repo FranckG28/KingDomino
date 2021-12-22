@@ -101,7 +101,7 @@ public class GameView extends JFrame implements GameObserver {
             kingdom.addObserver(kview);
             kingdomGrid.add(kview);
         }
-        
+
         mainContainer.add(kingdomGrid, BorderLayout.PAGE_END);
 
 

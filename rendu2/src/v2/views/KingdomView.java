@@ -10,7 +10,7 @@ import java.awt.*;
 public class KingdomView extends JPanel implements KingdomObserver {
 
     private final int borderWidth = 1;
-    private final Color borderColor = Color.black;
+    private final Color borderColor = Color.lightGray;
 
     private final JPanel gridPanel = new JPanel(new GridLayout(Kingdom.gridSize, Kingdom.gridSize));
 
@@ -57,7 +57,7 @@ public class KingdomView extends JPanel implements KingdomObserver {
                     if (row == 0) {
                         if (col == 0) {
                             // Top left corner, draw all sides
-                            tile.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                            tile.setBorder(BorderFactory.createLineBorder(borderColor));
                         }
                         else {
                             // Top Edge, draw all sides except left Edge
