@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Kingdom {
+    
+    public static final int gridSize = 5;
 
     private final Player parent;
 

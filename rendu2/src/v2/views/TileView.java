@@ -7,13 +7,15 @@ import java.awt.*;
 
 public class TileView extends JPanel {
 
+    public static final int tileSize = 30;
+
     private Tile tile;
 
     public TileView(Tile tile) {
 
         this.tile = tile;
 
-        setSize(30, 30);
+        setPreferredSize(new Dimension(tileSize, tileSize));
 
         setBackground(Color.BLUE);
 

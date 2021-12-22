@@ -61,6 +61,9 @@ package models {
     }
 
     class Kingdom {
+
+        + {static}gridSize:Integer
+
         + Kingdom(parent:Player)
         + getParent():Player
 
@@ -190,6 +193,7 @@ package views {
     }
 
     class TileView {
+        + {static}tileSize:Integer
         + TileView(tile:Tile)
         + getTile():Tile
     }
