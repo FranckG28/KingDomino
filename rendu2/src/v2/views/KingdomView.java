@@ -2,6 +2,7 @@ package v2.views;
 
 import v2.models.Kingdom;
 import v2.models.KingdomObserver;
+import v2.models.Lands;
 import v2.models.Tile;
 
 import javax.swing.*;
@@ -53,7 +54,9 @@ public class KingdomView extends JPanel implements KingdomObserver {
 
             for (int row = 0; row < Kingdom.gridSize; row++) {
                 for (int col = 0; col < Kingdom.gridSize; col++) {
+
                     final JPanel tile = new TileView(tiles[row][col]);
+
                     if (row == 0) {
                         if (col == 0) {
                             // Top left corner, draw all sides
@@ -90,6 +93,8 @@ public class KingdomView extends JPanel implements KingdomObserver {
                 }
             }
         }
+
+        updateUI();
 
     }
 

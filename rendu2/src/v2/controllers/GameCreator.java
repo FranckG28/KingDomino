@@ -59,8 +59,11 @@ public class GameCreator {
 
     public void createGame(StartMenu view) {
 
-        // Définition de la pioche :
-        Stack<Domino> gameDeck = (Stack<Domino>) dominos.clone();
+        // Copie de la pioche :
+        Stack<Domino> gameDeck = new Stack<>();
+        gameDeck.addAll(dominos);
+
+        // Mélange de la pioche
         Collections.shuffle(gameDeck);
 
         // TODO: ATTENTION A NE PAS DONNER TOUS LES DOMINOS SELON LE NB DE JOUEURS
