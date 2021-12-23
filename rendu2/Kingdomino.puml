@@ -68,6 +68,7 @@ package models {
         + getParent():Player
 
         + getKingdom():Tile[5][5]
+        + hasCastle():Boolean
 
         + setPreviews(previews:List<Preview>)
         + applyPreviews()
@@ -75,7 +76,6 @@ package models {
         + isEmpty(x:Integer, y:Integer)
 
         + addObserver(observer:KingdomObserver)
-        + removeObserver(observer:KingdomObserver)
         + notifyObservers()
     }
 
@@ -121,7 +121,12 @@ package models {
     }
 
     class Preview {
-        + Preview(domino:Domino, parent:Kingdom)
+        - x:Integer
+        - y:Integer
+        + Preview(tile:Tile, x:Integer, y:Integer)
+        + getX():Integer
+        + getY():Integer
+        + getTile():Tile
     }
 
     interface KingdomObserver {
@@ -248,6 +253,7 @@ package views {
 package controllers {
 
     class GameController {
+        - placedCastles:Boolean
         + GameController(game:Game)
         + setView(view:GameView)
         + play()
@@ -292,7 +298,7 @@ package controllers {
     class CastleController implements MovableInterface {
         - x:Integer
         - y:Integer
-        + CastleController(kingdom:Kingdom)
+        + CastleController(kingdom:Kingdom, parentController:GameController)
         + moveRight()
         + moveLeft()
         + moveUp()
@@ -301,6 +307,7 @@ package controllers {
         + canGoLeft():Boolean
         + canGoDown():Boolean
         + canGoUp():Boolean
+        - updatePreview()
         + place()
         + setView(view:CastlePlacement)
     }
@@ -367,6 +374,7 @@ Kingdom " - previews" *--> "*" Preview : > contains
 
 CastleController " - kingdom" o--> "1" Kingdom : > contains
 CastleController " - view" o--> "1" CastlePlacement : > contains
+CastleController " - parentController" o--> "1" GameController : > contains
 
 DominoController " - kingdom" o--> "1" Kingdom : > contains
 DominoController " - view" o--> "1" DominoPlacement : > contains

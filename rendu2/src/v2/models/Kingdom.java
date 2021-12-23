@@ -1,6 +1,7 @@
 package v2.models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Kingdom {
@@ -9,9 +10,7 @@ public class Kingdom {
 
     private final Player parent;
 
-    public Tile[][] board = new Tile[5][5];
-
-    private DominoPreview preview;
+    public Tile[][] board = new Tile[gridSize][gridSize];
 
     private List<KingdomObserver> observers = new ArrayList<>();
 
@@ -23,31 +22,75 @@ public class Kingdom {
         return parent;
     }
 
+    private List<Preview> previews;
+
     public Tile[][] getKingdom() {
-        return this.board;
+
+        if (this.previews != null && previews.size() != 0) {
+
+            Tile[][] result = new Tile[gridSize][gridSize];
+
+            for (int ligne = 0; ligne<gridSize; ligne++) {
+                for(int col = 0; col<gridSize; col++) {
+
+                    result[ligne][col] = this.board[ligne][col];
+
+                    for (Preview p:previews) {
+                        if (col == p.getX() && ligne == p.getY()) {
+                            result[ligne][col] = p.getTile();
+                        }
+                    }
+                }
+            }
+
+            return result;
+        } else {
+            return this.board.clone();
+        }
     }
 
-    public DominoPreview createPreview(Domino domino) {
-        return null;
+    public void setPreviews(List<Preview> p) {
+        this.previews = p;
+        notifyObservers();
     }
 
-    public DominoPreview getPreview() {
-        return null;
+    public boolean hasCastle() {
+        for (Tile line[]:board) {
+            for(Tile t:line) {
+                if (t != null && t.getLand() == Lands.CASTLE) {
+                    return true;
+                }
+            }
+        }
+
+        // Si aucun chateau a été trouvé :
+        return false;
     }
 
     public void applyPreview() {
-
+        for (Preview p:this.previews) {
+            this.board[p.getY()][p.getX()] = p.getTile();
+        }
+        this.previews = null;
     }
 
     public void addObserver(KingdomObserver observer) {
         this.observers.add(observer);
     }
-    public void removeObserver(KingdomObserver observer) {
 
-    }
     public void notifyObservers() {
         for (KingdomObserver item: this.observers) {
             item.updateKingdom(this);
         }
     }
+
+    private void printBoard() {
+        System.out.println("---------------------------------");
+        for (Tile[] l:this.board) {
+            for(Tile t:l) {
+                System.out.println(t);
+            }
+        }
+    }
+
 }
