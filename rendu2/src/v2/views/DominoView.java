@@ -16,8 +16,9 @@ public class DominoView extends JPanel {
     public DominoView(Domino domino) {
         this.domino = domino;
 
+        setLayout(new GridLayout(1, 2));
         setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
-        setLayout(new GridLayout(2, 1));
+        setBackground(Color.black);
 
         JPanel tile1 = new TileView(this.domino.getTile1());
         JPanel tile2 = new TileView(this.domino.getTile2());
@@ -30,7 +31,7 @@ public class DominoView extends JPanel {
                 0,
                 borderWidth,
                 borderWidth,
-                Color.BLACK));
+                borderColor));
 
         add(tile1);
         add(tile2);

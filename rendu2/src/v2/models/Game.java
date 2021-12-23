@@ -6,7 +6,7 @@ import java.util.Stack;
 
 public class Game {
 
-    private int round;
+    private int round = 0;
 
     private List<Player> players;
     private Player currentPlayer;
@@ -15,8 +15,8 @@ public class Game {
     private boolean harmony;
 
     private Stack<Domino> deck;
-    private Stack<Domino> draw;
-    private Stack<Domino> lastDraw;
+    private Stack<Domino> draw = new Stack<>();
+    private Stack<Domino> lastDraw = new Stack<>();
 
     private List<GameObserver> observers = new ArrayList<>();
 
