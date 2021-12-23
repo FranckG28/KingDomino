@@ -77,7 +77,7 @@ public class Game {
 
     public boolean isHarmony() {
         return this.harmony;
-    };
+    }
 
     public Stack<Domino> getDeck() {
         return this.deck;

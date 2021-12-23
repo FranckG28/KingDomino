@@ -9,16 +9,33 @@ import java.awt.*;
 
 public class KingdomView extends JPanel implements KingdomObserver {
 
-    final int rows = 5;
-    final int cols = 5;
-    final int borderWidth = 1;
+    private final int borderWidth = 1;
+    private final Color borderColor = Color.lightGray;
+
+    private final JPanel gridPanel = new JPanel(new GridLayout(Kingdom.gridSize, Kingdom.gridSize));
 
     public KingdomView(Kingdom kingdom) {
 
         // Configuration du Layout
-        setLayout(new GridLayout(rows, cols));
-        setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
 
+        gridPanel.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
+        setOpaque(false);
+        gridPanel.setOpaque(false);
+
+        add(gridPanel, gbc);
+
+        // Nom du joueur
+        JLabel playerName = new JLabel(kingdom.getParent().getName());
+        playerName.setFont(KingDominoDesign.getInstance().titleFont);
+        playerName.setForeground(KingDominoDesign.getColor(kingdom.getParent().getColor()));
+
+        gbc.gridy=1;
+        gbc.insets = new Insets(10,0,0,0);
+        add(playerName, gbc);
+
+        // Affichage initial du royaume
         updateKingdom(kingdom);
 
     }
@@ -31,15 +48,16 @@ public class KingdomView extends JPanel implements KingdomObserver {
         // Si le tableau de tile existe
         if (tiles != null) {
 
-            // On vide la panel
+            // On vide le panel
+            gridPanel.removeAll();
 
-            for (int row = 0; row < rows; row++) {
-                for (int col = 0; col < cols; col++) {
+            for (int row = 0; row < Kingdom.gridSize; row++) {
+                for (int col = 0; col < Kingdom.gridSize; col++) {
                     final JPanel tile = new TileView(tiles[row][col]);
                     if (row == 0) {
                         if (col == 0) {
                             // Top left corner, draw all sides
-                            tile.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                            tile.setBorder(BorderFactory.createLineBorder(borderColor));
                         }
                         else {
                             // Top Edge, draw all sides except left Edge
@@ -47,7 +65,7 @@ public class KingdomView extends JPanel implements KingdomObserver {
                                     0,
                                     borderWidth,
                                     borderWidth,
-                                    Color.BLACK));
+                                    borderColor));
                         }
                     }
                     else {
@@ -57,7 +75,7 @@ public class KingdomView extends JPanel implements KingdomObserver {
                                     borderWidth,
                                     borderWidth,
                                     borderWidth,
-                                    Color.BLACK));
+                                    borderColor));
                         }
                         else {
                             // Neither top Edge nor left Edge, skip both top and left lines
@@ -65,10 +83,10 @@ public class KingdomView extends JPanel implements KingdomObserver {
                                     0,
                                     borderWidth,
                                     borderWidth,
-                                    Color.BLACK));
+                                    borderColor));
                         }
                     }
-                    add(tile);
+                    gridPanel.add(tile);
                 }
             }
         }

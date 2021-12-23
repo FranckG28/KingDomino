@@ -140,7 +140,7 @@ public class StartMenu extends JFrame {
 
         add(mainPanel);
 
-        setSize(600, 450);
+        setSize(600, 500);
 
         setTitle("KingDomino - Menu principal");
         setVisible(true);

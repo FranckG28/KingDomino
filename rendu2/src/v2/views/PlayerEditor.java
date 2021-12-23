@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class PlayerEditor extends JPanel {
 
-    private final PlaceholderTextField name;
+    private final JTextField name;
     private Colors color;
 
     private final JPanel colorIndicator = new JPanel();
@@ -18,19 +18,22 @@ public class PlayerEditor extends JPanel {
         setBackground(KingDominoDesign.BLACK);
 
         // INDICATEUR DE COULEUR
-        colorIndicator.setSize(60,60);
+        colorIndicator.setPreferredSize(new Dimension(20,35));
         add(colorIndicator);
 
-        add(Box.createRigidArea(new Dimension(5,0)));
+        add(Box.createRigidArea(new Dimension(10,0)));
 
         // ENTREE DU NOM DU JOUEUR
-        name = new PlaceholderTextField("", 10);
-        name.setPlaceholder("Entrez un pseudo");
+        name = new JTextField("Joueur", 10);
         name.setFont(KingDominoDesign.getInstance().titleFont);
         name.setForeground(Color.WHITE);
         name.setOpaque(false);
         name.setBorder(BorderFactory.createEmptyBorder());
+        name.setAlignmentY(Component.CENTER_ALIGNMENT);
+        name.setCaretColor(Color.white);
         add(name);
+
+        setPreferredSize(new Dimension(-1, 35));
 
 
     }
