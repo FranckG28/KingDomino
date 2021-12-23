@@ -52,7 +52,7 @@ public class GameCreator {
     public java.util.List<Player> getPlayers() {
         ArrayList<Player> list = new ArrayList<>();
         for (PlayerEditor item:players) {
-            list.add(new Player(item.getPlayerName(), item.getPlayerColor(), 1));
+            list.add(new Player(item.getPlayerName(), item.getPlayerColor(), (players.size() == 2) ? 2 : 1));
         }
         return list;
     }

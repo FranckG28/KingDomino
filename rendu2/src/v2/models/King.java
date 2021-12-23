@@ -4,6 +4,8 @@ public class King {
 
     private final Player parent;
 
+    public boolean isPlaced = false;
+
     public King(Player player) {
         this.parent = player;
     }

@@ -56,6 +56,7 @@ package models {
     }
 
     class King {
+        + isPlaced:Boolean
         + King(parent:Player)
         + getParent():Player
     }
@@ -181,7 +182,8 @@ package views {
     }
 
     class DrawView {
-        + DrawView(dominos:Domino[], title:String)
+        + DrawView(dominos:Domino[], title:String, controller:GameController)
+        + showButtons()
     }
 
     class DominoView {
@@ -248,6 +250,10 @@ package views {
         + bindActions(controller:MovableInterface)
     }
 
+    class KingView {
+        + KingView(color:Colors)
+    }
+
 }
 
 package controllers {
@@ -256,10 +262,12 @@ package controllers {
         - placedCastles:Boolean
         + GameController(game:Game)
         + setView(view:GameView)
+        + setDrawView(drawView:DrawView)
         + play()
         + makeDraw()
         + playerPlaceCastle()
-        + playerChooseDomino()
+        + playerChooseDomino(king:King)
+        + dominoChosen(domino:Domino)
         + playerPlaceDomino()
     }
 
@@ -341,6 +349,7 @@ Game " - currentPlayer" o--> Player : > knows
 
 GameController " - game" o--> Game : > controls
 GameController " - view" o--> GameView : > contains
+GameController " - drawView" o--> DrawView : > contains
 GameController ..> CastlePlacement : <<use>>
 GameController ..> DominoPlacement : <<use>>
 GameController ..> EndMenu : "<<use>>"
@@ -362,7 +371,8 @@ EndMenu ..> Game : "<<use>>"
 EndMenu ..> StartMenu : "<<use>>"
 
 Player " - kingdom"  *--> Kingdom : > owns
-Player " - kings" *--> "1,2" King : > has
+Player " - kings" *--> "1,2" King : > contains
+Player " + currentKing" *--> "1" King : > contains
 Player " - color" *-> Colors : > has
 
 King " - parent" o--> Player : > knows

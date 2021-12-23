@@ -136,13 +136,15 @@ public class GameView extends JFrame implements GameObserver {
         actualDraw.removeAll();
 
         if (game.getLastDraw() != null) {
-            oldDraw.add(new DrawView(game.getLastDraw(), "Pioche précédente"));
+            oldDraw.add(new DrawView(game.getLastDraw(), "Pioche précédente", null));
         } else {
             oldDraw.add(empty);
         }
 
         if (game.getDraw() != null) {
-            actualDraw.add(new DrawView(game.getDraw(), "Pioche"));
+            DrawView draw = new DrawView(game.getDraw(), "Pioche", controller);
+            actualDraw.add(draw);
+            controller.setDrawView(draw);
         } else {
             actualDraw.add(empty);
         }
