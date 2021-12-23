@@ -21,6 +21,8 @@ public class GameView extends JFrame implements GameObserver {
     private JPanel oldDraw = new JPanel();
     private JPanel actualDraw = new JPanel();
 
+    private JPanel controlPanel = new JPanel();
+
     public GameView(GameController controller, Game game) {
 
         this.controller = controller;
@@ -64,6 +66,9 @@ public class GameView extends JFrame implements GameObserver {
         contentPanel.setOpaque(false);
         GridBagConstraints contentGbc = new GridBagConstraints();
 
+        oldDraw.setOpaque(false);
+        actualDraw.setOpaque(false);
+
         contentPanel.add(oldDraw, contentGbc);
         contentGbc.gridx = 1;
         contentPanel.add(actualDraw, contentGbc);
@@ -79,6 +84,9 @@ public class GameView extends JFrame implements GameObserver {
         gameLabel.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(KingDominoDesign.getInstance().textLg));
         gameLabel.setForeground(KingDominoDesign.YELLOW);
         gamePanel.add(gameLabel);
+
+        controlPanel.setOpaque(false);
+        gamePanel.add(controlPanel);
 
         contentGbc.gridx = 2;
         contentGbc.weightx = 1;
@@ -121,8 +129,23 @@ public class GameView extends JFrame implements GameObserver {
         playerLabel.setText("C'est au tour de " + game.getCurrentPlayer().getName());
 
         // Actualisation de la pioche
-        oldDraw = new DrawView(game.getLastDraw(), "Pioche précédente");
-        actualDraw = new DrawView(game.getDraw(), "Pioche");
+        JPanel empty = new JPanel();
+        empty.setOpaque(false);
+
+        oldDraw.removeAll();
+        actualDraw.removeAll();
+
+        if (game.getLastDraw() != null) {
+            oldDraw.add(new DrawView(game.getLastDraw(), "Pioche précédente"));
+        } else {
+            oldDraw.add(empty);
+        }
+
+        if (game.getDraw() != null) {
+            actualDraw.add(new DrawView(game.getDraw(), "Pioche"));
+        } else {
+            actualDraw.add(empty);
+        }
 
         // Actualisation de la fenêtre
         this.getContentPane().validate();
@@ -130,8 +153,18 @@ public class GameView extends JFrame implements GameObserver {
 
     }
 
-    public void setAction(String action) {
-        gameLabel.setText(action);
+    public void setAction(String text, JPanel content) {
+
+        // Modification de l'instruction
+        gameLabel.setText(text);
+
+        // Modification de l'action
+        controlPanel.removeAll();
+        controlPanel.add(content);
+
+        // Actualisation de la fenêtre
+        this.getContentPane().validate();
+        this.getContentPane().repaint();
     }
 
 }
