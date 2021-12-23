@@ -99,6 +99,9 @@ public class GameCreator {
         // Fermeture du menu principal
         view.setVisible(false);
 
+        // Démarrage du jeu
+        controller.play();
+
     }
 
 }
