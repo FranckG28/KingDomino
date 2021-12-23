@@ -199,6 +199,32 @@ package views {
         + getTile():Tile
     }
 
+    class KingDominoDesign {
+        + {static}BLUE:Color
+        + {static}GREEN:Color
+        + {static}YELLOW:Color
+        + {static}PINK:Color
+        + {static}RED:Color
+        + {static}PURPLE:Color
+        + {static}BLACK:Color
+
+        + {static}textLg:Float
+        + {static}textMd:Float
+        + {static}textBase:Float
+        + {static}textSm:Float
+
+        + titleFont:Font
+        + textFont:Font
+
+        - {static}instance:KingDominoDesign
+
+        - KingDominoDesign()
+
+        + {static}getInstance():KingDominoDesign
+        + {static}getColor(color:Colors)
+
+    }
+
 }
 
 package controllers {

@@ -117,8 +117,6 @@ public class GameView extends JFrame implements GameObserver {
 
     public void reactGame(Game game) {
 
-        // TODO: Actualisation des instructions
-
         // Actualisation du joueur actuel
         playerLabel.setText("C'est au tour de " + game.getCurrentPlayer().getName());
 

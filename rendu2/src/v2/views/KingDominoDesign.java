@@ -22,10 +22,10 @@ public class KingDominoDesign {
     public final Font textFont;
 
     // TAILLES D'ECRITURES
-    public final float textLg = 40F;
-    public final float textMd = 25F;
-    public final float textBase = 16F;
-    public final float textSm = 10F;
+    public static final float textLg = 40F;
+    public static final float textMd = 25F;
+    public static final float textBase = 16F;
+    public static final float textSm = 10F;
 
     // INSTANCE DE LA CLASSE
     private static KingDominoDesign instance;
