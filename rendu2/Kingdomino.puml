@@ -9,6 +9,7 @@ hide enum methods
 
 class Kingdomino {
     + {static}main()
+    + {static}openMainMenu()
 }
 
 package models {
@@ -18,37 +19,28 @@ package models {
     }
 
     class Game {
-        + Game(players:Player[], deck:Domino[], middle:Boolean, harmony:Boolean)
-
         - round:Integer
-
         - middle:Boolean
         - harmony:Boolean
-
+        + Game(players:Player[], deck:Domino[], middle:Boolean, harmony:Boolean)
         + getCurrentPlayer():Player
         + setCurrentPlayer(player:Player)
         + getAllPlayers():Player[]
-
         + nextRound()
         + getRound():Integer
-
         + getDraw(): Domino[]
         + getLastDraw(): Domino[]
         + setDraw(draw:Domino[])
-
         + getDeck(): Domino[]
-
         + isMiddle():Boolean
         + isHarmony():Boolean
-
         + notifyObservers()
         + addObserver(observer:GameObserver)
     }
 
     class Player {
-        + Player(name:String, color:Colors, numberOfKings:Integer)
         - name:String
-
+        + Player(name:String, color:Colors, numberOfKings:Integer)
         + getName():String
         + getColor():Colors
         + getKings():King[]
@@ -62,37 +54,29 @@ package models {
     }
 
     class Kingdom {
-
         + {static}gridSize:Integer
-
         + Kingdom(parent:Player)
         + getParent():Player
-
         + getKingdom():Tile[5][5]
-        + hasCastle():Boolean
-
         + setPreviews(previews:List<Preview>)
         + applyPreviews()
-
-        + isEmpty(x:Integer, y:Integer)
-
+        + hasCastle():Boolean
+        + isFree(x:Integer, y:Integer)
         + addObserver(observer:KingdomObserver)
         + notifyObservers()
     }
 
     class Domino {
-        + Domino(number:Integer,tile1:Tile, tile2:Tile)
         - number:Integer
-
+        + Domino(number:Integer,tile1:Tile, tile2:Tile)
         + getNumber():Integer
         + getTile1():Tile
         + getTile2():Tile
     }
 
     class Tile {
-        + Tile(land:Lands, crowns:Integer)
         - crowns:Integer
-
+        + Tile(land:Lands, crowns:Integer)
         + getCrowns():Integer
         + getLand():Lands
     }
@@ -156,9 +140,6 @@ package views {
     }
 
     class StartMenu {
-        - playerFrame:JPanel
-        - removePlayerButton:JButton
-        - addPlayerButton:JButton
         + StartMenu(controller:GameCreator)
         + isMiddle():Boolean
         + isHarmony():Boolean
@@ -219,29 +200,27 @@ package views {
         - KingDominoDesign()
 
         + {static}getInstance():KingDominoDesign
-        + {static}getColor(color:Colors)
+        + {static}getColor(color:Colors):Color
 
     }
 
     class CastlePlacement {
-        - placeButton:Button
         + CastlePlacement(controller:CastleController)
         + getArrows():PositionArrows
         + getPlaceButton():Button
     }
 
     class DominoPlacement {
-        - placeButton:Button
         + DominoPlacement(controller:DominoController)
         + getArrows():PositionArrows
         + getPlaceButton():Button
     }
 
     class PositionArrows {
-        - leftButton:Button
-        - rightButton:Button
-        - upButton:Button
-        - downButton:Button
+'        - leftButton:Button
+'        - rightButton:Button
+'        - upButton:Button
+'        - downButton:Button
         + PositionArrows()
         + getLeftButton():Button
         + getRightButton():Button
@@ -273,18 +252,13 @@ package controllers {
     }
 
     class GameCreator {
-
         + GameCreator(dominos:Domino[])
-
         + setView(view:StartMenu)
-
         + canAddPlayer():boolean
         + canRemovePlayer():boolean
-
         + addPlayer()
         + removePlayer()
         + getPlayers():Player[]
-
         + createGame(view:StartMenu)
     }
 
@@ -346,13 +320,15 @@ Game " - deck" *--> "0, 48" Domino : > contains
 Game " - draw" *--> "3, 4" Domino : > contains
 Game " - lastDraw" *--> "3, 4" Domino : > contains
 Game " - observers" o--> "*" GameObserver : > contains
-Game " - currentPlayer" o--> Player : > knows
+Game " - currentPlayer" o--> "1" Player : > contains
 
-GameController " - game" o--> Game : > controls
-GameController " - view" o--> GameView : > contains
-GameController " - drawView" o--> DrawView : > contains
+GameController " - game" o--> "1" Game : > controls
+GameController " - view" o--> "1" GameView : > contains
+GameController " - drawView" o--> "1" DrawView : > contains
 GameController ..> CastlePlacement : <<use>>
 GameController ..> DominoPlacement : <<use>>
+GameController ..> DominoController : <<use>>
+GameController ..> CastleController : <<use>>
 GameController ..> EndMenu : "<<use>>"
 
 DominoPlacement " - arrows" *--> "1" PositionArrows : > contains
@@ -361,7 +337,7 @@ DominoPlacement " - controller" o--> "1" DominoController : > contains
 CastlePlacement " - arrows" *--> "1" PositionArrows : > contains
 CastlePlacement " - controller" o--> "1" CastleController : > contains
 
-GameView " - controller" o--> GameController : > controlled by
+GameView " - controller" o--> "1" GameController : > controlled by
 GameView ..> Game : "<<use>>"
 GameView ..> KingdomView : "<<use>>"
 GameView ..> DrawView : <<use>>
@@ -371,14 +347,14 @@ StartMenu " - controller" o--> "1" GameCreator : > controlled by
 EndMenu ..> Game : "<<use>>"
 EndMenu ..> StartMenu : "<<use>>"
 
-Player " - kingdom"  *--> Kingdom : > owns
+Player " - kingdom"  *--> "1" Kingdom : > owns
 Player " - kings" *--> "1,2" King : > contains
 Player " + currentKing" *--> "1" King : > contains
-Player " - color" *-> Colors : > has
+Player " - color" *-> "1" Colors : > contains
 
-King " - parent" o--> Player : > knows
+King " - parent" o--> "1" Player : > contains
 
-Kingdom " - parent" o--> Player : > knows
+Kingdom " - parent" o--> "1" Player : > contains
 Kingdom " - board" o--> "[5][5]" Tile : > contains
 Kingdom " - observers" o--> "*" KingdomObserver : > contains
 Kingdom " - previews" *--> "*" Preview : > contains
@@ -389,19 +365,21 @@ CastleController " - parentController" o--> "1" GameController : > contains
 
 DominoController " - kingdom" o--> "1" Kingdom : > contains
 DominoController " - view" o--> "1" DominoPlacement : > contains
+DominoController " - parentController" o--> "1" GameController : > contains
 
 KingdomView ..> DominoView : <<use>>
 
-DrawView ..> DominoView : "<<use>>"
+DrawView ..> DominoView : <<use>>
+DrawView ..> KingView : <<use>>
 
 DominoView " - domino" o--> "1" Domino : > contains
 DominoView ..> TileView : <<use>>
 
-Domino " - tile1" o-> Tile : > contains
-Domino " - tile2" o-> Tile : > contains
-Domino " + king" o--> King : > contains
+Domino " - tile1" o-> "1" Tile : > contains
+Domino " - tile2" o-> "1" Tile : > contains
+Domino " + king" o--> "1" King : > contains
 
-Tile *-> Lands : " - type" > is
+Tile " - type" *-> "1" Lands : > contains
 
 TileView " -tile" o--> "1" Tile : > contains
 

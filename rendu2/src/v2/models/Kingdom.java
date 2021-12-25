@@ -45,7 +45,7 @@ public class Kingdom {
 
             return result;
         } else {
-            return this.board.clone();
+            return this.board;
         }
     }
 
@@ -72,6 +72,7 @@ public class Kingdom {
             this.board[p.getY()][p.getX()] = p.getTile();
         }
         this.previews = null;
+        notifyObservers();
     }
 
     public void addObserver(KingdomObserver observer) {
@@ -84,13 +85,9 @@ public class Kingdom {
         }
     }
 
-    private void printBoard() {
-        System.out.println("---------------------------------");
-        for (Tile[] l:this.board) {
-            for(Tile t:l) {
-                System.out.println(t);
-            }
-        }
+    public boolean isFree(int x, int y) {
+        // TODO : Implement Kingdom.isFree
+        return true;
     }
 
 }
