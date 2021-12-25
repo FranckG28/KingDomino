@@ -260,7 +260,7 @@ package controllers {
 
     class GameController {
         - placedCastles:Boolean
-        + GameController(game:Game)
+        + GameController(game:Game, creator:GameCreator)
         + setView(view:GameView)
         + setDrawView(drawView:DrawView)
         + play()
@@ -269,6 +269,7 @@ package controllers {
         + playerChooseDomino(king:King)
         + dominoChosen(domino:Domino)
         + playerPlaceDomino()
+        + exitGame()
     }
 
     class GameCreator {

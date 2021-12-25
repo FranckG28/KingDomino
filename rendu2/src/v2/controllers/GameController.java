@@ -1,5 +1,6 @@
 package v2.controllers;
 
+import v2.Kingdomino;
 import v2.models.Domino;
 import v2.models.Game;
 import v2.models.King;
@@ -32,6 +33,20 @@ public class GameController {
         this.drawView = drawView;
     }
 
+    public void exitGame() {
+        // FERMETURE DE LA FENETRE
+        view.setVisible(false);
+        view.dispose();
+
+        // LIBERATION DES RESSOURCES :
+        this.game = null;
+        this.view = null;
+        this.drawView = null;
+
+        // Réouverture du menu principal
+        Kingdomino.openMainMenu();
+    }
+
     public void play() {
 
         // Placer les chateaux
@@ -48,18 +63,16 @@ public class GameController {
         placedCastles = true;
 
         // Rounds
-        if (game.getRound() == 0) {
+        if (game.getRound() == 0 && game.getDraw().empty() || game.getRound() > 0 && game.getLastDraw().empty()) {
 
-            // Si le jeu vient de commencer
-            if (game.getDraw().empty()) {
+            // Si le tirage n'a pas été fait, l'effectuer :
+            makeDraw();
+            return;
 
-                // Si le tirage n'a pas été fait, l'effectuer :
-                makeDraw();
-                return;
+        } else {
 
-            } else {
-
-                // Sinon, chaque roi choisi un domino
+            if (game.getRound() == 0) {
+                // On veut que chaque roi choisisse son premier domino
                 for (Player p:game.getAllPlayers()) {
                     for (King k:p.getKings()) {
                         // Pour chaque roi de chaque joueur
@@ -71,22 +84,15 @@ public class GameController {
                     }
                 }
 
-            }
-
-        } else if (game.getRound() > 0) {
-            // Si la partie est déjà commencé
-
-            if (game.getLastDraw().empty()) {
-                // on repioche si tout les dominos ont été placés
-                makeDraw();
+                // Si on arrive ici, tout le monde a choisi, on passe au round suivant et on lance l'action suivante
+                game.nextRound();
+                play();
                 return;
 
             } else {
-                // si il reste des dominos à placer, on place :
-
-
-                // Puis on choisi le suivant
-
+                // Au premier domino de la pioche précédente de placer son roi
+                playerChooseDomino(game.getLastDraw().get(0).king);
+                return;
             }
 
         }
@@ -148,11 +154,17 @@ public class GameController {
         game.notifyObservers();
 
         // Lancer l'action suivante :
-        play();
+        if (game.getRound() == 0) {
+            // Au premier round, on rejoue
+            play();
+        } else {
+            // TODO: Sinon on place le domino précédent
+        }
 
     }
 
     public void playerPlaceDomino() {
+        // TODO: Si c'étais le dernier de la pioche, passer au round suivant
 
     }
 }

@@ -46,12 +46,11 @@ public class GameView extends JFrame implements GameObserver {
         header.add(title);
         header.add(Box.createHorizontalGlue());
 
-        KingButton menuBtn = new KingButton("Menu principal");
+        KingButton menuBtn = new KingButton("Quitter la partie");
         class MenuButtonListener implements ActionListener {
             @Override
             public void actionPerformed( ActionEvent actionEvent ) {
-                System.out.println("Menu principal");
-                // TODO: Ouvrir le menu principal, quitter la partie
+                controller.exitGame();
             }
         }
         menuBtn.addActionListener(new MenuButtonListener());
