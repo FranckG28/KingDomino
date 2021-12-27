@@ -171,8 +171,11 @@ public class GameController {
         if (game.getCurrentPlayer().equals(kingdom.getParent())) {
 
             // On vérifie si c'est le moment de placer le chateau
-            if (!kingdom.hasCastle()) {
-
+            if (!placedCastles && !kingdom.hasCastle()) {
+                // Placement du chateau
+                kingdom.addTile(new Tile(Lands.CASTLE, 0), x, y);
+                // Action suivante
+                play();
             }
 
             System.out.println("Validé !");
