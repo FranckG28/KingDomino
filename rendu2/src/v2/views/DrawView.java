@@ -53,7 +53,7 @@ public class DrawView extends JPanel {
             gbc.gridx = 1;
             add(new DominoView(d), gbc);
 
-            if (controller != null) {
+            if (controller != null && d.king == null) {
                 gbc.gridx = 2;
                 JButton button = new KingButton("Choisir");
                 class ChooseButtonListener implements ActionListener {
