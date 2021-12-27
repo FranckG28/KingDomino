@@ -16,20 +16,23 @@ public class KingdomView extends JPanel implements KingdomObserver, GameObserver
     private static Integer margins = 10;
 
     private final GameController controller;
-    private final Player player;
+    private final Kingdom kingdom;
+
+    private int previewX = -1;
+    private int previewY = -1;
 
     private final JPanel gridPanel = new JPanel(new GridLayout(Kingdom.gridSize, Kingdom.gridSize));
 
     public KingdomView(Kingdom kingdom, GameController controller) {
 
         this.controller = controller;
-        this.player = kingdom.getParent();
+        this.kingdom = kingdom;
 
         // Configuration du Layout
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
-        gridPanel.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
+        gridPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         setBackground(KingDominoDesign.BLACK);
         gridPanel.setOpaque(false);
         gbc.insets = new Insets(margins, 0,0,0);
@@ -44,6 +47,16 @@ public class KingdomView extends JPanel implements KingdomObserver, GameObserver
         gbc.insets = new Insets(margins,0,margins,0);
         add(playerName, gbc);
 
+        // Supprimer la preview si la souris n'est plus dans le composant
+        gridPanel.addMouseListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                removePreview();
+            }
+        });
+
         // Affichage initial du royaume
         updateKingdom(kingdom);
 
@@ -54,6 +67,9 @@ public class KingdomView extends JPanel implements KingdomObserver, GameObserver
         // On obtient les Tiles du royaume
         Tile[][] tiles = kingdom.getKingdom();
 
+        // On récupère le domino que le joueur aurait potentiellement à placer
+        Domino dominoToPlace = kingdom.getParent().dominoToPlace;
+
         // Si le tableau de tile existe
         if (tiles != null) {
 
@@ -63,20 +79,52 @@ public class KingdomView extends JPanel implements KingdomObserver, GameObserver
             for (int row = 0; row < Kingdom.gridSize; row++) {
                 for (int col = 0; col < Kingdom.gridSize; col++) {
 
-                    final JPanel tile = new TileView(tiles[row][col]);
+                    Tile tileToDisplay = tiles[row][col];
+
+                    // Si la tuile est libre, elle pourrait peut être être l'objet d'une preview
+                    if (dominoToPlace != null) {
+                        if (previewY != -1 && previewX != -1) {
+
+                            // Une preview existe, vérifier si elle doit être affiché ici :
+
+                            if (previewX == col && previewY == row ) {
+                                // Si c'est la tuile 1
+                                tileToDisplay = dominoToPlace.getTile1();
+                            } else if (dominoToPlace.getTile2X(previewX) == col && dominoToPlace.getTile2Y(previewY) == row) {
+                                // Si c'est la tuile 2
+                                tileToDisplay = dominoToPlace.getTile2();
+                            }
+
+                        }
+                    }
+
+                    final JPanel tile = new TileView(tileToDisplay);
 
                     // Action au clic
                     int finalCol = col;
                     int finalRow = row;
-                    MouseListener ml = new MouseAdapter()
+                    tile.addMouseListener(new MouseAdapter()
                     {
                         @Override
-                        public void mousePressed(MouseEvent e)
+                        public void mouseClicked(MouseEvent e)
                         {
+                            super.mouseClicked(e);
                             controller.kingdomClicked(kingdom, finalCol, finalRow);
                         }
-                    };
-                    tile.addMouseListener(ml);
+
+                        @Override
+                        public void mouseEntered(MouseEvent e) {
+                            super.mouseEntered(e);
+                            setPreview(finalCol, finalRow);
+                        }
+
+                        @Override
+                        public void mouseExited(MouseEvent e) {
+                            super.mouseExited(e);
+                            removePreview();
+                        }
+
+                    });
 
                     // Affichage des bordures
                     if (row == 0) {
@@ -125,8 +173,46 @@ public class KingdomView extends JPanel implements KingdomObserver, GameObserver
     @Override
     public void reactGame(Game game) {
         // Modifier la couleur de fond si c'est le joueur actuel
-        boolean isActive = game.getCurrentPlayer().equals(this.player);
+        boolean isActive = game.getCurrentPlayer().equals(this.kingdom.getParent());
         setBackground(isActive ? KingDominoDesign.GRAY : KingDominoDesign.BLACK);
         updateUI();
+    }
+
+    public void setPreview(int x, int y) {
+        // Seulement si le joueur à un domino a placer
+
+        Domino domino = kingdom.getParent().dominoToPlace;
+        if (domino != null) {
+
+            // Essaie d'ajout de la preview si l'emplacement est correct
+            try {
+                if (kingdom.canPlaceDomino(domino, x, y)) {
+
+                    // Le domino peut être placé, on défini la preview
+                    this.previewX = x;
+                    this.previewY = y;
+
+                    updateKingdom(kingdom);
+
+                } else {
+                    // Si c'est pas correct, pas de preview :
+                    removePreview();
+                }
+            } catch (Exception e) {
+                // Si le placement n'est pas correct, pas de preview
+                removePreview();
+            }
+
+        }
+
+    }
+
+    public void removePreview() {
+        // On supprime la preview uniquement si il y en avait une
+        if (previewY != -1 && previewX != -1){
+            this.previewX = -1;
+            this.previewY = -1;
+            updateKingdom(kingdom);
+        }
     }
 }

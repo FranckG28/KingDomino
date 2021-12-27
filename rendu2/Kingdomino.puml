@@ -85,6 +85,9 @@ package models {
         + getTile1():Tile
         + getTile2():Tile
 
+        + getTile2X(x:Integer):Integer
+        + getTile2Y(y:Integer):Integer
+
         + isVertical():Boolean
         + setVertical(state:Boolean)
         + isInverted():Boolean
@@ -159,9 +162,13 @@ package views {
         - {static}borderWidth:Integer
         - {static}borderColor:Color
         - {static}margins:Integer
+        - previewX:Integer
+        - previewY:Integer
         + KingdomView(kingdom:Kingdom, controller:GameController)
         + updateKingdom(kingdom:Kingdom)
         + reactGame(game:Game)
+        - setPreview(x:Integer, y:Integer)
+        - removePreview()
     }
 
     class DrawView {
@@ -322,7 +329,7 @@ DominoController " - domino" o--> "1" Domino : > contains
 
 DominoPlacement " - controller" o--> "1" DominoController : > contains
 
-KingdomView " - player" o--> "1" Player : > contains
+KingdomView " - kingdom" o--> "1" Kingdom : > contains
 KingdomView " - controller" o--> "1" GameController : > contains
 KingdomView ..> DominoView : <<use>>
 

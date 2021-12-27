@@ -48,20 +48,22 @@ public class TileView extends JPanel {
         // Effet de passage de souris si la case est libre
         if (tile == null) {
 
-            MouseListener ml = new MouseAdapter()
+            addMouseListener(new MouseAdapter()
             {
+
                 @Override
                 public void mouseEntered(MouseEvent e)
                 {
+                    super.mouseEntered(e);
                     setHover(true);
                 }
 
                 @Override
                 public void mouseExited(MouseEvent e) {
+                    super.mouseExited(e);
                     setHover(false);
                 }
-            };
-            addMouseListener(ml);
+            });
 
         }
 

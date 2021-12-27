@@ -54,11 +54,8 @@ public class Kingdom {
     public void addDomino(Domino domino, int x, int y) {
         try {
             if (canPlaceDomino(domino, x, y)) {
-                int tile2X = domino.isVertical() ? x : x+1;
-                int tile2Y = domino.isVertical() ? y+1 : y;
-
                 board[y][x] = domino.getTile1();
-                board[tile2Y][tile2X] = domino.getTile2();
+                board[domino.getTile2Y(y)][domino.getTile2X(x)] = domino.getTile2();
                 notifyObservers();
 
             } else {
@@ -70,20 +67,22 @@ public class Kingdom {
     }
 
     public boolean isFree(int x, int y) {
-        return board[y][x] == null;
+        if (x < 0 || x >= gridSize || y < 0 || y >= gridSize) {
+            return false;
+        } else {
+            return board[y][x] == null;
+        }
     }
 
     public boolean canPlaceDomino(Domino domino, int x, int y) {
-        int tile2X = domino.isVertical() ? x : x+1;
-        int tile2Y = domino.isVertical() ? y+1 : y;
 
-        if (tile2X >= gridSize || tile2Y >= gridSize) {
+        if (domino.getTile2X(x) >= gridSize || domino.getTile2Y(y) >= gridSize) {
             throw new IndexOutOfBoundsException("Le domino ne peut pas être placé hors de la grille");
         }
 
         // TODO: Vérifier que le domino est adjacent à une case déjà utilisé
 
-        return isFree(x, y) && isFree(tile2X, tile2Y);
+        return isFree(x, y) && isFree(domino.getTile2X(x), domino.getTile2Y(y));
     }
 
     public void addObserver(KingdomObserver observer) {

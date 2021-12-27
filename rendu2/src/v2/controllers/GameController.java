@@ -138,7 +138,7 @@ public class GameController {
         // Afficher les instructions
         JPanel empty = new JPanel();
         empty.setOpaque(false);
-        this.view.setAction("Choisissez un domino", empty);
+        this.view.setAction(game.getRound() == 0 ? "Choisissez un domino" : "Choisissez votre prochain domino", empty);
 
         // Afficher les boutons de choix :
         this.drawView.showButtons();
