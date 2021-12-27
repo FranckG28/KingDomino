@@ -180,7 +180,32 @@ public class GameController {
                 play();
             }
 
-            // TODO: Implementer le placement d'un domino. si c'était le dernier de la pioche, passer au round suivant
+            // Sinon, on vérifie si il a un domino à placer
+            if (kingdom.getParent().dominoToPlace != null) {
+                // On essaie de placer le domino
+                Domino dominoToPlace = kingdom.getParent().dominoToPlace;
+
+                try {
+
+                    kingdom.addDomino(dominoToPlace,x, y);
+
+                    // Le placement a réussi :
+                    kingdom.getParent().dominoToPlace = null;
+
+                    // Si c'étais le dernier de la pioche précédente, on entre dans le round suivant
+                    if (game.getLastDraw().isEmpty()) {
+                        game.nextRound();
+                    }
+
+                    // Lancer l'action suivante
+                    play();
+
+                } catch (IllegalArgumentException e) {
+                    // Le placement a échoué :
+                    e.printStackTrace();
+                }
+
+            }
 
         }
 
@@ -190,6 +215,8 @@ public class GameController {
 
         DominoController controller = new DominoController(game.getCurrentPlayer().getKingdom(), domino);
         DominoPlacement view = new DominoPlacement(controller, domino);
+
+        game.getCurrentPlayer().dominoToPlace = domino;
 
         this.view.setAction("Placez le domino", view);
 

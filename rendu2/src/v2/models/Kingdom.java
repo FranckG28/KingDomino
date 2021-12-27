@@ -39,12 +39,51 @@ public class Kingdom {
     }
 
     public void addTile(Tile tile, int x, int y) {
-        if (isFree(x, y)) {
-            board[y][x] = tile;
-            notifyObservers();
-        } else {
-            throw new IllegalArgumentException("Cet emplacement est déjà occupé");
+        try {
+            if (isFree(x, y)) {
+                board[y][x] = tile;
+                notifyObservers();
+            } else {
+                throw new IllegalArgumentException("Cet emplacement est déjà occupé");
+            }
+        } catch (Exception e) {
+            throw e;
         }
+    }
+
+    public void addDomino(Domino domino, int x, int y) {
+        try {
+            if (canPlaceDomino(domino, x, y)) {
+                int tile2X = domino.isVertical() ? x : x+1;
+                int tile2Y = domino.isVertical() ? y+1 : y;
+
+                board[y][x] = domino.getTile1();
+                board[tile2Y][tile2X] = domino.getTile2();
+                notifyObservers();
+
+            } else {
+                throw new IllegalArgumentException("Cet emplacement est déjà occupé");
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public boolean isFree(int x, int y) {
+        return board[y][x] == null;
+    }
+
+    public boolean canPlaceDomino(Domino domino, int x, int y) {
+        int tile2X = domino.isVertical() ? x : x+1;
+        int tile2Y = domino.isVertical() ? y+1 : y;
+
+        if (tile2X >= gridSize || tile2Y >= gridSize) {
+            throw new IndexOutOfBoundsException("Le domino ne peut pas être placé hors de la grille");
+        }
+
+        // TODO: Vérifier que le domino est adjacent à une case déjà utilisé
+
+        return isFree(x, y) && isFree(tile2X, tile2Y);
     }
 
     public void addObserver(KingdomObserver observer) {
@@ -55,10 +94,6 @@ public class Kingdom {
         for (KingdomObserver item: this.observers) {
             item.updateKingdom(this);
         }
-    }
-
-    public boolean isFree(int x, int y) {
-        return board[y][x] == null;
     }
 
 }

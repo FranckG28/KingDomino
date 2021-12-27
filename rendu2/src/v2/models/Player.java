@@ -10,6 +10,8 @@ public class Player {
     private final Colors color;
     private Kingdom kingdom;
 
+    public Domino dominoToPlace;
+
     public King currentKing;
 
     public Player(String name, Colors color, int numberOfKings) {

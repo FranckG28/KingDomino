@@ -67,7 +67,9 @@ package models {
         + getKingdom():Tile[5][5]
         + hasCastle():Boolean
         + addTile(tile:Tile, x:Integer, y:Integer)
+        + addDomino(tile:Tile, x:Integer, y:Integer)
         + isFree(x:Integer, y:Integer)
+        + canPlaceDomino(domino:Domino, x:Integer, y:Integer)
 
         + addObserver(observer:KingdomObserver)
         + notifyObservers()
@@ -307,6 +309,7 @@ Player " - kingdom"  *--> "1" Kingdom : > owns
 Player " - kings" *--> "1,2" King : > contains
 Player " + currentKing" *--> "1" King : > contains
 Player " - color" *-> "1" Colors : > contains
+Player " + dominoToPlace" o--> "1" Domino : > contains
 
 King " - parent" o--> "1" Player : > contains
 
