@@ -39,7 +39,12 @@ public class Kingdom {
     }
 
     public void addTile(Tile tile, int x, int y) {
-        // TODO: Implement Kindgom.addTile
+        if (isFree(x, y)) {
+            board[y][x] = tile;
+            notifyObservers();
+        } else {
+            throw new IllegalArgumentException("Cet emplacement est déjà occupé");
+        }
     }
 
     public void addObserver(KingdomObserver observer) {
@@ -53,8 +58,7 @@ public class Kingdom {
     }
 
     public boolean isFree(int x, int y) {
-        // TODO : Implement Kingdom.isFree
-        return true;
+        return board[y][x] == null;
     }
 
 }
