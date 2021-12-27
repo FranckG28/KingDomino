@@ -1,11 +1,9 @@
 package v2.controllers;
 
 import v2.models.Kingdom;
-import v2.models.MovableInterface;
-import v2.models.Orientations;
 import v2.views.DominoPlacement;
 
-public class DominoController implements MovableInterface {
+public class DominoController {
 
     private Kingdom kingdom;
     private DominoPlacement view;
@@ -14,51 +12,11 @@ public class DominoController implements MovableInterface {
         this.kingdom = kingdom;
     }
 
-    public void moveRight() {
-
-    }
-
-    public void moveLeft() {
-
-    }
-
-    @Override
-    public boolean canGoUp() {
-        return false;
-    }
-
-    @Override
-    public boolean canGoDown() {
-        return false;
-    }
-
-    @Override
-    public boolean canGoRight() {
-        return false;
-    }
-
-    @Override
-    public boolean canGoLeft() {
-        return false;
-    }
-
-    public void moveUp() {
-
-    }
-
-    public void moveDown() {
-
-    }
-
     public void rotate() {
 
     }
 
     public void invert() {
-
-    }
-
-    public void place() {
 
     }
 

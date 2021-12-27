@@ -1,14 +1,13 @@
 package v2.controllers;
 
-import v2.models.Domino;
-import v2.models.Game;
-import v2.models.King;
-import v2.models.Player;
-import v2.views.CastlePlacement;
+import v2.Kingdomino;
+import v2.models.*;
 import v2.views.DrawView;
 import v2.views.GameView;
+import v2.views.KingDominoDesign;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Stack;
 
 public class GameController {
@@ -32,6 +31,20 @@ public class GameController {
         this.drawView = drawView;
     }
 
+    public void exitGame() {
+        // FERMETURE DE LA FENETRE
+        view.setVisible(false);
+        view.dispose();
+
+        // LIBERATION DES RESSOURCES :
+        this.game = null;
+        this.view = null;
+        this.drawView = null;
+
+        // Réouverture du menu principal
+        Kingdomino.openMainMenu();
+    }
+
     public void play() {
 
         // Placer les chateaux
@@ -48,18 +61,16 @@ public class GameController {
         placedCastles = true;
 
         // Rounds
-        if (game.getRound() == 0) {
+        if (game.getRound() == 0 && game.getDraw().empty() || game.getRound() > 0 && game.getLastDraw().empty()) {
 
-            // Si le jeu vient de commencer
-            if (game.getDraw().empty()) {
+            // Si le tirage n'a pas été fait, l'effectuer :
+            makeDraw();
+            return;
 
-                // Si le tirage n'a pas été fait, l'effectuer :
-                makeDraw();
-                return;
+        } else {
 
-            } else {
-
-                // Sinon, chaque roi choisi un domino
+            if (game.getRound() == 0) {
+                // On veut que chaque roi choisisse son premier domino
                 for (Player p:game.getAllPlayers()) {
                     for (King k:p.getKings()) {
                         // Pour chaque roi de chaque joueur
@@ -71,22 +82,15 @@ public class GameController {
                     }
                 }
 
-            }
-
-        } else if (game.getRound() > 0) {
-            // Si la partie est déjà commencé
-
-            if (game.getLastDraw().empty()) {
-                // on repioche si tout les dominos ont été placés
-                makeDraw();
+                // Si on arrive ici, tout le monde a choisi, on passe au round suivant et on lance l'action suivante
+                game.nextRound();
+                play();
                 return;
 
             } else {
-                // si il reste des dominos à placer, on place :
-
-
-                // Puis on choisi le suivant
-
+                // Au premier domino de la pioche précédente de placer son roi
+                playerChooseDomino(game.getLastDraw().get(0).king);
+                return;
             }
 
         }
@@ -107,13 +111,16 @@ public class GameController {
 
     public void playerPlaceCastle() {
 
-        // Création de l'interface de placement du chateau
-        CastleController controller = new CastleController(game.getCurrentPlayer().getKingdom(), this);
-        CastlePlacement view = new CastlePlacement(controller);
-        controller.setView(view);
+        JPanel panel = new JPanel();
+        panel.setOpaque(false);
+
+        JLabel label = new JLabel("Cliquez sur l'emplacement sur lequel vous souhaitez placer votre chateau dans votre rouyaume");
+        label.setForeground(Color.WHITE);
+        label.setFont(KingDominoDesign.getInstance().textFont.deriveFont(KingDominoDesign.textBase));
+        panel.add(label);
 
         // Affichage à l'utilisateur
-        this.view.setAction("Placez votre chateau !", view);
+        this.view.setAction("Placez votre chateau !", panel);
 
     }
 
@@ -148,11 +155,41 @@ public class GameController {
         game.notifyObservers();
 
         // Lancer l'action suivante :
-        play();
+        if (game.getRound() == 0) {
+            // Au premier round, on rejoue
+            play();
+        } else {
+            // TODO: Sinon on place le domino précédent
+        }
+
+    }
+
+    public void kingdomClicked(Kingdom kingdom, int x, int y) {
+        System.out.println("Royaume de " + kingdom.getParent().getName() + " cliqué en " + x + ", " + y);
+
+        // On vérifie que c'est bien le joueur à qui c'est le tour qui a cliqué dans son royaume
+        if (game.getCurrentPlayer().equals(kingdom.getParent())) {
+
+            // On vérifie si c'est le moment de placer le chateau
+            if (!placedCastles && !kingdom.hasCastle()) {
+                // Placement du chateau
+                kingdom.addTile(new Tile(Lands.CASTLE, 0), x, y);
+                // Action suivante
+                play();
+            }
+
+            System.out.println("Validé !");
+        } else {
+            System.out.println("Ce n'est pas au tour de ce joueur");
+        }
 
     }
 
     public void playerPlaceDomino() {
+
+        // TODO : Implement GameController.playerPlaceDomino
+
+        // TODO: Si c'étais le dernier de la pioche, passer au round suivant
 
     }
 }

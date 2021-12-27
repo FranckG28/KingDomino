@@ -16,12 +16,14 @@ public class KingDominoDesign {
     public static final Color RED = new Color(255,60,56);
     public static final Color PURPLE = new Color(102,44,145);
     public static final Color BLACK = new Color(15,17,8);
+    public static final Color GRAY = new Color(39,40,32);
 
     // POLICES D'ECRITURES
     public final Font titleFont;
     public final Font textFont;
 
     // TAILLES D'ECRITURES
+    public static final float textXl = 60F;
     public static final float textLg = 40F;
     public static final float textMd = 25F;
     public static final float textBase = 16F;

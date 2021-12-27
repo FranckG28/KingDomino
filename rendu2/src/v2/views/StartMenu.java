@@ -35,7 +35,7 @@ public class StartMenu extends JFrame {
         mainPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
 
         JLabel title = new JLabel("Kingdomino", SwingConstants.CENTER);
-        title.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(KingDominoDesign.getInstance().textLg));
+        title.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(KingDominoDesign.textXl));
         title.setForeground(KingDominoDesign.YELLOW);
         mainPanel.add(title, BorderLayout.PAGE_START);
 
@@ -140,8 +140,9 @@ public class StartMenu extends JFrame {
 
         add(mainPanel);
 
-        setSize(600, 500);
+        setSize(600, 540);
 
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("KingDomino - Menu principal");
         setVisible(true);
 

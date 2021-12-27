@@ -1,30 +1,38 @@
 package v2.views;
 
-import v2.models.Kingdom;
-import v2.models.KingdomObserver;
-import v2.models.Lands;
-import v2.models.Tile;
+import v2.controllers.GameController;
+import v2.models.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class KingdomView extends JPanel implements KingdomObserver {
+public class KingdomView extends JPanel implements KingdomObserver, GameObserver {
 
-    private final int borderWidth = 1;
-    private final Color borderColor = Color.lightGray;
+    private static final int borderWidth = 1;
+    private static Color borderColor = Color.lightGray;
+    private static Integer margins = 10;
+
+    private final GameController controller;
+    private final Player player;
 
     private final JPanel gridPanel = new JPanel(new GridLayout(Kingdom.gridSize, Kingdom.gridSize));
 
-    public KingdomView(Kingdom kingdom) {
+    public KingdomView(Kingdom kingdom, GameController controller) {
+
+        this.controller = controller;
+        this.player = kingdom.getParent();
 
         // Configuration du Layout
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
         gridPanel.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
-        setOpaque(false);
+        setBackground(KingDominoDesign.BLACK);
         gridPanel.setOpaque(false);
-
+        gbc.insets = new Insets(margins, 0,0,0);
         add(gridPanel, gbc);
 
         // Nom du joueur
@@ -33,7 +41,7 @@ public class KingdomView extends JPanel implements KingdomObserver {
         playerName.setForeground(KingDominoDesign.getColor(kingdom.getParent().getColor()));
 
         gbc.gridy=1;
-        gbc.insets = new Insets(10,0,0,0);
+        gbc.insets = new Insets(margins,0,margins,0);
         add(playerName, gbc);
 
         // Affichage initial du royaume
@@ -57,6 +65,20 @@ public class KingdomView extends JPanel implements KingdomObserver {
 
                     final JPanel tile = new TileView(tiles[row][col]);
 
+                    // Action au clic
+                    int finalCol = col;
+                    int finalRow = row;
+                    MouseListener ml = new MouseAdapter()
+                    {
+                        @Override
+                        public void mousePressed(MouseEvent e)
+                        {
+                            controller.kingdomClicked(kingdom, finalCol, finalRow);
+                        }
+                    };
+                    tile.addMouseListener(ml);
+
+                    // Affichage des bordures
                     if (row == 0) {
                         if (col == 0) {
                             // Top left corner, draw all sides
@@ -89,6 +111,8 @@ public class KingdomView extends JPanel implements KingdomObserver {
                                     borderColor));
                         }
                     }
+
+                    // Ajout de la tuile
                     gridPanel.add(tile);
                 }
             }
@@ -98,4 +122,12 @@ public class KingdomView extends JPanel implements KingdomObserver {
 
     }
 
+    @Override
+    public void reactGame(Game game) {
+        // Modifier la couleur de fond si c'est le joueur actuel
+        boolean isActive = game.getCurrentPlayer().equals(this.player);
+        System.out.println("IsActive " + player.getName() + " : " + isActive);
+        setBackground(isActive ? KingDominoDesign.GRAY : KingDominoDesign.BLACK);
+        updateUI();
+    }
 }

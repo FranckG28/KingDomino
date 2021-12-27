@@ -46,12 +46,11 @@ public class GameView extends JFrame implements GameObserver {
         header.add(title);
         header.add(Box.createHorizontalGlue());
 
-        KingButton menuBtn = new KingButton("Menu principal");
+        KingButton menuBtn = new KingButton("Quitter la partie");
         class MenuButtonListener implements ActionListener {
             @Override
             public void actionPerformed( ActionEvent actionEvent ) {
-                System.out.println("Menu principal");
-                // TODO: Ouvrir le menu principal, quitter la partie
+                controller.exitGame();
             }
         }
         menuBtn.addActionListener(new MenuButtonListener());
@@ -105,9 +104,10 @@ public class GameView extends JFrame implements GameObserver {
         kingdomGrid.setOpaque(false);
         for (Player p:playerList) {
             Kingdom kingdom = p.getKingdom();
-            KingdomView kview = new KingdomView(kingdom);
+            KingdomView kview = new KingdomView(kingdom, controller);
             kingdom.addObserver(kview);
             kingdomGrid.add(kview);
+            game.addObserver(kview);
         }
 
         mainContainer.add(kingdomGrid, BorderLayout.PAGE_END);
