@@ -205,6 +205,12 @@ package views {
         + KingView(color:Colors)
     }
 
+    class KingButton {
+        + {static}defaultColor:Color
+        + {static}hoveredColor:Color
+        + KingButton(text:String)
+    }
+
 }
 
 package controllers {
