@@ -67,7 +67,11 @@ public class Kingdom {
     }
 
     public boolean isFree(int x, int y) {
-        return board[y][x] == null;
+        if (x < 0 || x >= gridSize || y < 0 || y >= gridSize) {
+            return false;
+        } else {
+            return board[y][x] == null;
+        }
     }
 
     public boolean canPlaceDomino(Domino domino, int x, int y) {
