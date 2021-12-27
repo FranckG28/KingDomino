@@ -53,6 +53,14 @@ public class Domino {
         notifyObservers();
     }
 
+    public int getTile2X(int x) {
+        return isVertical ? x : x+1;
+    }
+
+    public int getTile2Y(int y) {
+        return isVertical ? y+1 : y;
+    }
+
     public void addObserver(DominoObserver observer) {
         observers.add(observer);
     }

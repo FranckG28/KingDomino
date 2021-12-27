@@ -85,6 +85,9 @@ package models {
         + getTile1():Tile
         + getTile2():Tile
 
+        + getTile2X(x:Integer):Integer
+        + getTile2Y(y:Integer):Integer
+
         + isVertical():Boolean
         + setVertical(state:Boolean)
         + isInverted():Boolean
