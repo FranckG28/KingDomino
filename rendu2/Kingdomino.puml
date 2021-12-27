@@ -166,6 +166,7 @@ package views {
         + {static}tileSize:Integer
         + TileView(tile:Tile)
         + getTile():Tile
+        - setHover(state:Boolean)
     }
 
     class KingDominoDesign {

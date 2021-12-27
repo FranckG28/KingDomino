@@ -4,6 +4,9 @@ import v2.models.Tile;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class TileView extends JPanel {
 
@@ -42,10 +45,35 @@ public class TileView extends JPanel {
             add(c);
         }
 
+        // Effet de passage de souris si la case est libre
+        if (tile == null) {
+
+            MouseListener ml = new MouseAdapter()
+            {
+                @Override
+                public void mouseEntered(MouseEvent e)
+                {
+                    setHover(true);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    setHover(false);
+                }
+            };
+            addMouseListener(ml);
+
+        }
+
     }
 
     public Tile getTile() {
         return this.tile;
+    }
+
+    private void setHover(Boolean state) {
+        setBackground(state ? KingDominoDesign.GRAY : KingDominoDesign.BLACK);
+        updateUI();
     }
 
 }
