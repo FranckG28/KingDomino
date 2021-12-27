@@ -126,7 +126,6 @@ public class KingdomView extends JPanel implements KingdomObserver, GameObserver
     public void reactGame(Game game) {
         // Modifier la couleur de fond si c'est le joueur actuel
         boolean isActive = game.getCurrentPlayer().equals(this.player);
-        System.out.println("IsActive " + player.getName() + " : " + isActive);
         setBackground(isActive ? KingDominoDesign.GRAY : KingDominoDesign.BLACK);
         updateUI();
     }

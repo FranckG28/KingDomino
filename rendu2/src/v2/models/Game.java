@@ -1,8 +1,6 @@
 package v2.models;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class Game {
 
@@ -15,8 +13,8 @@ public class Game {
     private boolean harmony;
 
     private Stack<Domino> deck;
-    private Stack<Domino> draw = new Stack<>();
-    private Stack<Domino> lastDraw = new Stack<>();
+    private Queue<Domino> draw = new LinkedList<>();
+    private Queue<Domino> lastDraw = new LinkedList<>();
 
     private List<GameObserver> observers = new ArrayList<>();
 
@@ -48,14 +46,20 @@ public class Game {
     public int getRound() {
         return this.round;
     }
-    public Stack<Domino> getDraw() {
+    public Queue<Domino> getDraw() {
         return this.draw;
     }
-    public Stack<Domino> getLastDraw() {
+    public Queue<Domino> getLastDraw() {
         return this.lastDraw;
     }
 
-    public void setDraw(Stack<Domino> draw) {
+    public Domino pickDominoToPlace() {
+        Domino result = this.lastDraw.poll();
+        notifyObservers();
+        return result;
+    }
+
+    public void setDraw(Queue<Domino> draw) {
         this.lastDraw = this.draw;
         this.draw = draw;
         notifyObservers();

@@ -2,13 +2,15 @@ package v2.controllers;
 
 import v2.Kingdomino;
 import v2.models.*;
+import v2.views.DominoPlacement;
 import v2.views.DrawView;
 import v2.views.GameView;
 import v2.views.KingDominoDesign;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class GameController {
 
@@ -61,7 +63,7 @@ public class GameController {
         placedCastles = true;
 
         // Rounds
-        if (game.getRound() == 0 && game.getDraw().empty() || game.getRound() > 0 && game.getLastDraw().empty()) {
+        if (game.getRound() == 0 && game.getDraw().isEmpty() || game.getRound() > 0 && game.getLastDraw().isEmpty()) {
 
             // Si le tirage n'a pas été fait, l'effectuer :
             makeDraw();
@@ -89,7 +91,7 @@ public class GameController {
 
             } else {
                 // Au premier domino de la pioche précédente de placer son roi
-                playerChooseDomino(game.getLastDraw().get(0).king);
+                playerChooseDomino(game.getLastDraw().peek().king);
                 return;
             }
 
@@ -98,11 +100,12 @@ public class GameController {
     }
 
     public void makeDraw() {
-        Stack draw = new Stack();
+        Queue<Domino> draw = new LinkedList<>();
         int dominoToDraw = (game.getAllPlayers().size() == 3) ? 3 : 4;
         for (int i = 0; i < dominoToDraw; i++) {
-            draw.push(game.getDeck().pop());
+            draw.add(game.getDeck().pop());
         }
+        // TODO: Trier la pioche par numéro de domino croissant
         game.setDraw(draw);
 
         // Lancer l'action suivante :
@@ -159,13 +162,12 @@ public class GameController {
             // Au premier round, on rejoue
             play();
         } else {
-            // TODO: Sinon on place le domino précédent
+            playerPlaceDomino(game.pickDominoToPlace());
         }
 
     }
 
     public void kingdomClicked(Kingdom kingdom, int x, int y) {
-        System.out.println("Royaume de " + kingdom.getParent().getName() + " cliqué en " + x + ", " + y);
 
         // On vérifie que c'est bien le joueur à qui c'est le tour qui a cliqué dans son royaume
         if (game.getCurrentPlayer().equals(kingdom.getParent())) {
@@ -178,18 +180,45 @@ public class GameController {
                 play();
             }
 
-            System.out.println("Validé !");
-        } else {
-            System.out.println("Ce n'est pas au tour de ce joueur");
+            // Sinon, on vérifie si il a un domino à placer
+            if (kingdom.getParent().dominoToPlace != null) {
+                // On essaie de placer le domino
+                Domino dominoToPlace = kingdom.getParent().dominoToPlace;
+
+                try {
+
+                    kingdom.addDomino(dominoToPlace,x, y);
+
+                    // Le placement a réussi :
+                    kingdom.getParent().dominoToPlace = null;
+
+                    // Si c'étais le dernier de la pioche précédente, on entre dans le round suivant
+                    if (game.getLastDraw().isEmpty()) {
+                        game.nextRound();
+                    }
+
+                    // Lancer l'action suivante
+                    play();
+
+                } catch (IllegalArgumentException e) {
+                    // Le placement a échoué :
+                    e.printStackTrace();
+                }
+
+            }
+
         }
 
     }
 
-    public void playerPlaceDomino() {
+    public void playerPlaceDomino(Domino domino) {
 
-        // TODO : Implement GameController.playerPlaceDomino
+        DominoController controller = new DominoController(game.getCurrentPlayer().getKingdom(), domino);
+        DominoPlacement view = new DominoPlacement(controller, domino);
 
-        // TODO: Si c'étais le dernier de la pioche, passer au round suivant
+        game.getCurrentPlayer().dominoToPlace = domino;
+
+        this.view.setAction("Placez le domino", view);
 
     }
 }

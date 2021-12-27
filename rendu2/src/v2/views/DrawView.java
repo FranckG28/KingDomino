@@ -10,16 +10,18 @@ import java.awt.event.ActionListener;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class DrawView extends JPanel {
 
     private java.util.List<JButton> buttons = new ArrayList<>();
 
-    public DrawView(java.util.List<Domino> dominos, String title, GameController controller) {
+    public DrawView(Queue dominos, String title, GameController controller) {
 
         // LAYOUT
         setLayout(new GridBagLayout());
         setOpaque(false);
+        setAlignmentY(Component.TOP_ALIGNMENT);
         GridBagConstraints gbc = new GridBagConstraints();
 
         // TITRE
@@ -37,7 +39,10 @@ public class DrawView extends JPanel {
         gbc.gridx = 0;
         gbc.insets = new Insets(10,10,10,10);
         int i = 1;
-        for (Domino d:dominos) {
+        for (Object o:dominos) {
+
+            Domino d = (Domino)o;
+
             gbc.gridy = i;
 
             if(d.king != null) {
