@@ -66,7 +66,11 @@ public class GameView extends JFrame implements GameObserver {
         GridBagConstraints contentGbc = new GridBagConstraints();
 
         oldDraw.setOpaque(false);
+        oldDraw.setAlignmentY(Component.TOP_ALIGNMENT);
+        oldDraw.setPreferredSize(new Dimension(200, 300));
         actualDraw.setOpaque(false);
+        actualDraw.setAlignmentY(Component.TOP_ALIGNMENT);
+        actualDraw.setPreferredSize(new Dimension(250, 300));
 
         contentPanel.add(oldDraw, contentGbc);
         contentGbc.gridx = 1;

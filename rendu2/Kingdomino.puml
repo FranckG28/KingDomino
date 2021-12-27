@@ -22,18 +22,25 @@ package models {
         - round:Integer
         - middle:Boolean
         - harmony:Boolean
+
         + Game(players:Player[], deck:Domino[], middle:Boolean, harmony:Boolean)
+
         + getCurrentPlayer():Player
         + setCurrentPlayer(player:Player)
         + getAllPlayers():Player[]
+
         + nextRound()
         + getRound():Integer
+
         + getDraw(): Domino[]
         + getLastDraw(): Domino[]
         + setDraw(draw:Domino[])
+        + pickDominoToPlace():Domino
         + getDeck(): Domino[]
+
         + isMiddle():Boolean
         + isHarmony():Boolean
+
         + notifyObservers()
         + addObserver(observer:GameObserver)
     }
@@ -61,16 +68,28 @@ package models {
         + hasCastle():Boolean
         + addTile(tile:Tile, x:Integer, y:Integer)
         + isFree(x:Integer, y:Integer)
+
         + addObserver(observer:KingdomObserver)
         + notifyObservers()
     }
 
     class Domino {
         - number:Integer
+        - isInverted:Boolean
+        - isVertical:Boolean
+
         + Domino(number:Integer,tile1:Tile, tile2:Tile)
         + getNumber():Integer
         + getTile1():Tile
         + getTile2():Tile
+
+        + isVertical():Boolean
+        + setVertical(state:Boolean)
+        + isInverted():Boolean
+        + setInverted(state:Boolean)
+
+        + addObserver(observer:DominoObserver)
+        + notifyObservers()
     }
 
     class Tile {
@@ -97,23 +116,14 @@ package models {
         PINK
     }
 
-    enum Orientations {
-        SOUTH
-        WEST
-        EAST
-        NORTH
-    }
-
-'    class Preview {
-'        + Preview(tile:Tile, x:Integer, y:Integer)
-'        + getX():Integer
-'        + getY():Integer
-'        + getTile():Tile
-'    }
-
     interface KingdomObserver {
         + updateKingdom(kingdom:Kingdom)
     }
+
+    interface DominoObserver {
+        + updateDomino(domino:Domino)
+    }
+
 
 }
 
@@ -157,9 +167,10 @@ package views {
         + showButtons()
     }
 
-    class DominoView {
+    class DominoView implements DominoObserver {
         + DominoView(domino:Domino)
         + getDomino():Domino
+        + updateDomino(domino:Domino)
     }
 
     class TileView {
@@ -198,7 +209,7 @@ package views {
     }
 
     class DominoPlacement {
-        + DominoPlacement(controller:DominoController)
+        + DominoPlacement(controller:DominoController, domino:Domino)
     }
 
     class KingView {
@@ -226,7 +237,7 @@ package controllers {
         + playerChooseDomino(king:King)
         + dominoChosen(domino:Domino)
         + kingdomClicked(kingdom:Kingdom, x:Integer, y:Integer)
-        + playerPlaceDomino()
+        + playerPlaceDomino(domino:Domino)
         + exitGame()
     }
 
@@ -242,11 +253,10 @@ package controllers {
     }
 
     class DominoController {
-        + DominoController(kingdom:Kingdom)
+        + DominoController(kingdom:Kingdom, domino:Domino)
         + rotate()
         + invert()
         + place()
-        + setView(view:DominoPlacement)
     }
 
     abstract class CSVReader {
@@ -283,8 +293,6 @@ GameController ..> DominoPlacement : <<use>>
 GameController ..> DominoController : <<use>>
 GameController ..> EndMenu : "<<use>>"
 
-DominoPlacement " - controller" o--> "1" DominoController : > contains
-
 GameView " - controller" o--> "1" GameController : > controlled by
 GameView ..> Game : "<<use>>"
 GameView ..> KingdomView : "<<use>>"
@@ -307,8 +315,9 @@ Kingdom " - board" o--> "[5][5]" Tile : > contains
 Kingdom " - observers" o--> "*" KingdomObserver : > contains
 
 DominoController " - kingdom" o--> "1" Kingdom : > contains
-DominoController " - view" o--> "1" DominoPlacement : > contains
-DominoController " - parentController" o--> "1" GameController : > contains
+DominoController " - domino" o--> "1" Domino : > contains
+
+DominoPlacement " - controller" o--> "1" DominoController : > contains
 
 KingdomView " - player" o--> "1" Player : > contains
 KingdomView " - controller" o--> "1" GameController : > contains
@@ -323,6 +332,7 @@ DominoView ..> TileView : <<use>>
 Domino " - tile1" o-> "1" Tile : > contains
 Domino " - tile2" o-> "1" Tile : > contains
 Domino " + king" o--> "1" King : > contains
+Domino " - observers" o--> "*" DominoObserver : > contains
 
 Tile " - type" *-> "1" Lands : > contains
 

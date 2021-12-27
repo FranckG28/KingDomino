@@ -1,27 +1,24 @@
 package v2.controllers;
 
+import v2.models.Domino;
 import v2.models.Kingdom;
-import v2.views.DominoPlacement;
 
 public class DominoController {
 
     private Kingdom kingdom;
-    private DominoPlacement view;
+    private Domino domino;
 
-    public DominoController(Kingdom kingdom) {
+    public DominoController(Kingdom kingdom, Domino domino) {
         this.kingdom = kingdom;
+        this.domino = domino;
     }
 
     public void rotate() {
-
+        this.domino.setVertical(!domino.isVertical());
     }
 
     public void invert() {
-
-    }
-
-    public void setView(DominoPlacement view) {
-        this.view = view;
+        this.domino.setInverted(!domino.isInverted());
     }
 
 }
