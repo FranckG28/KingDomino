@@ -1,7 +1,6 @@
 package v2.models;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Kingdom {
@@ -22,36 +21,8 @@ public class Kingdom {
         return parent;
     }
 
-    private List<Preview> previews;
-
     public Tile[][] getKingdom() {
-
-        if (this.previews != null && previews.size() != 0) {
-
-            Tile[][] result = new Tile[gridSize][gridSize];
-
-            for (int ligne = 0; ligne<gridSize; ligne++) {
-                for(int col = 0; col<gridSize; col++) {
-
-                    result[ligne][col] = this.board[ligne][col];
-
-                    for (Preview p:previews) {
-                        if (col == p.getX() && ligne == p.getY()) {
-                            result[ligne][col] = p.getTile();
-                        }
-                    }
-                }
-            }
-
-            return result;
-        } else {
-            return this.board;
-        }
-    }
-
-    public void setPreviews(List<Preview> p) {
-        this.previews = p;
-        notifyObservers();
+        return this.board;
     }
 
     public boolean hasCastle() {
@@ -67,12 +38,8 @@ public class Kingdom {
         return false;
     }
 
-    public void applyPreview() {
-        for (Preview p:this.previews) {
-            this.board[p.getY()][p.getX()] = p.getTile();
-        }
-        this.previews = null;
-        notifyObservers();
+    public void addTile(Tile tile, int x, int y) {
+        // TODO: Implement Kindgom.addTile
     }
 
     public void addObserver(KingdomObserver observer) {

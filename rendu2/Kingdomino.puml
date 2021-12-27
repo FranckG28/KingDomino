@@ -58,9 +58,8 @@ package models {
         + Kingdom(parent:Player)
         + getParent():Player
         + getKingdom():Tile[5][5]
-        + setPreviews(previews:List<Preview>)
-        + applyPreviews()
         + hasCastle():Boolean
+        + addTile(tile:Tile, x:Integer, y:Integer)
         + isFree(x:Integer, y:Integer)
         + addObserver(observer:KingdomObserver)
         + notifyObservers()
@@ -105,28 +104,15 @@ package models {
         NORTH
     }
 
-    class Preview {
-        - x:Integer
-        - y:Integer
-        + Preview(tile:Tile, x:Integer, y:Integer)
-        + getX():Integer
-        + getY():Integer
-        + getTile():Tile
-    }
+'    class Preview {
+'        + Preview(tile:Tile, x:Integer, y:Integer)
+'        + getX():Integer
+'        + getY():Integer
+'        + getTile():Tile
+'    }
 
     interface KingdomObserver {
         + updateKingdom(kingdom:Kingdom)
-    }
-
-    interface MovableInterface {
-        + moveRight()
-        + moveLeft()
-        + moveUp()
-        + moveDown()
-        + canGoRight():Boolean
-        + canGoLeft():Boolean
-        + canGoDown():Boolean
-        + canGoUp():Boolean
     }
 
 }
@@ -157,9 +143,13 @@ package views {
         + setPlayerColor(color:Colors)
     }
 
-    class KingdomView {
-        + KingdomView(kingdom:Kingdom)
+    class KingdomView implements KingdomObserver, GameObserver {
+        - {static}borderWidth:Integer
+        - {static}borderColor:Color
+        - {static}margins:Integer
+        + KingdomView(kingdom:Kingdom, controller:GameController)
         + updateKingdom(kingdom:Kingdom)
+        + reactGame(game:Game)
     }
 
     class DrawView {
@@ -186,7 +176,9 @@ package views {
         + {static}RED:Color
         + {static}PURPLE:Color
         + {static}BLACK:Color
+        + {static}GRAY:Color
 
+        + {static}textXl:Float
         + {static}textLg:Float
         + {static}textMd:Float
         + {static}textBase:Float
@@ -204,29 +196,8 @@ package views {
 
     }
 
-    class CastlePlacement {
-        + CastlePlacement(controller:CastleController)
-        + getArrows():PositionArrows
-        + getPlaceButton():Button
-    }
-
     class DominoPlacement {
         + DominoPlacement(controller:DominoController)
-        + getArrows():PositionArrows
-        + getPlaceButton():Button
-    }
-
-    class PositionArrows {
-'        - leftButton:Button
-'        - rightButton:Button
-'        - upButton:Button
-'        - downButton:Button
-        + PositionArrows()
-        + getLeftButton():Button
-        + getRightButton():Button
-        + getUpButton():Button
-        + getDownButton():Button
-        + bindActions(controller:MovableInterface)
     }
 
     class KingView {
@@ -247,6 +218,7 @@ package controllers {
         + playerPlaceCastle()
         + playerChooseDomino(king:King)
         + dominoChosen(domino:Domino)
+        + kingdomClicked(kingdom:Kingdom, x:Integer, y:Integer)
         + playerPlaceDomino()
         + exitGame()
     }
@@ -262,37 +234,12 @@ package controllers {
         + createGame(view:StartMenu)
     }
 
-    class DominoController implements MovableInterface {
+    class DominoController {
         + DominoController(kingdom:Kingdom)
-        + moveRight()
-        + moveLeft()
-        + moveUp()
-        + moveDown()
-        + canGoRight():Boolean
-        + canGoLeft():Boolean
-        + canGoDown():Boolean
-        + canGoUp():Boolean
         + rotate()
         + invert()
         + place()
         + setView(view:DominoPlacement)
-    }
-
-    class CastleController implements MovableInterface {
-        - x:Integer
-        - y:Integer
-        + CastleController(kingdom:Kingdom, parentController:GameController)
-        + moveRight()
-        + moveLeft()
-        + moveUp()
-        + moveDown()
-        + canGoRight():Boolean
-        + canGoLeft():Boolean
-        + canGoDown():Boolean
-        + canGoUp():Boolean
-        - updatePreview()
-        + place()
-        + setView(view:CastlePlacement)
     }
 
     abstract class CSVReader {
@@ -325,17 +272,11 @@ Game " - currentPlayer" o--> "1" Player : > contains
 GameController " - game" o--> "1" Game : > controls
 GameController " - view" o--> "1" GameView : > contains
 GameController " - drawView" o--> "1" DrawView : > contains
-GameController ..> CastlePlacement : <<use>>
 GameController ..> DominoPlacement : <<use>>
 GameController ..> DominoController : <<use>>
-GameController ..> CastleController : <<use>>
 GameController ..> EndMenu : "<<use>>"
 
-DominoPlacement " - arrows" *--> "1" PositionArrows : > contains
 DominoPlacement " - controller" o--> "1" DominoController : > contains
-
-CastlePlacement " - arrows" *--> "1" PositionArrows : > contains
-CastlePlacement " - controller" o--> "1" CastleController : > contains
 
 GameView " - controller" o--> "1" GameController : > controlled by
 GameView ..> Game : "<<use>>"
@@ -357,16 +298,13 @@ King " - parent" o--> "1" Player : > contains
 Kingdom " - parent" o--> "1" Player : > contains
 Kingdom " - board" o--> "[5][5]" Tile : > contains
 Kingdom " - observers" o--> "*" KingdomObserver : > contains
-Kingdom " - previews" *--> "*" Preview : > contains
-
-CastleController " - kingdom" o--> "1" Kingdom : > contains
-CastleController " - view" o--> "1" CastlePlacement : > contains
-CastleController " - parentController" o--> "1" GameController : > contains
 
 DominoController " - kingdom" o--> "1" Kingdom : > contains
 DominoController " - view" o--> "1" DominoPlacement : > contains
 DominoController " - parentController" o--> "1" GameController : > contains
 
+KingdomView " - player" o--> "1" Player : > contains
+KingdomView " - controller" o--> "1" GameController : > contains
 KingdomView ..> DominoView : <<use>>
 
 DrawView ..> DominoView : <<use>>
@@ -382,8 +320,5 @@ Domino " + king" o--> "1" King : > contains
 Tile " - type" *-> "1" Lands : > contains
 
 TileView " -tile" o--> "1" Tile : > contains
-
-Preview " - tile" o--> "1" Tile : > contains
-
 
 @enduml

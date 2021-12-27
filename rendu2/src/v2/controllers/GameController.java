@@ -1,15 +1,13 @@
 package v2.controllers;
 
 import v2.Kingdomino;
-import v2.models.Domino;
-import v2.models.Game;
-import v2.models.King;
-import v2.models.Player;
-import v2.views.CastlePlacement;
+import v2.models.*;
 import v2.views.DrawView;
 import v2.views.GameView;
+import v2.views.KingDominoDesign;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Stack;
 
 public class GameController {
@@ -113,13 +111,16 @@ public class GameController {
 
     public void playerPlaceCastle() {
 
-        // Création de l'interface de placement du chateau
-        CastleController controller = new CastleController(game.getCurrentPlayer().getKingdom(), this);
-        CastlePlacement view = new CastlePlacement(controller);
-        controller.setView(view);
+        JPanel panel = new JPanel();
+        panel.setOpaque(false);
+
+        JLabel label = new JLabel("Cliquez sur l'emplacement sur lequel vous souhaitez placer votre chateau dans votre rouyaume");
+        label.setForeground(Color.WHITE);
+        label.setFont(KingDominoDesign.getInstance().textFont.deriveFont(KingDominoDesign.textBase));
+        panel.add(label);
 
         // Affichage à l'utilisateur
-        this.view.setAction("Placez votre chateau !", view);
+        this.view.setAction("Placez votre chateau !", panel);
 
     }
 
@@ -159,6 +160,24 @@ public class GameController {
             play();
         } else {
             // TODO: Sinon on place le domino précédent
+        }
+
+    }
+
+    public void kingdomClicked(Kingdom kingdom, int x, int y) {
+        System.out.println("Royaume de " + kingdom.getParent().getName() + " cliqué en " + x + ", " + y);
+
+        // On vérifie que c'est bien le joueur à qui c'est le tour qui a cliqué dans son royaume
+        if (game.getCurrentPlayer().equals(kingdom.getParent())) {
+
+            // On vérifie si c'est le moment de placer le chateau
+            if (!kingdom.hasCastle()) {
+
+            }
+
+            System.out.println("Validé !");
+        } else {
+            System.out.println("Ce n'est pas au tour de ce joueur");
         }
 
     }

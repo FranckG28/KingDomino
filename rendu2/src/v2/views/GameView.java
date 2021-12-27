@@ -104,9 +104,10 @@ public class GameView extends JFrame implements GameObserver {
         kingdomGrid.setOpaque(false);
         for (Player p:playerList) {
             Kingdom kingdom = p.getKingdom();
-            KingdomView kview = new KingdomView(kingdom);
+            KingdomView kview = new KingdomView(kingdom, controller);
             kingdom.addObserver(kview);
             kingdomGrid.add(kview);
+            game.addObserver(kview);
         }
 
         mainContainer.add(kingdomGrid, BorderLayout.PAGE_END);
