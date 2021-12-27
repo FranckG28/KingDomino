@@ -78,18 +78,23 @@ public class GameView extends JFrame implements GameObserver {
 
         playerLabel.setFont(KingDominoDesign.getInstance().textFont.deriveFont(KingDominoDesign.getInstance().textMd));
         playerLabel.setForeground(KingDominoDesign.RED);
+        playerLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         gamePanel.add(playerLabel);
 
         gameLabel.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(KingDominoDesign.getInstance().textLg));
         gameLabel.setForeground(KingDominoDesign.YELLOW);
+        gameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         gamePanel.add(gameLabel);
 
         controlPanel.setOpaque(false);
+        controlPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         gamePanel.add(controlPanel);
 
         contentGbc.gridx = 2;
         contentGbc.weightx = 1;
         contentPanel.add(gamePanel, contentGbc);
+
+        contentPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         mainContainer.add(contentPanel, BorderLayout.CENTER);
 
