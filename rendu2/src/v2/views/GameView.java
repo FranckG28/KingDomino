@@ -82,8 +82,7 @@ public class GameView extends JFrame implements GameObserver {
         gamePanel.setOpaque(false);
         gamePanel.setLayout(new BoxLayout(gamePanel, BoxLayout.Y_AXIS));
 
-        playerLabel.setFont(KingDominoDesign.getInstance().textFont.deriveFont(KingDominoDesign.getInstance().textMd));
-        playerLabel.setForeground(KingDominoDesign.RED);
+        playerLabel.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(KingDominoDesign.getInstance().textMd).deriveFont(Font.BOLD));
         playerLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         gamePanel.add(playerLabel);
 
@@ -137,7 +136,8 @@ public class GameView extends JFrame implements GameObserver {
     public void reactGame(Game game) {
 
         // Actualisation du joueur actuel
-        playerLabel.setText("C'est au tour de " + game.getCurrentPlayer().getName());
+        playerLabel.setText(game.getCurrentPlayer().getName()+",");
+        playerLabel.setForeground(KingDominoDesign.getColor(game.getCurrentPlayer().getColor()));
         gamePanel.updateUI();
 
     }

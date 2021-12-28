@@ -24,9 +24,6 @@ public class KingView extends JPanel {
     public void setKing(King king) {
         this.king = king;
 
-
-        System.out.println(king);
-
         setBackground(king == null
                         ? KingDominoDesign.BLACK
                         : KingDominoDesign.getColor(king.getParent().getColor())
