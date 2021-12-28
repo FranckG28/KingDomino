@@ -3,7 +3,6 @@ package v2.controllers;
 import v2.Kingdomino;
 import v2.models.*;
 import v2.views.DominoPlacement;
-import v2.views.DrawView;
 import v2.views.GameView;
 import v2.views.KingDominoDesign;
 
@@ -17,8 +16,6 @@ public class GameController {
     private Game game;
     private GameView view;
 
-    private DrawView drawView;
-
     private boolean placedCastles = false;
 
     public GameController(Game game) {
@@ -29,10 +26,6 @@ public class GameController {
         this.view = view;
     }
 
-    public void setDrawView(DrawView drawView) {
-        this.drawView = drawView;
-    }
-
     public void exitGame() {
         // FERMETURE DE LA FENETRE
         view.setVisible(false);
@@ -41,7 +34,6 @@ public class GameController {
         // LIBERATION DES RESSOURCES :
         this.game = null;
         this.view = null;
-        this.drawView = null;
 
         // Réouverture du menu principal
         Kingdomino.openMainMenu();
@@ -63,7 +55,7 @@ public class GameController {
         placedCastles = true;
 
         // Rounds
-        if (game.getRound() == 0 && game.getDraw().isEmpty() || game.getRound() > 0 && game.getLastDraw().isEmpty()) {
+        if (game.getRound() == 0 && game.getDraw().getContent().isEmpty() || game.getRound() > 0 && game.getLastDraw().getContent().isEmpty()) {
 
             // Si le tirage n'a pas été fait, l'effectuer :
             makeDraw();
@@ -91,7 +83,7 @@ public class GameController {
 
             } else {
                 // Au premier domino de la pioche précédente de placer son roi
-                playerChooseDomino(game.getLastDraw().peek().king);
+                playerChooseDomino(game.getLastDraw().getContent().peek().king);
                 return;
             }
 
@@ -101,12 +93,17 @@ public class GameController {
 
     public void makeDraw() {
         Queue<Domino> draw = new LinkedList<>();
-        int dominoToDraw = (game.getAllPlayers().size() == 3) ? 3 : 4;
+        int dominoToDraw =  game.getDraw().getSize();
         for (int i = 0; i < dominoToDraw; i++) {
             draw.add(game.getDeck().pop());
         }
         // TODO: Trier la pioche par numéro de domino croissant
-        game.setDraw(draw);
+
+        // La pioche précédente prend le contenu de celle actuelle
+        game.getLastDraw().setContent(game.getDraw().getContent());
+
+        // La pioche actuelle prend le nouveau tirage
+        game.getDraw().setContent(draw);
 
         // Lancer l'action suivante :
         play();
@@ -141,11 +138,14 @@ public class GameController {
         this.view.setAction(game.getRound() == 0 ? "Choisissez un domino" : "Choisissez votre prochain domino", empty);
 
         // Afficher les boutons de choix :
-        this.drawView.showButtons();
+        this.view.getDrawView().showButtons(true);
 
     }
 
     public void dominoChosen(Domino domino) {
+
+        // Masquer les boutons
+        this.view.getDrawView().showButtons(false);
 
         // Définir le roi comme posé
         King k = game.getCurrentPlayer().currentKing;
@@ -154,15 +154,15 @@ public class GameController {
         // Placer le roi sur le domino demandé
         domino.king = k;
 
-        // Rafraichir l'affichage :
-        game.notifyObservers();
+        // Rafraichir l'affichage de la pioche:
+        game.getDraw().notifyObservers();
 
         // Lancer l'action suivante :
         if (game.getRound() == 0) {
             // Au premier round, on rejoue
             play();
         } else {
-            playerPlaceDomino(game.pickDominoToPlace());
+            playerPlaceDomino(game.getLastDraw().pickDomino());
         }
 
     }
@@ -193,7 +193,7 @@ public class GameController {
                     kingdom.getParent().dominoToPlace = null;
 
                     // Si c'étais le dernier de la pioche précédente, on entre dans le round suivant
-                    if (game.getLastDraw().isEmpty()) {
+                    if (game.getLastDraw().getContent().isEmpty()) {
                         game.nextRound();
                     }
 

@@ -10,10 +10,7 @@ import java.awt.event.ActionListener;
 
 public class DominoPlacement extends JPanel {
 
-    private final DominoController controller;
-
     public DominoPlacement(DominoController controller, Domino domino) {
-        this.controller = controller;
 
         setLayout(new GridBagLayout());
         setOpaque(false);

@@ -6,23 +6,29 @@ public class Game {
 
     private int round = 0;
 
-    private List<Player> players;
+    private final List<Player> players;
     private Player currentPlayer;
 
     private boolean middle;
     private boolean harmony;
 
-    private Stack<Domino> deck;
-    private Queue<Domino> draw = new LinkedList<>();
-    private Queue<Domino> lastDraw = new LinkedList<>();
+    private final Stack<Domino> deck;
+    private final Draw draw;
+    private final Draw lastDraw;
 
-    private List<GameObserver> observers = new ArrayList<>();
+    private final List<GameObserver> observers = new ArrayList<>();
 
     public Game(List<Player> players, Stack<Domino> deck, boolean middle, boolean harmony) {
         this.players = players;
         this.deck = deck;
         this.middle = middle;
         this.harmony = harmony;
+
+        // Création des pioches :
+        int drawSize = getAllPlayers().size() == 3 ? 3 : 4;;
+        this.draw = new Draw(drawSize);
+        this.lastDraw = new Draw(drawSize);
+
     }
 
     public Player getCurrentPlayer() {
@@ -46,23 +52,11 @@ public class Game {
     public int getRound() {
         return this.round;
     }
-    public Queue<Domino> getDraw() {
+    public Draw getDraw() {
         return this.draw;
     }
-    public Queue<Domino> getLastDraw() {
+    public Draw getLastDraw() {
         return this.lastDraw;
-    }
-
-    public Domino pickDominoToPlace() {
-        Domino result = this.lastDraw.poll();
-        notifyObservers();
-        return result;
-    }
-
-    public void setDraw(Queue<Domino> draw) {
-        this.lastDraw = this.draw;
-        this.draw = draw;
-        notifyObservers();
     }
 
     public void notifyObservers() {

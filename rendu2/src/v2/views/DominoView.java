@@ -33,35 +33,40 @@ public class DominoView extends JPanel implements DominoObserver {
     @Override
     public void updateDomino(Domino domino) {
         removeAll();
+        this.domino = domino;
 
-        // Réglage de la direction du domino
-        setLayout(new GridLayout(domino.isVertical() ? 2 : 1, domino.isVertical() ? 1 : 2));
+        if (this.domino != null) {
+            // Réglage de la direction du domino
+            setLayout(new GridLayout(this.domino.isVertical() ? 2 : 1, this.domino.isVertical() ? 1 : 2));
 
-        // Création des tuiles
-        JPanel tile1 = new TileView(this.domino.getTile1());
-        JPanel tile2 = new TileView(this.domino.getTile2());
+            // Création des tuiles
+            JPanel tile1 = new TileView(this.domino.getTile1());
+            JPanel tile2 = new TileView(this.domino.getTile2());
 
-        // Première tuile, toutes les bordures
-        tile1.setBorder(BorderFactory.createLineBorder(borderColor));
+            // Première tuile, toutes les bordures
+            tile1.setBorder(BorderFactory.createLineBorder(borderColor));
 
-        if (domino.isVertical()) {
-            // 2ème tuile, toutes les bordures sauf celle du haut si vertical
-            tile2.setBorder(BorderFactory.createMatteBorder(0,
-                    borderWidth,
-                    borderWidth,
-                    borderWidth,
-                    borderColor));
-        } else {
-            // 2ème tuile, toutes les bordures sauf celle de gauche si horizontale
-            tile2.setBorder(BorderFactory.createMatteBorder(borderWidth,
-                    0,
-                    borderWidth,
-                    borderWidth,
-                    borderColor));
+            if (domino.isVertical()) {
+                // 2ème tuile, toutes les bordures sauf celle du haut si vertical
+                tile2.setBorder(BorderFactory.createMatteBorder(0,
+                        borderWidth,
+                        borderWidth,
+                        borderWidth,
+                        borderColor));
+            } else {
+                // 2ème tuile, toutes les bordures sauf celle de gauche si horizontale
+                tile2.setBorder(BorderFactory.createMatteBorder(borderWidth,
+                        0,
+                        borderWidth,
+                        borderWidth,
+                        borderColor));
+            }
+
+            add(tile1);
+            add(tile2);
         }
 
-        add(tile1);
-        add(tile2);
+        setOpaque(this.domino != null);
 
         updateUI();
     }

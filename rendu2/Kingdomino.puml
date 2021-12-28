@@ -34,8 +34,6 @@ package models {
 
         + getDraw(): Domino[]
         + getLastDraw(): Domino[]
-        + setDraw(draw:Domino[])
-        + pickDominoToPlace():Domino
         + getDeck(): Domino[]
 
         + isMiddle():Boolean
@@ -43,6 +41,19 @@ package models {
 
         + notifyObservers()
         + addObserver(observer:GameObserver)
+    }
+
+    class Draw {
+        - size:Integer
+        + Draw(size:Integer)
+        + getContent():Domino[]
+        + getDomino(index:Integer):Domino
+        + getSize():Integer
+        + setContent(dominos:Domino[])
+        + pickDomino():Domino
+
+        + addObserver(observer:DrawObserver)
+        + notifyObservers()
     }
 
     class Player {
@@ -129,6 +140,9 @@ package models {
         + updateDomino(domino:Domino)
     }
 
+    interface DrawObserver {
+        + updateDraw(draw:Draw)
+    }
 
 }
 
@@ -138,6 +152,7 @@ package views {
         + GameView(controller:GameController, game:GameView)
         + setAction(text:String, content)
         + reactGame(game:Game)
+        + getDrawView():DrawView
     }
 
     class StartMenu {
@@ -172,9 +187,11 @@ package views {
         - removePreview()
     }
 
-    class DrawView {
-        + DrawView(dominos:Domino[], title:String, controller:GameController)
-        + showButtons()
+    class DrawView implements DrawObserver {
+        - drawSize:Integer
+        + DrawView(title:String, drawSize:Integer, controller:GameController)
+        + updateDraw(draw:Draw)
+        + showButtons(state:Boolean)
     }
 
     class DominoView implements DominoObserver {
@@ -224,13 +241,8 @@ package views {
     }
 
     class KingView {
-        + KingView(color:Colors)
-    }
-
-    class KingButton {
-        + {static}defaultColor:Color
-        + {static}hoveredColor:Color
-        + KingButton(text:String)
+        + KingView(king:King)
+        + setKing(king:King)
     }
 
 }
@@ -267,7 +279,6 @@ package controllers {
         + DominoController(kingdom:Kingdom, domino:Domino)
         + rotate()
         + invert()
-        + place()
     }
 
     abstract class CSVReader {
@@ -292,27 +303,24 @@ GameCreator ..> GameController : "<<use>>"
 
 Game " - players" *--> "2, 4" Player : > contains
 Game " - deck" *--> "0, 48" Domino : > contains
-Game " - draw" *--> "3, 4" Domino : > contains
-Game " - lastDraw" *--> "3, 4" Domino : > contains
+Game " - draw" *--> "1" Draw : > contains
+Game " - lastDraw" *--> "1" Draw : > contains
 Game " - observers" o--> "*" GameObserver : > contains
 Game " - currentPlayer" o--> "1" Player : > contains
 
+Draw " - content" o--> "*" Domino : > contains
+Draw " - observers" o--> "*" DrawObserver : > contains
+
 GameController " - game" o--> "1" Game : > controls
 GameController " - view" o--> "1" GameView : > contains
-GameController " - drawView" o--> "1" DrawView : > contains
 GameController ..> DominoPlacement : <<use>>
 GameController ..> DominoController : <<use>>
-GameController ..> EndMenu : "<<use>>"
 
-GameView " - controller" o--> "1" GameController : > controlled by
 GameView ..> Game : "<<use>>"
 GameView ..> KingdomView : "<<use>>"
 GameView ..> DrawView : <<use>>
 
 StartMenu " - controller" o--> "1" GameCreator : > controlled by
-
-EndMenu ..> Game : "<<use>>"
-EndMenu ..> StartMenu : "<<use>>"
 
 Player " - kingdom"  *--> "1" Kingdom : > owns
 Player " - kings" *--> "1,2" King : > contains
@@ -332,14 +340,15 @@ DominoController " - domino" o--> "1" Domino : > contains
 DominoPlacement " - controller" o--> "1" DominoController : > contains
 
 KingdomView " - kingdom" o--> "1" Kingdom : > contains
-KingdomView " - controller" o--> "1" GameController : > contains
-KingdomView ..> DominoView : <<use>>
+KingdomView ..> TileView : <<use>>
 
 DrawView ..> DominoView : <<use>>
 DrawView ..> KingView : <<use>>
 
 DominoView " - domino" o--> "1" Domino : > contains
 DominoView ..> TileView : <<use>>
+
+KingView " - king" o--> "1" King : > contains
 
 Domino " - tile1" o-> "1" Tile : > contains
 Domino " - tile2" o-> "1" Tile : > contains
