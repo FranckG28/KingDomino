@@ -13,20 +13,16 @@ import java.awt.event.ActionListener;
 
 public class GameView extends JFrame implements GameObserver {
 
-    private GameController controller;
+    private final JLabel gameLabel = new JLabel("Instruction");
+    private final JLabel playerLabel = new JLabel("Joueur");
 
-    private JLabel gameLabel = new JLabel("Instruction");
-    private JLabel playerLabel = new JLabel("Joueur");
+    private final DrawView oldDraw;
+    private final DrawView actualDraw;
 
-    private JPanel oldDraw = new JPanel();
-    private JPanel actualDraw = new JPanel();
-
-    private JPanel controlPanel = new JPanel();
+    private final JPanel gamePanel = new JPanel();
+    private final JPanel controlPanel = new JPanel();
 
     public GameView(GameController controller, Game game) {
-
-        this.controller = controller;
-
 
         // CONTENEUR PRINCIPAL
 
@@ -65,18 +61,24 @@ public class GameView extends JFrame implements GameObserver {
         contentPanel.setOpaque(false);
         GridBagConstraints contentGbc = new GridBagConstraints();
 
-        oldDraw.setOpaque(false);
-        oldDraw.setAlignmentY(Component.TOP_ALIGNMENT);
-        oldDraw.setPreferredSize(new Dimension(200, 300));
-        actualDraw.setOpaque(false);
-        actualDraw.setAlignmentY(Component.TOP_ALIGNMENT);
-        actualDraw.setPreferredSize(new Dimension(250, 300));
+        // Pioches
+        oldDraw = new DrawView("Pioche précédente", game.getDraw().getSize(), controller);
+        actualDraw = new DrawView("Pioche actuelle", game.getDraw().getSize(), controller);
 
+        oldDraw.setPreferredSize(new Dimension(150,300));
+        game.getLastDraw().addObserver(oldDraw);
+
+        actualDraw.setPreferredSize(new Dimension(250,300));
+        game.getDraw().addObserver(actualDraw);
+
+        contentGbc.weighty = 1;
         contentPanel.add(oldDraw, contentGbc);
         contentGbc.gridx = 1;
+        contentGbc.insets = new Insets(0,20,0,20);
         contentPanel.add(actualDraw, contentGbc);
+        contentGbc.insets = new Insets(0,0,0,0);
 
-        JPanel gamePanel = new JPanel();
+        // Instructions
         gamePanel.setOpaque(false);
         gamePanel.setLayout(new BoxLayout(gamePanel, BoxLayout.Y_AXIS));
 
@@ -136,31 +138,7 @@ public class GameView extends JFrame implements GameObserver {
 
         // Actualisation du joueur actuel
         playerLabel.setText("C'est au tour de " + game.getCurrentPlayer().getName());
-
-        // Actualisation de la pioche
-        JPanel empty = new JPanel();
-        empty.setOpaque(false);
-
-        oldDraw.removeAll();
-        actualDraw.removeAll();
-
-        if (game.getLastDraw() != null) {
-            oldDraw.add(new DrawView(game.getLastDraw(), "Pioche précédente", null));
-        } else {
-            oldDraw.add(empty);
-        }
-
-        if (game.getDraw() != null) {
-            DrawView draw = new DrawView(game.getDraw(), "Pioche", controller);
-            actualDraw.add(draw);
-            controller.setDrawView(draw);
-        } else {
-            actualDraw.add(empty);
-        }
-
-        // Actualisation de la fenêtre
-        this.getContentPane().validate();
-        this.getContentPane().repaint();
+        gamePanel.updateUI();
 
     }
 
@@ -176,6 +154,10 @@ public class GameView extends JFrame implements GameObserver {
         // Actualisation de la fenêtre
         this.getContentPane().validate();
         this.getContentPane().repaint();
+    }
+
+    public DrawView getDrawView() {
+        return actualDraw;
     }
 
 }

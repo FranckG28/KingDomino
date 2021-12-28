@@ -2,6 +2,8 @@ package v2.views;
 
 import v2.controllers.GameController;
 import v2.models.Domino;
+import v2.models.Draw;
+import v2.models.DrawObserver;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,14 +11,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
 
-public class DrawView extends JPanel {
 
-    private java.util.List<JButton> buttons = new ArrayList<>();
+public class DrawView extends JPanel implements DrawObserver {
 
-    public DrawView(Queue dominos, String title, GameController controller) {
+    private final int drawSize;
+
+    private final java.util.List<KingView> kings = new ArrayList<>();
+    private final java.util.List<DominoView> dominos = new ArrayList<>();
+    private final java.util.List<JButton> buttons = new ArrayList<>();
+
+    private final JLabel titleLabel;
+
+    public DrawView(String title, int drawSize, GameController controller) {
+
+        this.drawSize = drawSize;
 
         // LAYOUT
         setLayout(new GridBagLayout());
@@ -25,58 +34,93 @@ public class DrawView extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
 
         // TITRE
-        if (dominos != null && !dominos.isEmpty()) {
-            gbc.gridwidth = (controller == null) ? 2 : 3;
-            JLabel titleLabel = new JLabel(title);
-            titleLabel.setForeground(KingDominoDesign.PINK);
-            AffineTransform transform = new AffineTransform();
-            titleLabel.setFont(KingDominoDesign.getInstance().titleFont);
-            add(titleLabel, gbc);
-        }
+        gbc.gridwidth = (controller == null) ? 2 : 3;
+        this.titleLabel = new JLabel(title);
+        titleLabel.setForeground(KingDominoDesign.PINK);
+        AffineTransform transform = new AffineTransform();
+        titleLabel.setFont(KingDominoDesign.getInstance().titleFont);
+        add(titleLabel, gbc);
+        titleLabel.setVisible(false);
 
-        // DOMINOS
+        // Création des éléments :
         gbc.gridwidth = 1;
         gbc.gridx = 0;
         gbc.insets = new Insets(10,10,10,10);
-        int i = 1;
-        for (Object o:dominos) {
+        for(int i = 0; i < drawSize; i++) {
 
-            Domino d = (Domino)o;
+            gbc.gridy = i+1;
 
-            gbc.gridy = i;
+            // KingView
+            gbc.gridx = 0;
+            KingView king = new KingView(null);
+            add(king, gbc);
+            kings.add(king);
 
-            if(d.king != null) {
-                gbc.gridx = 0;
-                add(new KingView(d.king.getParent().getColor()), gbc);
-            }
-
+            // Domino
             gbc.gridx = 1;
-            add(new DominoView(d), gbc);
+            DominoView domino = new DominoView(null);
+            add(domino, gbc);
+            dominos.add(domino);
 
-            if (controller != null && d.king == null) {
-                gbc.gridx = 2;
-                JButton button = new KingButton("Choisir");
-                class ChooseButtonListener implements ActionListener {
-                    @Override
-                    public void actionPerformed( ActionEvent actionEvent ) {
-                        controller.dominoChosen(d);
-                    }
+            // Bouton choisir :
+            gbc.gridx = 2;
+            JButton button = new KingButton("Choisir");
+            class ChooseButtonListener implements ActionListener {
+                @Override
+                public void actionPerformed( ActionEvent actionEvent ) {
+                    controller.dominoChosen(domino.getDomino());
                 }
-                button.addActionListener(new ChooseButtonListener());
-                buttons.add(button);
-                button.setVisible(false);
-                add(button, gbc);
             }
+            button.addActionListener(new ChooseButtonListener());
+            buttons.add(button);
+            button.setVisible(false);
+            add(button, gbc);
 
-            i++;
         }
-        
+
     }
 
-    public void showButtons() {
-        for (JButton b:buttons) {
-            b.setVisible(true);
+    public void showButtons(Boolean state) {
+        if (!state) {
+            // TOUT MASQUER :
+            for (JButton b : buttons) {
+                b.setVisible(false);
+            }
+        } else {
+            // AFFICHER LES BOUTONS POUR LES DOMINO NON NULS QUI N'ONT PAS DE ROI
+            for(int i = 0; i<drawSize; i++) {
+
+                Domino d = dominos.get(i).getDomino();
+
+                buttons.get(i).setVisible(
+                        d != null && d.king == null
+                );
+
+            }
         }
     }
 
+    @Override
+    public void updateDraw(Draw draw) {
+
+        // Mise à jour de la pioche
+        for(int i = 0; i<drawSize; i++) {
+
+            Domino d = draw.getDomino(i);
+
+            // King
+            kings.get(i).setKing(d == null
+                    ? null
+                    : d.king);
+
+            // Domino
+            dominos.get(i).updateDomino(d);
+
+        }
+
+        titleLabel.setVisible(draw.getContent().size() != 0);
+
+        updateUI();
+
+    }
 }
