@@ -57,9 +57,73 @@ public class KingdomView extends JPanel implements KingdomObserver, GameObserver
             }
         });
 
-        // Affichage initial du royaume
-        updateKingdom(kingdom);
+        // Creation des cases
+        for (int row = 0; row < Kingdom.gridSize; row++) {
+            for (int col = 0; col < Kingdom.gridSize; col++) {
 
+                final JPanel tile = new TileView(null);
+
+                // Ajout des actions aux cases
+                int finalCol = col;
+                int finalRow = row;
+                tile.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        controller.kingdomClicked(kingdom, finalCol, finalRow);
+                    }
+
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+                        setPreview(finalCol, finalRow);
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+                        removePreview();
+                    }
+
+                });
+
+                // Ajout des bordures
+                if (row == 0) {
+                    if (col == 0) {
+                        // Top left corner, draw all sides
+                        tile.setBorder(BorderFactory.createLineBorder(borderColor));
+                    } else {
+                        // Top Edge, draw all sides except left Edge
+                        tile.setBorder(BorderFactory.createMatteBorder(borderWidth,
+                                0,
+                                borderWidth,
+                                borderWidth,
+                                borderColor));
+                    }
+                } else {
+                    if (col == 0) {
+                        // Left-hand Edge, draw all sides except top
+                        tile.setBorder(BorderFactory.createMatteBorder(0,
+                                borderWidth,
+                                borderWidth,
+                                borderWidth,
+                                borderColor));
+                    } else {
+                        // Neither top Edge nor left Edge, skip both top and left lines
+                        tile.setBorder(BorderFactory.createMatteBorder(0,
+                                0,
+                                borderWidth,
+                                borderWidth,
+                                borderColor));
+                    }
+                }
+
+                // Ajout de la tuile
+                gridPanel.add(tile);
+            }
+        }
+
+    }
+
+    private TileView getTileView(int x, int y) {
+        return (TileView)gridPanel.getComponent(y*Kingdom.gridSize+x);
     }
 
     public void updateKingdom(Kingdom kingdom) {
@@ -73,21 +137,19 @@ public class KingdomView extends JPanel implements KingdomObserver, GameObserver
         // Si le tableau de tile existe
         if (tiles != null) {
 
-            // On vide le panel
-            gridPanel.removeAll();
-
+            // On passe dans toutes les cases
             for (int row = 0; row < Kingdom.gridSize; row++) {
                 for (int col = 0; col < Kingdom.gridSize; col++) {
 
                     Tile tileToDisplay = tiles[row][col];
 
-                    // Si la tuile est libre, elle pourrait peut être être l'objet d'une preview
+                    // Si il y a une preview, c'est peut être ici qu'elle doit être placé
                     if (dominoToPlace != null) {
                         if (previewY != -1 && previewX != -1) {
 
                             // Une preview existe, vérifier si elle doit être affiché ici :
 
-                            if (previewX == col && previewY == row ) {
+                            if (previewX == col && previewY == row) {
                                 // Si c'est la tuile 1
                                 tileToDisplay = dominoToPlace.getTile1();
                             } else if (dominoToPlace.getTile2X(previewX) == col && dominoToPlace.getTile2Y(previewY) == row) {
@@ -98,76 +160,16 @@ public class KingdomView extends JPanel implements KingdomObserver, GameObserver
                         }
                     }
 
-                    final JPanel tile = new TileView(tileToDisplay);
-
-                    // Action au clic
-                    int finalCol = col;
-                    int finalRow = row;
-                    tile.addMouseListener(new MouseAdapter()
-                    {
-                        @Override
-                        public void mouseClicked(MouseEvent e)
-                        {
-                            super.mouseClicked(e);
-                            controller.kingdomClicked(kingdom, finalCol, finalRow);
-                        }
-
-                        @Override
-                        public void mouseEntered(MouseEvent e) {
-                            super.mouseEntered(e);
-                            setPreview(finalCol, finalRow);
-                        }
-
-                        @Override
-                        public void mouseExited(MouseEvent e) {
-                            super.mouseExited(e);
-                            removePreview();
-                        }
-
-                    });
-
-                    // Affichage des bordures
-                    if (row == 0) {
-                        if (col == 0) {
-                            // Top left corner, draw all sides
-                            tile.setBorder(BorderFactory.createLineBorder(borderColor));
-                        }
-                        else {
-                            // Top Edge, draw all sides except left Edge
-                            tile.setBorder(BorderFactory.createMatteBorder(borderWidth,
-                                    0,
-                                    borderWidth,
-                                    borderWidth,
-                                    borderColor));
-                        }
-                    }
-                    else {
-                        if (col == 0) {
-                            // Left-hand Edge, draw all sides except top
-                            tile.setBorder(BorderFactory.createMatteBorder(0,
-                                    borderWidth,
-                                    borderWidth,
-                                    borderWidth,
-                                    borderColor));
-                        }
-                        else {
-                            // Neither top Edge nor left Edge, skip both top and left lines
-                            tile.setBorder(BorderFactory.createMatteBorder(0,
-                                    0,
-                                    borderWidth,
-                                    borderWidth,
-                                    borderColor));
-                        }
+                    // Mise à jour de la tuile seulement si necessaire
+                    TileView view = getTileView(col, row);
+                    if (view.getTile() != tileToDisplay) {
+                        view.setTile(tileToDisplay);
                     }
 
-                    // Ajout de la tuile
-                    gridPanel.add(tile);
                 }
             }
+
         }
-
-        updateUI();
-
     }
 
     @Override

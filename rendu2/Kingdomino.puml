@@ -167,6 +167,7 @@ package views {
         + KingdomView(kingdom:Kingdom, controller:GameController)
         + updateKingdom(kingdom:Kingdom)
         + reactGame(game:Game)
+        + getTileView(x:Integer, y:Integer):TileView
         - setPreview(x:Integer, y:Integer)
         - removePreview()
     }
@@ -186,6 +187,7 @@ package views {
         + {static}tileSize:Integer
         + TileView(tile:Tile)
         + getTile():Tile
+        + setTile(tile:Tile)
         - setHover(state:Boolean)
     }
 
