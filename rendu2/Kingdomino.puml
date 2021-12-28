@@ -292,14 +292,13 @@ package controllers {
 
 Kingdomino ..> StartMenu : "<<use>>"
 Kingdomino ..> GameCreator : "<<use>>"
-Kingdomino ..> CSVReader : "<<use>>"
 
-GameCreator " - dominos" o--> "*" Domino : > contains
 GameCreator " - players" *--> "2, 3" PlayerEditor : > contains
 GameCreator " - view" o--> "1" StartMenu : > contains
 GameCreator ..> Game : "<<use>>"
 GameCreator ..> GameView : "<<use>>"
 GameCreator ..> GameController : "<<use>>"
+GameCreator ..> CSVReader : "<<use>>"
 
 Game " - players" *--> "2, 4" Player : > contains
 Game " - deck" *--> "0, 48" Domino : > contains

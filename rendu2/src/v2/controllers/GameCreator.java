@@ -1,5 +1,6 @@
 package v2.controllers;
 
+import v2.Kingdomino;
 import v2.models.Domino;
 import v2.models.Game;
 import v2.models.Player;
@@ -15,12 +16,10 @@ import java.util.Stack;
 
 public class GameCreator {
 
-    private final Stack<Domino> dominos;
     private final Stack<PlayerEditor> players;
     private StartMenu view;
 
-    public GameCreator(Stack<Domino> dominos) {
-        this.dominos = dominos;
+    public GameCreator() {
         this.players = new Stack<>();
         players.push(new PlayerEditor());
         players.push(new PlayerEditor());
@@ -61,7 +60,7 @@ public class GameCreator {
 
         // Copie de la pioche :
         Stack<Domino> gameDeck = new Stack<>();
-        gameDeck.addAll(dominos);
+        gameDeck.addAll(CSVReader.getDominos());
 
         // Mélange de la pioche
         Collections.shuffle(gameDeck);
@@ -104,6 +103,11 @@ public class GameCreator {
 
         // Démarrage du jeu
         controller.play();
+
+        // Libération des ressources du menu
+        view.dispose();
+        view = null;
+        players.clear();
 
     }
 
