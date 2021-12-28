@@ -14,18 +14,68 @@ public class TileView extends JPanel {
 
     private Tile tile;
 
-    public TileView(Tile tile) {
+    private final MouseListener hoverListener;
+    private final JLabel crownLabel = new JLabel("");
 
-        this.tile = tile;
+    public TileView(Tile tile) {
 
         // TAILLE DE LA TUILE
         setPreferredSize(new Dimension(tileSize, tileSize));
 
+        // Création du MouseListener
+        this.hoverListener = new MouseAdapter()
+        {
+
+            @Override
+            public void mouseEntered(MouseEvent e)
+            {
+                setHover(true);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setHover(false);
+            }
+        };
+        addMouseListener(this.hoverListener);
+
+        // Affichage du nombre de couronnes
+        crownLabel.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(KingDominoDesign.getInstance().textSm));
+        crownLabel.setForeground(KingDominoDesign.BLACK);
+        add(crownLabel);
+
+        // Affichage de la tuile
+        setTile(tile);
+
+    }
+
+    public Tile getTile() {
+        return this.tile;
+    }
+
+    private void setHover(Boolean state) {
+        if (tile == null) {
+            // Effet de survol seulement si la tuile est vide
+            setBackground(state ? KingDominoDesign.GRAY : KingDominoDesign.BLACK);
+            updateUI();
+        }
+    }
+
+    public void setTile(Tile tile) {
+        this.tile = tile;
+
+        // AFFICHAGE DU NOMBRE DE COURONNE
+        crownLabel.setText(
+                (tile != null && tile.getCrowns() != 0)
+                        ? String.valueOf(tile.getCrowns())
+                        : ""
+        );
+
         // COULEUR DE LA TUILE
         setBackground(
                 tile == null
-                ? KingDominoDesign.BLACK
-                : switch (tile.getLand()) {
+                        ? KingDominoDesign.BLACK
+                        : switch (tile.getLand()) {
                     case MINE -> new Color(106,102,96);
                     case WATER -> new Color(0,146,213);
                     case FOREST -> new Color(112,130,50);
@@ -37,45 +87,8 @@ public class TileView extends JPanel {
                 }
         );
 
-        // AFFICHAGE DU NOMBRE DE COURONNE SI IL Y EN A
-        if (tile != null && tile.getCrowns() != 0) {
-            JLabel c = new JLabel(String.valueOf(tile.getCrowns()));
-            c.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(KingDominoDesign.getInstance().textSm));
-            c.setForeground(KingDominoDesign.BLACK);
-            add(c);
-        }
-
-        // Effet de passage de souris si la case est libre
-        if (tile == null) {
-
-            addMouseListener(new MouseAdapter()
-            {
-
-                @Override
-                public void mouseEntered(MouseEvent e)
-                {
-                    super.mouseEntered(e);
-                    setHover(true);
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    super.mouseExited(e);
-                    setHover(false);
-                }
-            });
-
-        }
-
-    }
-
-    public Tile getTile() {
-        return this.tile;
-    }
-
-    private void setHover(Boolean state) {
-        setBackground(state ? KingDominoDesign.GRAY : KingDominoDesign.BLACK);
         updateUI();
+
     }
 
 }
