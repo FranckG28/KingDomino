@@ -11,7 +11,7 @@ public class KingView extends JPanel {
     private King king;
 
     public static final int borderSize = 2;
-    public static final Color borderColor = KingDominoDesign.BLACK;
+    public static final Color borderColor = KingDominoDesign.GRAY;
 
     public KingView(King king) {
 

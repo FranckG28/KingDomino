@@ -79,8 +79,9 @@ package models {
         + hasCastle():Boolean
         + addTile(tile:Tile, x:Integer, y:Integer)
         + addDomino(tile:Tile, x:Integer, y:Integer)
-        + isFree(x:Integer, y:Integer)
-        + canPlaceDomino(domino:Domino, x:Integer, y:Integer)
+        + isFree(x:Integer, y:Integer):Boolean
+        + canPlaceDomino(domino:Domino, x:Integer, y:Integer):Boolean
+        - hasNeighbors(x:Integer, y:Integer):Boolean
 
         + addObserver(observer:KingdomObserver)
         + notifyObservers()

@@ -59,7 +59,7 @@ public class Kingdom {
                 notifyObservers();
 
             } else {
-                throw new IllegalArgumentException("Cet emplacement est déjà occupé");
+                throw new IllegalArgumentException("Emplacement invalide");
             }
         } catch (Exception e) {
             throw e;
@@ -76,13 +76,47 @@ public class Kingdom {
 
     public boolean canPlaceDomino(Domino domino, int x, int y) {
 
+        // On vérifie que le domino est bien entièrement dans la grille
         if (domino.getTile2X(x) >= gridSize || domino.getTile2Y(y) >= gridSize) {
             throw new IndexOutOfBoundsException("Le domino ne peut pas être placé hors de la grille");
         }
 
-        // TODO: Vérifier que le domino est adjacent à une case déjà utilisé
+        // On vérifie d'abord que les deux cases sont libres
+        if (isFree(x, y) && isFree(domino.getTile2X(x), domino.getTile2Y(y))) {
 
-        return isFree(x, y) && isFree(domino.getTile2X(x), domino.getTile2Y(y));
+            // Si les cases sont libres, on vérifie qu'au moins l'une d'entre elle est adjacente à une case déjà occupée
+            return hasNeighbors(x, y) || hasNeighbors(domino.getTile2X(x), domino.getTile2Y(y));
+
+        } else {
+            throw new IllegalArgumentException("Cet emplacement est déjà occupé");
+        }
+    }
+
+    private boolean hasNeighbors(int x, int y) {
+
+        // Haut
+        if (y > 0) {
+            if (!isFree(x, y-1)) return true;
+        }
+
+        // Bas
+        if (y < Kingdom.gridSize-1) {
+            if (!isFree(x, y+1)) return true;
+        }
+        
+        // Gauche
+        if (x > 0) {
+            if (!isFree(x-1, y)) return true;
+        }
+        
+        // Droite
+        if (x < Kingdom.gridSize-1) {
+            if (!isFree(x+1, y)) return true;
+        }
+        
+        // Si aucun d'entre eux n'avait de voisins, retourner false
+        return false;
+        
     }
 
     public void addObserver(KingdomObserver observer) {
