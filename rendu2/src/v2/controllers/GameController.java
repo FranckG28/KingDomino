@@ -213,6 +213,8 @@ public class GameController {
 
     public void playerPlaceDomino(Domino domino) {
 
+        // TODO: Verify if domino is placeable
+
         DominoController controller = new DominoController(game.getCurrentPlayer().getKingdom(), domino);
         DominoPlacement view = new DominoPlacement(controller, domino);
 

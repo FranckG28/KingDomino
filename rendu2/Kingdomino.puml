@@ -80,9 +80,11 @@ package models {
         + addTile(tile:Tile, x:Integer, y:Integer)
         + addDomino(tile:Tile, x:Integer, y:Integer)
         + isFree(x:Integer, y:Integer):Boolean
+        - getTile(x:Integer, y:Integer):Tile
+        - setTile(x:Integer, y:Integer)
         + canPlaceDomino(domino:Domino, x:Integer, y:Integer):Boolean
-        - hasNeighbors(x:Integer, y:Integer):Boolean
-
+        - checkNeighbors(x:Integer, y:Integer, tile:Tile):Boolean
+        - checkLandMatch(tile1:Tile, tile2:Tile):Boolean
         + addObserver(observer:KingdomObserver)
         + notifyObservers()
     }

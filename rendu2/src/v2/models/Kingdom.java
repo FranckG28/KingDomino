@@ -38,10 +38,18 @@ public class Kingdom {
         return false;
     }
 
+    private Tile getTile(int x, int y) {
+        return board[y][x];
+    }
+
+    private void setTile(int x, int y, Tile tile) {
+        board[y][x] = tile;
+    }
+
     public void addTile(Tile tile, int x, int y) {
         try {
             if (isFree(x, y)) {
-                board[y][x] = tile;
+                setTile(x, y, tile);
                 notifyObservers();
             } else {
                 throw new IllegalArgumentException("Cet emplacement est déjà occupé");
@@ -54,10 +62,9 @@ public class Kingdom {
     public void addDomino(Domino domino, int x, int y) {
         try {
             if (canPlaceDomino(domino, x, y)) {
-                board[y][x] = domino.getTile1();
-                board[domino.getTile2Y(y)][domino.getTile2X(x)] = domino.getTile2();
+                setTile(x, y, domino.getTile1());
+                setTile(domino.getTile2X(x), domino.getTile2Y(y), domino.getTile2());
                 notifyObservers();
-
             } else {
                 throw new IllegalArgumentException("Emplacement invalide");
             }
@@ -70,7 +77,7 @@ public class Kingdom {
         if (x < 0 || x >= gridSize || y < 0 || y >= gridSize) {
             return false;
         } else {
-            return board[y][x] == null;
+            return getTile(x, y) == null;
         }
     }
 
@@ -83,40 +90,46 @@ public class Kingdom {
 
         // On vérifie d'abord que les deux cases sont libres
         if (isFree(x, y) && isFree(domino.getTile2X(x), domino.getTile2Y(y))) {
-
-            // Si les cases sont libres, on vérifie qu'au moins l'une d'entre elle est adjacente à une case déjà occupée
-            return hasNeighbors(x, y) || hasNeighbors(domino.getTile2X(x), domino.getTile2Y(y));
-
+            // Si les cases sont libres, on vérifie qu'au moins l'une d'entre elle est adjacente à une case déjà occupée du même type
+            return checkNeighbors(x, y, domino.getTile1()) || checkNeighbors(domino.getTile2X(x), domino.getTile2Y(y), domino.getTile2());
         } else {
             throw new IllegalArgumentException("Cet emplacement est déjà occupé");
         }
     }
 
-    private boolean hasNeighbors(int x, int y) {
+    private boolean checkNeighbors(int x, int y, Tile tile) {
 
         // Haut
         if (y > 0) {
-            if (!isFree(x, y-1)) return true;
+            if (!isFree(x, y-1) && checkLandMatch(tile, getTile(x, y-1))) return true;
         }
 
         // Bas
         if (y < Kingdom.gridSize-1) {
-            if (!isFree(x, y+1)) return true;
+            if (!isFree(x, y+1) && checkLandMatch(tile, getTile(x, y+1))) return true;
         }
         
         // Gauche
         if (x > 0) {
-            if (!isFree(x-1, y)) return true;
+            if (!isFree(x-1, y) && checkLandMatch(tile, getTile(x-1, y))) return true;
         }
         
         // Droite
         if (x < Kingdom.gridSize-1) {
-            if (!isFree(x+1, y)) return true;
+            if (!isFree(x+1, y) && checkLandMatch(tile, getTile(x+1, y))) return true;
         }
         
         // Si aucun d'entre eux n'avait de voisins, retourner false
         return false;
         
+    }
+
+    private boolean checkLandMatch(Tile tile1, Tile tile2) {
+        // Si l'une des tuile est le chateau, c'est validé
+        if (tile1.getLand() == Lands.CASTLE || tile2.getLand() == Lands.CASTLE) return true;
+
+        // Sinon, il faut que les deux soient du même type
+        return tile1.getLand() == tile2.getLand();
     }
 
     public void addObserver(KingdomObserver observer) {
