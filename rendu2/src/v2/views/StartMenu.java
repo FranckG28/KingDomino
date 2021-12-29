@@ -125,7 +125,7 @@ public class StartMenu extends JFrame {
         // JOUER
 
         JButton playButton = new KingButton("Jouer !");
-        playButton.setFont(KingDominoDesign.getInstance().textFont.deriveFont(KingDominoDesign.getInstance().textMd).deriveFont(Font.BOLD));
+        playButton.setFont(KingDominoDesign.getInstance().textFont.deriveFont(KingDominoDesign.textMd).deriveFont(Font.BOLD));
         class PlayButtonListener implements ActionListener {
             @Override
             public void actionPerformed( ActionEvent actionEvent ) {

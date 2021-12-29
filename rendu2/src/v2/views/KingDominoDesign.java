@@ -36,26 +36,20 @@ public class KingDominoDesign {
     private KingDominoDesign() throws IOException, FontFormatException {
         
         // CHARGEMENT DES POLICES D'ECRITURES
-        try {
 
-            // Récupération des fichiers
-            File titleFontFile = new File("rendu2/src/v2/Bagnard.ttf");
-            File textFontFile = new File("rendu2/src/v2/Baloo2.ttf");
+        // Récupération des fichiers
+        File titleFontFile = new File("rendu2/src/v2/Bagnard.ttf");
+        File textFontFile = new File("rendu2/src/v2/Baloo2.ttf");
 
-            // Création des fonts
-            titleFont = Font.createFont(Font.TRUETYPE_FONT, titleFontFile).deriveFont(textBase);
-            textFont = Font.createFont(Font.TRUETYPE_FONT, textFontFile).deriveFont(textBase);
-            
-            // Enregistrement des fonts
-            GraphicsEnvironment ge =
-                    GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(titleFont);
-            ge.registerFont(textFont);
+        // Création des fonts
+        titleFont = Font.createFont(Font.TRUETYPE_FONT, titleFontFile).deriveFont(textBase);
+        textFont = Font.createFont(Font.TRUETYPE_FONT, textFontFile).deriveFont(textBase);
 
-        } catch (IOException |FontFormatException e) {
-            //Handle exception
-            throw e;
-        }
+        // Enregistrement des fonts
+        GraphicsEnvironment ge =
+                GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(titleFont);
+        ge.registerFont(textFont);
 
     }
 
@@ -64,9 +58,7 @@ public class KingDominoDesign {
         if (instance == null) {
             try {
                 instance = new KingDominoDesign();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (FontFormatException e) {
+            } catch (IOException | FontFormatException e) {
                 e.printStackTrace();
             }
         }
@@ -80,7 +72,6 @@ public class KingDominoDesign {
             case GREEN -> GREEN;
             case YELLOW -> YELLOW;
             case PINK -> PINK;
-            default -> throw new IllegalStateException("Unexpected value: " + color);
         };
     }
 

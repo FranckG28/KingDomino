@@ -37,7 +37,6 @@ public class DrawView extends JPanel implements DrawObserver {
         gbc.gridwidth = (controller == null) ? 2 : 3;
         this.titleLabel = new JLabel(title);
         titleLabel.setForeground(KingDominoDesign.PINK);
-        AffineTransform transform = new AffineTransform();
         titleLabel.setFont(KingDominoDesign.getInstance().titleFont);
         add(titleLabel, gbc);
         titleLabel.setVisible(false);

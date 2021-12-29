@@ -2,5 +2,5 @@ package v2.models;
 
 public interface KingdomObserver {
 
-    public void updateKingdom(Kingdom kingdom);
+    void updateKingdom(Kingdom kingdom);
 }

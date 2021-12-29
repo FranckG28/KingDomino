@@ -8,7 +8,7 @@ public class Player {
     private final String name;
     private final List<King> kings;
     private final Colors color;
-    private Kingdom kingdom;
+    private final Kingdom kingdom;
 
     public Domino dominoToPlace;
 

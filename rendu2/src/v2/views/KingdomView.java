@@ -10,11 +10,10 @@ import java.awt.event.MouseEvent;
 
 public class KingdomView extends JPanel implements KingdomObserver, GameObserver {
 
-    private static final int borderWidth = 1;
-    private static Color borderColor = Color.lightGray;
-    private static Integer margins = 10;
+    private final static int borderWidth = 1;
+    private final static Color borderColor = Color.lightGray;
+    private final static Integer margins = 10;
 
-    private final GameController controller;
     private final Kingdom kingdom;
 
     private int previewX = -1;
@@ -24,7 +23,6 @@ public class KingdomView extends JPanel implements KingdomObserver, GameObserver
 
     public KingdomView(Kingdom kingdom, GameController controller) {
 
-        this.controller = controller;
         this.kingdom = kingdom;
 
         // Configuration du Layout

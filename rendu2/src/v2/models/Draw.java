@@ -7,7 +7,7 @@ import java.util.Queue;
 
 public class Draw {
 
-    private Queue<Domino> content = new LinkedList<>();;
+    private Queue<Domino> content = new LinkedList<>();
     private final List<DrawObserver> observers = new ArrayList<>();
     private final int size;
 

@@ -1,7 +1,7 @@
 package v2.views;
 
-import v2.models.Game;
 import v2.controllers.GameController;
+import v2.models.Game;
 import v2.models.GameObserver;
 import v2.models.Kingdom;
 import v2.models.Player;
@@ -16,7 +16,6 @@ public class GameView extends JFrame implements GameObserver {
     private final JLabel gameLabel = new JLabel("Instruction");
     private final JLabel playerLabel = new JLabel("Joueur");
 
-    private final DrawView oldDraw;
     private final DrawView actualDraw;
 
     private final JPanel gamePanel = new JPanel();
@@ -38,7 +37,7 @@ public class GameView extends JFrame implements GameObserver {
 
         JLabel title = new JLabel("KingDomino");
         title.setForeground(KingDominoDesign.YELLOW);
-        title.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(KingDominoDesign.getInstance().textMd));
+        title.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(KingDominoDesign.textMd));
         header.add(title);
         header.add(Box.createHorizontalGlue());
 
@@ -62,7 +61,7 @@ public class GameView extends JFrame implements GameObserver {
         GridBagConstraints contentGbc = new GridBagConstraints();
 
         // Pioches
-        oldDraw = new DrawView("Pioche précédente", game.getDraw().getSize(), controller);
+        DrawView oldDraw = new DrawView("Pioche précédente", game.getDraw().getSize(), controller);
         actualDraw = new DrawView("Pioche actuelle", game.getDraw().getSize(), controller);
 
         oldDraw.setPreferredSize(new Dimension(150,300));
@@ -82,12 +81,11 @@ public class GameView extends JFrame implements GameObserver {
         gamePanel.setOpaque(false);
         gamePanel.setLayout(new BoxLayout(gamePanel, BoxLayout.Y_AXIS));
 
-        playerLabel.setFont(KingDominoDesign.getInstance().textFont.deriveFont(KingDominoDesign.getInstance().textMd));
-        playerLabel.setForeground(KingDominoDesign.RED);
+        playerLabel.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(KingDominoDesign.textMd).deriveFont(Font.BOLD));
         playerLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         gamePanel.add(playerLabel);
 
-        gameLabel.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(KingDominoDesign.getInstance().textLg));
+        gameLabel.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(KingDominoDesign.textLg));
         gameLabel.setForeground(KingDominoDesign.YELLOW);
         gameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         gamePanel.add(gameLabel);
@@ -137,7 +135,8 @@ public class GameView extends JFrame implements GameObserver {
     public void reactGame(Game game) {
 
         // Actualisation du joueur actuel
-        playerLabel.setText("C'est au tour de " + game.getCurrentPlayer().getName());
+        playerLabel.setText(game.getCurrentPlayer().getName()+",");
+        playerLabel.setForeground(KingDominoDesign.getColor(game.getCurrentPlayer().getColor()));
         gamePanel.updateUI();
 
     }

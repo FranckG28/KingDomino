@@ -1,6 +1,8 @@
 package v2.models;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 public class Game {
 
@@ -9,8 +11,8 @@ public class Game {
     private final List<Player> players;
     private Player currentPlayer;
 
-    private boolean middle;
-    private boolean harmony;
+    private final boolean middle;
+    private final boolean harmony;
 
     private final Stack<Domino> deck;
     private final Draw draw;
@@ -25,7 +27,7 @@ public class Game {
         this.harmony = harmony;
 
         // Création des pioches :
-        int drawSize = getAllPlayers().size() == 3 ? 3 : 4;;
+        int drawSize = getAllPlayers().size() == 3 ? 3 : 4;
         this.draw = new Draw(drawSize);
         this.lastDraw = new Draw(drawSize);
 

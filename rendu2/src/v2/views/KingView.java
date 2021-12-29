@@ -1,6 +1,5 @@
 package v2.views;
 
-import v2.models.Colors;
 import v2.models.King;
 
 import javax.swing.*;
@@ -8,10 +7,8 @@ import java.awt.*;
 
 public class KingView extends JPanel {
 
-    private King king;
-
     public static final int borderSize = 2;
-    public static final Color borderColor = KingDominoDesign.BLACK;
+    public static final Color borderColor = KingDominoDesign.GRAY;
 
     public KingView(King king) {
 
@@ -22,10 +19,6 @@ public class KingView extends JPanel {
     }
 
     public void setKing(King king) {
-        this.king = king;
-
-
-        System.out.println(king);
 
         setBackground(king == null
                         ? KingDominoDesign.BLACK

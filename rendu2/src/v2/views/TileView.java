@@ -14,7 +14,6 @@ public class TileView extends JPanel {
 
     private Tile tile;
 
-    private final MouseListener hoverListener;
     private final JLabel crownLabel = new JLabel("");
 
     public TileView(Tile tile) {
@@ -23,12 +22,10 @@ public class TileView extends JPanel {
         setPreferredSize(new Dimension(tileSize, tileSize));
 
         // Création du MouseListener
-        this.hoverListener = new MouseAdapter()
-        {
+        MouseListener hoverListener = new MouseAdapter() {
 
             @Override
-            public void mouseEntered(MouseEvent e)
-            {
+            public void mouseEntered(MouseEvent e) {
                 setHover(true);
             }
 
@@ -37,10 +34,10 @@ public class TileView extends JPanel {
                 setHover(false);
             }
         };
-        addMouseListener(this.hoverListener);
+        addMouseListener(hoverListener);
 
         // Affichage du nombre de couronnes
-        crownLabel.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(KingDominoDesign.getInstance().textSm));
+        crownLabel.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(KingDominoDesign.textSm));
         crownLabel.setForeground(KingDominoDesign.BLACK);
         add(crownLabel);
 
@@ -83,7 +80,6 @@ public class TileView extends JPanel {
                     case GRASS -> new Color(192,207,11);
                     case SWAMP -> new Color(208,202,180);
                     case CASTLE -> Color.white;
-                    default -> KingDominoDesign.BLACK;
                 }
         );
 
