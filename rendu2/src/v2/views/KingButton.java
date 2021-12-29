@@ -7,15 +7,14 @@ import java.awt.event.MouseEvent;
 
 public class KingButton extends JButton {
 
-    public static Color defaultColor = KingDominoDesign.PURPLE;
-    public static Color hoveredColor = KingDominoDesign.PURPLE.brighter();
+    private Color background = KingDominoDesign.PURPLE;
 
     public KingButton(String text) {
 
         super(text);
 
         // Couleur de fond
-        setBackground(defaultColor);
+        setBackground(background);
 
         // Texte
         setFont(KingDominoDesign.getInstance().textFont.deriveFont(Font.BOLD));
@@ -29,17 +28,22 @@ public class KingButton extends JButton {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                setBackground(hoveredColor);
+                setBackground(background.brighter());
                 updateUI();
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                setBackground(defaultColor);
+                setBackground(background);
                 updateUI();
             }
         });
 
+    }
+
+    public void setBackgroundColor(Color color) {
+        this.background = color;
+        setBackground(background);
     }
 
 }

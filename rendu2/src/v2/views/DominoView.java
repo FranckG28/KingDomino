@@ -2,7 +2,6 @@ package v2.views;
 
 import v2.models.Domino;
 import v2.models.DominoObserver;
-import v2.models.Kingdom;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +10,6 @@ public class DominoView extends JPanel implements DominoObserver {
 
     private Domino domino;
 
-    private final int borderWidth = 1;
     private final Color borderColor = Color.lightGray;
 
     public DominoView(Domino domino) {
@@ -46,6 +44,7 @@ public class DominoView extends JPanel implements DominoObserver {
             // Première tuile, toutes les bordures
             tile1.setBorder(BorderFactory.createLineBorder(borderColor));
 
+            final int borderWidth = 1;
             if (domino.isVertical()) {
                 // 2ème tuile, toutes les bordures sauf celle du haut si vertical
                 tile2.setBorder(BorderFactory.createMatteBorder(0,

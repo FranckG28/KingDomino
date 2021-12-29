@@ -263,6 +263,7 @@ package controllers {
         + playerChooseDomino(king:King)
         + dominoChosen(domino:Domino)
         + kingdomClicked(kingdom:Kingdom, x:Integer, y:Integer)
+        + discardDomino()
         + playerPlaceDomino(domino:Domino)
         + exitGame()
     }
@@ -279,9 +280,10 @@ package controllers {
     }
 
     class DominoController {
-        + DominoController(kingdom:Kingdom, domino:Domino)
+        + DominoController(domino:Domino, controller:GameController)
         + rotate()
         + invert()
+        + discard()
     }
 
     abstract class CSVReader {
@@ -336,8 +338,8 @@ Kingdom " - parent" o--> "1" Player : > contains
 Kingdom " - board" o--> "[5][5]" Tile : > contains
 Kingdom " - observers" o--> "*" KingdomObserver : > contains
 
-DominoController " - kingdom" o--> "1" Kingdom : > contains
 DominoController " - domino" o--> "1" Domino : > contains
+DominoController " - controller" o--> "1" GameController : > contains
 
 DominoPlacement " - controller" o--> "1" DominoController : > contains
 
@@ -349,8 +351,6 @@ DrawView ..> KingView : <<use>>
 
 DominoView " - domino" o--> "1" Domino : > contains
 DominoView ..> TileView : <<use>>
-
-KingView " - king" o--> "1" King : > contains
 
 Domino " - tile1" o-> "1" Tile : > contains
 Domino " - tile2" o-> "1" Tile : > contains

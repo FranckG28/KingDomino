@@ -9,9 +9,9 @@ public class Kingdom {
 
     private final Player parent;
 
-    public Tile[][] board = new Tile[gridSize][gridSize];
+    public final Tile[][] board = new Tile[gridSize][gridSize];
 
-    private List<KingdomObserver> observers = new ArrayList<>();
+    private final List<KingdomObserver> observers = new ArrayList<>();
 
     public Kingdom(Player parent) {
         this.parent = parent;
@@ -26,7 +26,7 @@ public class Kingdom {
     }
 
     public boolean hasCastle() {
-        for (Tile line[]:board) {
+        for (Tile[] line :board) {
             for(Tile t:line) {
                 if (t != null && t.getLand() == Lands.CASTLE) {
                     return true;
@@ -47,29 +47,21 @@ public class Kingdom {
     }
 
     public void addTile(Tile tile, int x, int y) {
-        try {
-            if (isFree(x, y)) {
-                setTile(x, y, tile);
-                notifyObservers();
-            } else {
-                throw new IllegalArgumentException("Cet emplacement est déjà occupé");
-            }
-        } catch (Exception e) {
-            throw e;
+        if (isFree(x, y)) {
+            setTile(x, y, tile);
+            notifyObservers();
+        } else {
+            throw new IllegalArgumentException("Cet emplacement est déjà occupé");
         }
     }
 
     public void addDomino(Domino domino, int x, int y) {
-        try {
-            if (canPlaceDomino(domino, x, y)) {
-                setTile(x, y, domino.getTile1());
-                setTile(domino.getTile2X(x), domino.getTile2Y(y), domino.getTile2());
-                notifyObservers();
-            } else {
-                throw new IllegalArgumentException("Emplacement invalide");
-            }
-        } catch (Exception e) {
-            throw e;
+        if (canPlaceDomino(domino, x, y)) {
+            setTile(x, y, domino.getTile1());
+            setTile(domino.getTile2X(x), domino.getTile2Y(y), domino.getTile2());
+            notifyObservers();
+        } else {
+            throw new IllegalArgumentException("Emplacement invalide");
         }
     }
 

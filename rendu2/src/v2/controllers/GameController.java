@@ -59,7 +59,6 @@ public class GameController {
 
             // Si le tirage n'a pas été fait, l'effectuer :
             makeDraw();
-            return;
 
         } else {
 
@@ -79,15 +78,14 @@ public class GameController {
                 // Si on arrive ici, tout le monde a choisi, on passe au round suivant et on lance l'action suivante
                 game.nextRound();
                 play();
-                return;
 
             } else {
                 // Au premier domino de la pioche précédente de placer son roi
                 playerChooseDomino(game.getLastDraw().getContent().peek().king);
-                return;
             }
 
         }
+        return;
 
     }
 
@@ -211,11 +209,26 @@ public class GameController {
 
     }
 
+    public void discardDomino() {
+        if (game.getCurrentPlayer().dominoToPlace != null) {
+
+            // On retire le domino a placer des mains du joueur
+            game.getCurrentPlayer().dominoToPlace = null;
+
+            // Si c'étais le dernier de la pioche précédente, on entre dans le round suivant
+            if (game.getLastDraw().getContent().isEmpty()) {
+                game.nextRound();
+            }
+
+            // Lancer l'action suivante
+            play();
+
+        }
+    }
+
     public void playerPlaceDomino(Domino domino) {
 
-        // TODO: Verify if domino is placeable
-
-        DominoController controller = new DominoController(game.getCurrentPlayer().getKingdom(), domino);
+        DominoController controller = new DominoController(domino, this);
         DominoPlacement view = new DominoPlacement(controller, domino);
 
         game.getCurrentPlayer().dominoToPlace = domino;

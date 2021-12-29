@@ -1,6 +1,5 @@
 package v2.controllers;
 
-import v2.Kingdomino;
 import v2.models.Domino;
 import v2.models.Game;
 import v2.models.Player;
@@ -106,7 +105,6 @@ public class GameCreator {
 
         // Libération des ressources du menu
         view.dispose();
-        view = null;
         players.clear();
 
     }

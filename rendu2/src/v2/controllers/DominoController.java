@@ -1,16 +1,15 @@
 package v2.controllers;
 
 import v2.models.Domino;
-import v2.models.Kingdom;
 
 public class DominoController {
 
-    private Kingdom kingdom;
-    private Domino domino;
+    private final Domino domino;
+    private final GameController controller;
 
-    public DominoController(Kingdom kingdom, Domino domino) {
-        this.kingdom = kingdom;
+    public DominoController(Domino domino, GameController controller) {
         this.domino = domino;
+        this.controller = controller;
     }
 
     public void rotate() {
@@ -20,5 +19,7 @@ public class DominoController {
     public void invert() {
         this.domino.setInverted(!domino.isInverted());
     }
+
+    public void discard() {this.controller.discardDomino();}
 
 }
