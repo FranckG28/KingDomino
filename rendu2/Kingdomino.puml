@@ -12,6 +12,19 @@ class Kingdomino {
     + {static}openMainMenu()
 }
 
+abstract class CSVReader {
+        - {static} csvToListString():String[]
+        - {static} splitString(line:String):String[]
+        - {static} setDominos(listStringDomino:String[])
+        + {static} getDominos():Domino[]
+}
+
+class ScoreCounter {
+        + calculate(player:Player)
+        - checkTile(tile:Tile, domain:Tile[]):Boolean
+        - tileAlreadyInDomain(tile:Tile):Boolean
+}
+
 package models {
 
     interface GameObserver {
@@ -58,6 +71,7 @@ package models {
 
     class Player {
         - name:String
+        + score:Integer
         + Player(name:String, color:Colors, numberOfKings:Integer)
         + getName():String
         + getColor():Colors
@@ -286,13 +300,6 @@ package controllers {
         + discard()
     }
 
-    abstract class CSVReader {
-        - {static} csvToListString():String[]
-        - {static} splitString(line:String):String[]
-        - {static} setDominos(listStringDomino:String[])
-        + {static} getDominos():Domino[]
-    }
-
 }
 
 Kingdomino ..> StartMenu : "<<use>>"
@@ -360,5 +367,7 @@ Domino " - observers" o--> "*" DominoObserver : > contains
 Tile " - type" *-> "1" Lands : > contains
 
 TileView " -tile" o--> "1" Tile : > contains
+
+ScoreCounter o--> " - domains \n [][]" Tile : > contains
 
 @enduml

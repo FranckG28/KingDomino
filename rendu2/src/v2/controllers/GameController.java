@@ -1,6 +1,7 @@
 package v2.controllers;
 
 import v2.Kingdomino;
+import v2.ScoreCounter;
 import v2.models.*;
 import v2.views.DominoPlacement;
 import v2.views.GameView;
@@ -69,6 +70,14 @@ public class GameController {
                 } else {
                     // Soit la partie est terminé
                     System.out.println("Partie terminée");
+                    // Pour chaque joueur
+
+                    for (Player p:game.getAllPlayers()) {
+                        System.out.println("Joueur " + p.getName());
+                        ScoreCounter score = new ScoreCounter(p.getKingdom());
+                        score.calculate();
+                    }
+
                 }
 
             } else {

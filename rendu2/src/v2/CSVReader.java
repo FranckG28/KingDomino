@@ -1,4 +1,4 @@
-package v2.controllers;
+package v2;
 
 import v2.models.Domino;
 import v2.models.Lands;
