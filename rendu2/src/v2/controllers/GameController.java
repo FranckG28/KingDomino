@@ -9,10 +9,7 @@ import v2.views.KingDominoDesign;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class GameController {
 
@@ -30,7 +27,7 @@ public class GameController {
     }
 
     public void exitGame() {
-        // FERMETURE DE LA FENETRE
+        // FERMETURE DE LA FENÊTRE
         view.setVisible(false);
         view.dispose();
 
@@ -63,19 +60,19 @@ public class GameController {
             if (game.getDeck().isEmpty()) {
 
                 if (!game.getDraw().getContent().isEmpty()) {
-                    // Soit il y a encore la pioche actuelle à déplacer en pioche précédente
+                    // Déplacer la pioche actuelle en pioche précédente
                     game.getLastDraw().setContent(game.getDraw().getContent());
                     game.getDraw().setContent(new LinkedList<>());
                     play();
                 } else {
-                    // Soit la partie est terminé
+                    // Soit la partie est terminée
                     System.out.println("Partie terminée");
                     // Pour chaque joueur
 
                     for (Player p:game.getAllPlayers()) {
-                        System.out.println("Joueur " + p.getName());
-                        ScoreCounter score = new ScoreCounter(p.getKingdom());
+                        ScoreCounter score = new ScoreCounter(p);
                         score.calculate();
+                        System.out.println("Joueur " + p.getName() + " : " + p.score);
                     }
 
                 }
@@ -93,7 +90,7 @@ public class GameController {
                     for (King k:p.getKings()) {
                         // Pour chaque roi de chaque joueur
                         if (!k.isPlaced) {
-                            // Si il n'est pas posé, on le pose
+                            // S'il n'est pas posé, on le pose
                             playerChooseDomino(k);
                             return;
                         }
@@ -118,7 +115,6 @@ public class GameController {
             }
 
         }
-        return;
 
     }
 
@@ -130,13 +126,13 @@ public class GameController {
         }
 
         // Tri des dominos dans l'ordre croissant
-        Collections.sort(draw, new DominoComparator());
+        draw.sort(new DominoComparator());
 
         // La pioche précédente prend le contenu de celle actuelle
         game.getLastDraw().setContent(game.getDraw().getContent());
 
         // La pioche actuelle prend le nouveau tirage
-        game.getDraw().setContent((Queue<Domino>) draw);
+        game.getDraw().setContent(draw);
 
         // Lancer l'action suivante :
         play();
@@ -147,7 +143,7 @@ public class GameController {
         JPanel panel = new JPanel();
         panel.setOpaque(false);
 
-        JLabel label = new JLabel("Cliquez sur l'emplacement sur lequel vous souhaitez placer votre chateau dans votre rouyaume");
+        JLabel label = new JLabel("Cliquez sur l'emplacement sur lequel vous souhaitez placer votre chateau dans votre royaume");
         label.setForeground(Color.WHITE);
         label.setFont(KingDominoDesign.getInstance().textFont.deriveFont(KingDominoDesign.textBase));
         panel.add(label);
@@ -247,7 +243,7 @@ public class GameController {
     public void discardDomino() {
         if (game.getCurrentPlayer().dominoToPlace != null) {
 
-            // On retire le domino a placer des mains du joueur
+            // On retire le domino à placer des mains du joueur
             game.getCurrentPlayer().dominoToPlace = null;
 
             // Si c'étais le dernier de la pioche précédente, on entre dans le round suivant
