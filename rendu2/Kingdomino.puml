@@ -12,6 +12,13 @@ class Kingdomino {
     + {static}openMainMenu()
 }
 
+abstract class CSVReader {
+        - {static} csvToListString():String[]
+        - {static} splitString(line:String):String[]
+        - {static} setDominos(listStringDomino:String[])
+        + {static} getDominos():Domino[]
+}
+
 package models {
 
     interface GameObserver {
@@ -58,6 +65,7 @@ package models {
 
     class Player {
         - name:String
+        + score:Integer
         + Player(name:String, color:Colors, numberOfKings:Integer)
         + getName():String
         + getColor():Colors
@@ -284,13 +292,6 @@ package controllers {
         + rotate()
         + invert()
         + discard()
-    }
-
-    abstract class CSVReader {
-        - {static} csvToListString():String[]
-        - {static} splitString(line:String):String[]
-        - {static} setDominos(listStringDomino:String[])
-        + {static} getDominos():Domino[]
     }
 
 }
