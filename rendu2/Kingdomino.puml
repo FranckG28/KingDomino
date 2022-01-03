@@ -19,6 +19,12 @@ abstract class CSVReader {
         + {static} getDominos():Domino[]
 }
 
+class ScoreCounter {
+        + calculate(player:Player)
+        - checkTile(tile:Tile, domain:Tile[]):Boolean
+        - tileAlreadyInDomain(tile:Tile):Boolean
+}
+
 package models {
 
     interface GameObserver {
@@ -361,5 +367,7 @@ Domino " - observers" o--> "*" DominoObserver : > contains
 Tile " - type" *-> "1" Lands : > contains
 
 TileView " -tile" o--> "1" Tile : > contains
+
+ScoreCounter o--> " - domains \n [][]" Tile : > contains
 
 @enduml
