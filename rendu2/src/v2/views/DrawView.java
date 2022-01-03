@@ -108,9 +108,7 @@ public class DrawView extends JPanel implements DrawObserver {
             Domino d = draw.getDomino(i);
 
             // King
-            kings.get(i).setKing(d == null
-                    ? null
-                    : d.king);
+            kings.get(i).setKing(d != null ? d.king : null);
 
             // Domino
             dominos.get(i).updateDomino(d);

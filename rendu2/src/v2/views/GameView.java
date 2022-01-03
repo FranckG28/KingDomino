@@ -126,6 +126,7 @@ public class GameView extends JFrame implements GameObserver {
 
         add(mainContainer);
 
+        setResizable(false);
         setSize(1200, 800);
         setTitle("KingDomino - Jeu");
         setVisible(true);

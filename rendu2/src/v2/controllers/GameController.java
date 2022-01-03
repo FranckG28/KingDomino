@@ -8,6 +8,8 @@ import v2.views.KingDominoDesign;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -90,18 +92,20 @@ public class GameController {
     }
 
     public void makeDraw() {
-        Queue<Domino> draw = new LinkedList<>();
+        LinkedList<Domino> draw = new LinkedList<>();
         int dominoToDraw =  game.getDraw().getSize();
         for (int i = 0; i < dominoToDraw; i++) {
             draw.add(game.getDeck().pop());
         }
-        // TODO: Trier la pioche par numéro de domino croissant
+
+        // Tri des dominos dans l'ordre croissant
+        Collections.sort(draw, new DominoComparator());
 
         // La pioche précédente prend le contenu de celle actuelle
         game.getLastDraw().setContent(game.getDraw().getContent());
 
         // La pioche actuelle prend le nouveau tirage
-        game.getDraw().setContent(draw);
+        game.getDraw().setContent((Queue<Domino>) draw);
 
         // Lancer l'action suivante :
         play();

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Domino {
 
-    private final int number;
+    private final Integer number;
 
     private boolean isInverted = false;
     private boolean isVertical = false;
@@ -23,7 +23,7 @@ public class Domino {
         this.tile2 = tile2;
     }
 
-    public int getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
