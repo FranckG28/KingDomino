@@ -111,10 +111,6 @@ package models {
         + notifyObservers()
     }
 
-    class DominoComparator {
-        + compare(d1:Domino, d2:Domino):Integer
-    }
-
     class Tile {
         - crowns:Integer
         + Tile(land:Lands, crowns:Integer)
@@ -302,15 +298,15 @@ package controllers {
 Kingdomino ..> StartMenu : "<<use>>"
 Kingdomino ..> GameCreator : "<<use>>"
 
-GameCreator " - players" *--> "2, 3" PlayerEditor : > contains
+GameCreator " - players" *--> "2..3" PlayerEditor : > contains
 GameCreator " - view" o--> "1" StartMenu : > contains
 GameCreator ..> Game : "<<use>>"
 GameCreator ..> GameView : "<<use>>"
 GameCreator ..> GameController : "<<use>>"
 GameCreator ..> CSVReader : "<<use>>"
 
-Game " - players" *--> "2, 4" Player : > contains
-Game " - deck" *--> "0, 48" Domino : > contains
+Game " - players" *--> "2..4" Player : > contains
+Game " - deck" *--> "0..48" Domino : > contains
 Game " - draw" *--> "1" Draw : > contains
 Game " - lastDraw" *--> "1" Draw : > contains
 Game " - observers" o--> "*" GameObserver : > contains
@@ -323,16 +319,15 @@ GameController " - game" o--> "1" Game : > controls
 GameController " - view" o--> "1" GameView : > contains
 GameController ..> DominoPlacement : <<use>>
 GameController ..> DominoController : <<use>>
-GameController ..> DominoComparator : "<<use>>"
 
 GameView ..> Game : "<<use>>"
 GameView ..> KingdomView : "<<use>>"
-GameView ..> DrawView : <<use>>
+GameView *--> " - actualDraw \n 1" DrawView : > contains
 
 StartMenu " - controller" o--> "1" GameCreator : > controlled by
 
 Player " - kingdom"  *--> "1" Kingdom : > owns
-Player " - kings" *--> "1,2" King : > contains
+Player " - kings" *--> "1..2" King : > contains
 Player " + currentKing" *--> "1" King : > contains
 Player " - color" *-> "1" Colors : > contains
 Player " + dominoToPlace" o--> "1" Domino : > contains
@@ -351,15 +346,15 @@ DominoPlacement " - controller" o--> "1" DominoController : > contains
 KingdomView " - kingdom" o--> "1" Kingdom : > contains
 KingdomView ..> TileView : <<use>>
 
-DrawView ..> DominoView : <<use>>
-DrawView ..> KingView : <<use>>
+DrawView *--> " -dominos \n 3..4" DominoView : > contains
+DrawView *--> " -kings \n 3..4" KingView : > contains
 
 DominoView " - domino" o--> "1" Domino : > contains
 DominoView ..> TileView : <<use>>
 
 Domino " - tile1" o-> "1" Tile : > contains
 Domino " - tile2" o-> "1" Tile : > contains
-Domino " + king" o--> "1" King : > contains
+Domino " + king" o--> "0..1" King : > contains
 Domino " - observers" o--> "*" DominoObserver : > contains
 
 Tile " - type" *-> "1" Lands : > contains

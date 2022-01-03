@@ -59,8 +59,22 @@ public class GameController {
         // Rounds
         if (game.getRound() == 0 && game.getDraw().getContent().isEmpty() || game.getRound() > 0 && game.getLastDraw().getContent().isEmpty()) {
 
-            // Si le tirage n'a pas été fait, l'effectuer :
-            makeDraw();
+            if (game.getDeck().isEmpty()) {
+
+                if (!game.getDraw().getContent().isEmpty()) {
+                    // Soit il y a encore la pioche actuelle à déplacer en pioche précédente
+                    game.getLastDraw().setContent(game.getDraw().getContent());
+                    game.getDraw().setContent(new LinkedList<>());
+                    play();
+                } else {
+                    // Soit la partie est terminé
+                    System.out.println("Partie terminée");
+                }
+
+            } else {
+                // Si le tirage n'a pas été fait, l'effectuer :
+                makeDraw();
+            }
 
         } else {
 
@@ -82,8 +96,16 @@ public class GameController {
                 play();
 
             } else {
-                // Au premier domino de la pioche précédente de placer son roi
-                playerChooseDomino(game.getLastDraw().getContent().peek().king);
+
+                if (game.getDraw().getContent().isEmpty()) {
+                    // Si la pioche actuelle est vide, il n'y a plus de cartes et on demande juste de placer le domino
+                    game.setCurrentPlayer(game.getLastDraw().getContent().peek().king.getParent());
+                    playerPlaceDomino(game.getLastDraw().pickDomino());
+                } else {
+                    // Sinon, au premier domino de la pioche précédente de placer son roi
+                    playerChooseDomino(game.getLastDraw().getContent().peek().king);
+                }
+
             }
 
         }
