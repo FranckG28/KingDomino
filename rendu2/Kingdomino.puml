@@ -111,6 +111,10 @@ package models {
         + notifyObservers()
     }
 
+    class DominoComparator {
+        + compare(d1:Domino, d2:Domino):Integer
+    }
+
     class Tile {
         - crowns:Integer
         + Tile(land:Lands, crowns:Integer)
@@ -319,6 +323,7 @@ GameController " - game" o--> "1" Game : > controls
 GameController " - view" o--> "1" GameView : > contains
 GameController ..> DominoPlacement : <<use>>
 GameController ..> DominoController : <<use>>
+GameController ..> DominoComparator : "<<use>>"
 
 GameView ..> Game : "<<use>>"
 GameView ..> KingdomView : "<<use>>"
