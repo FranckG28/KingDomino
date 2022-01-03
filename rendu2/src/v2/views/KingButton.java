@@ -28,8 +28,10 @@ public class KingButton extends JButton {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                setBackground(background.brighter());
-                updateUI();
+                if (isEnabled()) {
+                    setBackground(background.brighter());
+                    updateUI();
+                }
             }
 
             @Override
@@ -44,6 +46,14 @@ public class KingButton extends JButton {
     public void setBackgroundColor(Color color) {
         this.background = color;
         setBackground(background);
+    }
+
+    @Override
+    public void setEnabled(boolean b) {
+        super.setEnabled(b);
+        if (!b) {
+            setBackgroundColor(background);
+        }
     }
 
 }
