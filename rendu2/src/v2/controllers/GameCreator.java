@@ -64,8 +64,6 @@ public class GameCreator {
         // Mélange de la pioche
         Collections.shuffle(gameDeck);
 
-        // TODO: ATTENTION A NE PAS DONNER TOUS LES DOMINOS SELON LE NB DE JOUEURS
-
         // Obtention des joueurs
         List<Player> playersList = getPlayers();
 
