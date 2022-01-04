@@ -66,11 +66,10 @@ public class GameController {
                     play();
                 } else {
                     // Soit la partie est terminée
-                    System.out.println("Partie terminée");
                     // Pour chaque joueur
 
                     for (Player p:game.getAllPlayers()) {
-                        ScoreCounter score = new ScoreCounter(p);
+                        ScoreCounter score = new ScoreCounter(p, game.isMiddle(), game.isHarmony());
                         score.calculate();
                         System.out.println("Joueur " + p.getName() + " : " + p.score);
                     }

@@ -13,16 +13,22 @@ class Kingdomino {
 }
 
 abstract class CSVReader {
-        - {static} csvToListString():String[]
-        - {static} splitString(line:String):String[]
-        - {static} setDominos(listStringDomino:String[])
-        + {static} getDominos():Domino[]
+    - {static} csvToListString():String[]
+    - {static} splitString(line:String):String[]
+    - {static} setDominos(listStringDomino:String[])
+    + {static} getDominos():Domino[]
 }
 
 class ScoreCounter {
-        + calculate(player:Player)
-        - checkTile(tile:Tile, domain:Tile[]):Boolean
-        - tileAlreadyInDomain(tile:Tile):Boolean
+    - isHarmony:Boolean
+    - isMiddle:Boolean
+    + ScoreCounter(player:Player, isMiddle:Boolean, isHarmony:Boolean)
+    + calculate()
+    - checkMiddle():Boolean
+    - checkHarmony():Boolean
+    - checkTile(tile:Tile, domain:Tile[]):Boolean
+    - tileAlreadyInDomain(tile:Tile):Boolean
+    - getCrownCount(domain:Tile[]):Integer
 }
 
 package models {

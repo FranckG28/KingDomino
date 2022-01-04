@@ -9,9 +9,13 @@ public class ScoreCounter {
 
     private final Player player;
     private List<List<Tile>> domains = new ArrayList<>();
+    private final Boolean isMiddle;
+    private final Boolean isHarmony;
 
-    public ScoreCounter(Player player) {
+    public ScoreCounter(Player player, Boolean isMiddle, Boolean isHarmony) {
         this.player = player;
+        this.isMiddle = isMiddle;
+        this.isHarmony = isHarmony;
     }
 
     public void calculate() {
@@ -35,8 +39,36 @@ public class ScoreCounter {
             score += l.size() * getCrownCount(l);
         }
 
+        // Mode de jeu empire du milieu
+        if (isMiddle && checkMiddle()) {
+            score += 10;
+        }
+
+        // Mode harmonie
+        if (isHarmony && checkHarmony()) {
+            score += 5;
+        }
+
         player.score = score;
 
+    }
+
+    private boolean checkMiddle() {
+        int middle = (Kingdom.gridSize-1)/2;
+        if (player.getKingdom().getKingdom()[middle][middle].getLand() == Lands.CASTLE) return true;
+        return false;
+    }
+
+    private boolean checkHarmony() {
+        for(Tile[] l:player.getKingdom().getKingdom()) {
+
+            for (Tile t:l) {
+                if(t == null) return false;
+            }
+
+        }
+
+        return true;
     }
 
     private void checkTile(int x, int y, List<Tile> domain) {
