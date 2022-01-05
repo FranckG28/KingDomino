@@ -33,8 +33,6 @@ public class EndMenu extends JFrame {
         header.add(Box.createHorizontalGlue());
 
         mainContainer.add(header, BorderLayout.PAGE_START);
-
-
         // CONTENU
 
         JPanel contentPanel = new JPanel(new GridBagLayout());
