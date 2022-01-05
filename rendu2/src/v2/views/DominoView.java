@@ -30,7 +30,6 @@ public class DominoView extends JPanel implements DominoObserver {
 
     @Override
     public void updateDomino(Domino domino) {
-        //TODO : Mettre a jour les tiles au lieu de les recreer
         removeAll();
         this.domino = domino;
 

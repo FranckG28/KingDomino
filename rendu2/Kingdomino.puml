@@ -286,6 +286,7 @@ package controllers {
         + discardDomino()
         + playerPlaceDomino(domino:Domino)
         + exitGame()
+        + closeGame()
     }
 
     class GameCreator {

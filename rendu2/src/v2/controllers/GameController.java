@@ -4,11 +4,13 @@ import v2.Kingdomino;
 import v2.ScoreCounter;
 import v2.models.*;
 import v2.views.DominoPlacement;
+import v2.views.EndMenu;
 import v2.views.GameView;
 import v2.views.KingDominoDesign;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Collections;
 import java.util.LinkedList;
 
 public class GameController {
@@ -27,6 +29,13 @@ public class GameController {
     }
 
     public void exitGame() {
+        closeGame();
+
+        // Réouverture du menu principal
+        Kingdomino.openMainMenu();
+    }
+
+    public void closeGame() {
         // FERMETURE DE LA FENÊTRE
         view.setVisible(false);
         view.dispose();
@@ -35,8 +44,6 @@ public class GameController {
         this.game = null;
         this.view = null;
 
-        // Réouverture du menu principal
-        Kingdomino.openMainMenu();
     }
 
     public void play() {
@@ -66,13 +73,21 @@ public class GameController {
                     play();
                 } else {
                     // Soit la partie est terminée
-                    // Pour chaque joueur
 
+                    // Pour chaque joueur, on calcule leur score
                     for (Player p:game.getAllPlayers()) {
                         ScoreCounter score = new ScoreCounter(p, game.isMiddle(), game.isHarmony());
                         score.calculate();
-                        System.out.println("Joueur " + p.getName() + " : " + p.score);
                     }
+
+                    // On classe la liste de joueurs par leurs scores croissant
+                    java.util.List<Player> playerList = game.getAllPlayers();
+                    playerList.sort(new PlayerComparator());
+                    Collections.reverse(playerList);
+
+                    // Ouverture du menu principal et fermeture du jeu
+                    closeGame();
+                    new EndMenu(playerList);
 
                 }
 

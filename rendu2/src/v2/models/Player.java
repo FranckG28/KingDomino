@@ -10,7 +10,7 @@ public class Player {
     private final Colors color;
     private final Kingdom kingdom;
 
-    public int score = 0;
+    public Integer score = 0;
 
     public Domino dominoToPlace;
 
