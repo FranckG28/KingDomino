@@ -5,6 +5,8 @@ import v2.models.Colors;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
 
 public class KingDominoDesign {
 
@@ -18,11 +20,11 @@ public class KingDominoDesign {
     public static final Color BLACK = new Color(15,17,8);
     public static final Color GRAY = new Color(63,65,67);
 
-    // POLICES D'ECRITURES
+    // POLICES D'ÉCRITURES
     public final Font titleFont;
     public final Font textFont;
 
-    // TAILLES D'ECRITURES
+    // TAILLES D'ÉCRITURES
     public static final float textXl = 60F;
     public static final float textLg = 40F;
     public static final float textMd = 25F;
@@ -32,14 +34,14 @@ public class KingDominoDesign {
     // INSTANCE DE LA CLASSE
     private static KingDominoDesign instance;
 
-    // CONSTRUCTEUR DE LA CLASSE : CHARGE LES RESSOURCES NECESSAIRES
-    private KingDominoDesign() throws IOException, FontFormatException {
+    // CONSTRUCTEUR DE LA CLASSE : CHARGE LES RESSOURCES NECESSARIES
+    private KingDominoDesign() throws IOException, FontFormatException, URISyntaxException {
         
-        // CHARGEMENT DES POLICES D'ECRITURES
+        // CHARGEMENT DES POLICES D'ÉCRITURES
 
         // Récupération des fichiers
-        File titleFontFile = new File("rendu2/src/v2/Bagnard.ttf");
-        File textFontFile = new File("rendu2/src/v2/Baloo2.ttf");
+        InputStream titleFontFile = getClass().getResourceAsStream("/Bagnard.ttf");
+        InputStream textFontFile = getClass().getResourceAsStream("/Baloo2.ttf");
 
         // Création des fonts
         titleFont = Font.createFont(Font.TRUETYPE_FONT, titleFontFile).deriveFont(textBase);
@@ -58,7 +60,7 @@ public class KingDominoDesign {
         if (instance == null) {
             try {
                 instance = new KingDominoDesign();
-            } catch (IOException | FontFormatException e) {
+            } catch (IOException | FontFormatException | URISyntaxException e) {
                 e.printStackTrace();
             }
         }

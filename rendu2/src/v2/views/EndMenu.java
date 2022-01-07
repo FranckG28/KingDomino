@@ -33,47 +33,45 @@ public class EndMenu extends JFrame {
         header.add(Box.createHorizontalGlue());
 
         mainContainer.add(header, BorderLayout.PAGE_START);
+
         // CONTENU
 
         JPanel contentPanel = new JPanel(new GridBagLayout());
         contentPanel.setOpaque(false);
         GridBagConstraints contentGbc = new GridBagConstraints();
 
-        contentGbc.insets = new Insets(15, 0, 15, 0);
+        contentGbc.insets = new Insets(20, 0, 20, 0);
 
         JLabel endTitle = new JLabel("Partie terminée !");
         endTitle.setForeground(KingDominoDesign.YELLOW);
         endTitle.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(Font.BOLD).deriveFont(KingDominoDesign.textXl));
 
-        contentGbc.gridwidth = 3;
+        contentGbc.gridwidth = players.size();
         contentPanel.add(endTitle, contentGbc);
 
         contentGbc.gridwidth = 1;
+        contentGbc.insets = new Insets(5, 15, 5, 15);
 
-        int i = 1;
+        int i = 0;
         for (Player p: players) {
 
-            JLabel rank = new JLabel(""+i);
-            JLabel name = new JLabel(p.getName());
+            JLabel name = new JLabel((i+1) + "");
+            KingdomView kingdom = new KingdomView(p.getKingdom(), null);
+            kingdom.updateKingdom(p.getKingdom());
             JLabel score = new JLabel(p.score+"pts");
-            
-            name.setPreferredSize(new Dimension(400, 40));
 
-            java.util.List<JLabel> labelList =  new ArrayList<>(Arrays.asList(rank, name, score));
+            name.setForeground(KingDominoDesign.getColor(p.getColor()));
+            name.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(KingDominoDesign.textMd));
 
-            for (JLabel label:labelList) {
-                label.setForeground(KingDominoDesign.getColor(p.getColor()));
-                label.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(KingDominoDesign.textMd));
-            }
+            score.setForeground(Color.white);
+            score.setFont(KingDominoDesign.getInstance().textFont.deriveFont(KingDominoDesign.textMd));
 
-            contentGbc.gridy = i;
-            contentGbc.gridx = 0;
-            contentPanel.add(rank, contentGbc);
-            contentGbc.gridx = 1;
-            contentGbc.insets = new Insets(15, 20, 15, 0);
+            contentGbc.gridx = i;
+            contentGbc.gridy = 1;
             contentPanel.add(name, contentGbc);
-            contentGbc.insets = new Insets(15, 0, 15, 0);
-            contentGbc.gridx = 2;
+            contentGbc.gridy = 2;
+            contentPanel.add(kingdom,contentGbc);
+            contentGbc.gridy = 3;
             contentPanel.add(score, contentGbc);
             i++;
 
