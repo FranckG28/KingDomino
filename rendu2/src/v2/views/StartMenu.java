@@ -32,7 +32,7 @@ public class StartMenu extends JFrame {
 
         // HEADER
 
-        mainPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
+        mainPanel.setBorder(new EmptyBorder(40, 20, 20, 20));
 
         JLabel title = new JLabel("Kingdomino", SwingConstants.CENTER);
         title.setFont(KingDominoDesign.getInstance().titleFont.deriveFont(KingDominoDesign.textXl));
@@ -140,7 +140,7 @@ public class StartMenu extends JFrame {
 
         add(mainPanel);
 
-        setSize(600, 540);
+        setSize(600, 560);
 
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

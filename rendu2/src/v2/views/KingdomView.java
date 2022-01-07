@@ -44,15 +44,17 @@ public class KingdomView extends JPanel implements KingdomObserver, GameObserver
         gbc.insets = new Insets(margins,0,margins,0);
         add(playerName, gbc);
 
-        // Supprimer la preview si la souris n'est plus dans le composant
-        gridPanel.addMouseListener(new MouseAdapter()
-        {
-            @Override
-            public void mouseExited(MouseEvent e) {
-                super.mouseExited(e);
-                removePreview();
-            }
-        });
+        if (controller != null) {
+            // Supprimer la preview si la souris n'est plus dans le composant
+            gridPanel.addMouseListener(new MouseAdapter()
+            {
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    super.mouseExited(e);
+                    removePreview();
+                }
+            });
+        }
 
         // Creation des cases
         for (int row = 0; row < Kingdom.gridSize; row++) {
@@ -63,23 +65,25 @@ public class KingdomView extends JPanel implements KingdomObserver, GameObserver
                 // Ajout des actions aux cases
                 int finalCol = col;
                 int finalRow = row;
-                tile.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        controller.kingdomClicked(kingdom, finalCol, finalRow);
-                    }
+                if (controller != null) {
+                    tile.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mousePressed(MouseEvent e) {
+                            controller.kingdomClicked(kingdom, finalCol, finalRow);
+                        }
 
-                    @Override
-                    public void mouseEntered(MouseEvent e) {
-                        setPreview(finalCol, finalRow);
-                    }
+                        @Override
+                        public void mouseEntered(MouseEvent e) {
+                            setPreview(finalCol, finalRow);
+                        }
 
-                    @Override
-                    public void mouseExited(MouseEvent e) {
-                        removePreview();
-                    }
+                        @Override
+                        public void mouseExited(MouseEvent e) {
+                            removePreview();
+                        }
 
-                });
+                    });
+                }
 
                 // Ajout des bordures
                 if (row == 0) {
@@ -114,6 +118,7 @@ public class KingdomView extends JPanel implements KingdomObserver, GameObserver
 
                 // Ajout de la tuile
                 gridPanel.add(tile);
+
             }
         }
 

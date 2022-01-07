@@ -312,25 +312,25 @@ package controllers {
 Kingdomino ..> StartMenu : "<<use>>"
 Kingdomino ..> GameCreator : "<<use>>"
 
-GameCreator " - players" *--> "2..3" PlayerEditor : > contains
-GameCreator " - view" o--> "1" StartMenu : > contains
+GameCreator *--> "- players \n 2..3" PlayerEditor : > contains
+GameCreator o--> "- view \n 1" StartMenu : > contains
 GameCreator ..> Game : "<<use>>"
 GameCreator ..> GameView : "<<use>>"
 GameCreator ..> GameController : "<<use>>"
 GameCreator ..> CSVReader : "<<use>>"
 
-Game " - players" *--> "2..4" Player : > contains
-Game " - deck" *--> "0..48" Domino : > contains
-Game " - draw" *--> "1" Draw : > contains
-Game " - lastDraw" *--> "1" Draw : > contains
-Game " - observers" o--> "*" GameObserver : > contains
-Game " - currentPlayer" o--> "1" Player : > contains
+Game *--> "- players \n 2..4" Player : > contains
+Game *--> "- deck \n 0..48" Domino : > contains
+Game *--> "- draw \n 1" Draw : > contains
+Game *--> "- lastDraw \n 1" Draw : > contains
+Game o--> "- observers \n *" GameObserver : > contains
+Game o--> "- currentPlayer \n 1" Player : > contains
 
-Draw " - content" o--> "*" Domino : > contains
-Draw " - observers" o--> "*" DrawObserver : > contains
+Draw o--> "- content \n *" Domino : > contains
+Draw o--> "- observers \n *" DrawObserver : > contains
 
-GameController " - game" o--> "1" Game : > controls
-GameController " - view" o--> "1" GameView : > contains
+GameController o--> "- game \n 1" Game : > controls
+GameController o--> "- view \n 1" GameView : > contains
 GameController ..> DominoPlacement : <<use>>
 GameController ..> DominoController : <<use>>
 
@@ -338,42 +338,42 @@ GameView ..> Game : "<<use>>"
 GameView ..> KingdomView : "<<use>>"
 GameView *--> " - actualDraw \n 1" DrawView : > contains
 
-StartMenu " - controller" o--> "1" GameCreator : > controlled by
+StartMenu o--> "- controller \n 1" GameCreator : > controlled by
 
-Player " - kingdom"  *--> "1" Kingdom : > owns
-Player " - kings" *--> "1..2" King : > contains
-Player " + currentKing" *--> "1" King : > contains
-Player " - color" *-> "1" Colors : > contains
-Player " + dominoToPlace" o--> "1" Domino : > contains
+Player *--> "- kingdom \n 1" Kingdom : > owns
+Player *--> "- kings \n 1..2" King : > contains
+Player *--> "+ currentKing \n 1" King : > contains
+Player *-> "- color \n 1" Colors : > contains
+Player o--> "+ dominoToPlace \n 1" Domino : > contains
 
-King " - parent" o--> "1" Player : > contains
+King o--> "- parent \n 1" Player : > contains
 
-Kingdom " - parent" o--> "1" Player : > contains
-Kingdom " - board" o--> "[5][5]" Tile : > contains
-Kingdom " - observers" o--> "*" KingdomObserver : > contains
+Kingdom o--> "- parent \n 1" Player : > contains
+Kingdom o--> "- board \n [5][5]" Tile : > contains
+Kingdom o--> "- observers \n *" KingdomObserver : > contains
 
-DominoController " - domino" o--> "1" Domino : > contains
-DominoController " - controller" o--> "1" GameController : > contains
+DominoController o--> "- domino \n 1" Domino : > contains
+DominoController o--> "- controller \n 1" GameController : > contains
 
-DominoPlacement " - controller" o--> "1" DominoController : > contains
+DominoPlacement o--> "- controller \n 1" DominoController : > contains
 
-KingdomView " - kingdom" o--> "1" Kingdom : > contains
+KingdomView o--> "- kingdom \n 1" Kingdom : > contains
 KingdomView ..> TileView : <<use>>
 
 DrawView *--> " -dominos \n 3..4" DominoView : > contains
 DrawView *--> " -kings \n 3..4" KingView : > contains
 
-DominoView " - domino" o--> "1" Domino : > contains
+DominoView o--> "- domino \n 1" Domino : > contains
 DominoView ..> TileView : <<use>>
 
-Domino " - tile1" o-> "1" Tile : > contains
-Domino " - tile2" o-> "1" Tile : > contains
-Domino " + king" o--> "0..1" King : > contains
-Domino " - observers" o--> "*" DominoObserver : > contains
+Domino o-> "- tile1 \n 1" Tile : > contains
+Domino o-> "- tile2 \n 1" Tile : > contains
+Domino o--> "+ king \n 0..1" King : > contains
+Domino o--> "- observers \n *" DominoObserver : > contains
 
-Tile " - type" *-> "1" Lands : > contains
+Tile *-> "- type \n 1" Lands : > contains
 
-TileView " -tile" o--> "1" Tile : > contains
+TileView o--> "-tile \n 1" Tile : > contains
 
 ScoreCounter o--> " - domains \n [][]" Tile : > contains
 
