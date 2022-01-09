@@ -2,10 +2,27 @@
 
 ## **Membres du groupes**
 
-    * GUTMANN Franck
-    * MANSOURI Sofiane
+ * GUTMANN Franck
+ * MANSOURI Sofiane
+
+## Prérequis
+
+**Pour jouer :**
+
+- Java Runtime Environment 8 ou supérieur ([site officiel](https://www.java.com/fr/download/manual.jsp))
     
+**Pour le développement :**
+
+- Java SDK version 1.8 ([télécharger OpenJDK](https://www.openlogic.com/openjdk-downloads))
+
 ## Jouer à KingDomino
+
+Pour jouer, rien de plus simple ! Il suffit d'exécuter le fichier `a31-kingdomino.jar` !
+Choisissez vos règles, ajoutez les joueurs, et laissez vous guider par les instruction !
+
+![](../img/jeu.png)
+
+Vous ne savez pas comment jouer ? Lisez les [règles du jeu](https://git.unistra.fr/a313/a31-kingdomino/-/blob/master/docs/reglesKingdomino.pdf) !
 
 
 ## Générer un éxecutable
@@ -38,6 +55,3 @@
    Le `.jar` généré est alors situé dans `out/artifacts/a31-kingdomino_jar/a31-kingdomino.jar`
 
    ![](../img/tuto4.png)
-
-
-## Rapport 
