@@ -32,10 +32,17 @@ public class Game {
         this.lastDraw = new Draw(drawSize);
 
         // On enlève les dominos en trop selon le nombre de joueurs
-        int dominoToRemove = switch (players.size()) {
-            case 2 -> 24;
-            case 3 -> 12;
-            default -> 0;
+        int dominoToRemove;
+        switch (players.size()) {
+            case 2:
+                dominoToRemove = 24;
+                break;
+            case 3:
+                dominoToRemove = 12;
+                break;
+            default:
+                dominoToRemove = 0;
+                break;
         };
 
         for(int i = 0; i<dominoToRemove; i++) {
