@@ -10,7 +10,7 @@ public class DominoView extends JPanel implements DominoObserver {
 
     private Domino domino;
 
-    private final Color borderColor = Color.lightGray;
+    private static final Color borderColor = Color.lightGray;
 
     public DominoView(Domino domino) {
         this.domino = domino;

@@ -98,7 +98,7 @@ package models {
         + getKingdom():Tile[5][5]
         + hasCastle():Boolean
         + addTile(tile:Tile, x:Integer, y:Integer)
-        + addDomino(tile:Tile, x:Integer, y:Integer)
+        + addDomino(domino:Domino, x:Integer, y:Integer)
         + isFree(x:Integer, y:Integer):Boolean
         - getTile(x:Integer, y:Integer):Tile
         - setTile(x:Integer, y:Integer)
@@ -186,7 +186,7 @@ package views {
     }
 
     class EndMenu {
-        + EndMenu(game:Game)
+        + EndMenu(players:Player[])
     }
 
     class PlayerEditor {
@@ -205,7 +205,7 @@ package views {
         + KingdomView(kingdom:Kingdom, controller:GameController)
         + updateKingdom(kingdom:Kingdom)
         + reactGame(game:Game)
-        + getTileView(x:Integer, y:Integer):TileView
+        - getTileView(x:Integer, y:Integer):TileView
         - setPreview(x:Integer, y:Integer)
         - removePreview()
     }
@@ -218,6 +218,7 @@ package views {
     }
 
     class DominoView implements DominoObserver {
+        - {static}borderColor:Color
         + DominoView(domino:Domino)
         + getDomino():Domino
         + updateDomino(domino:Domino)
@@ -264,6 +265,8 @@ package views {
     }
 
     class KingView {
+        - {static}borderSize:Integer
+        - {static}borderColor:Color
         + KingView(king:King)
         + setKing(king:King)
     }
@@ -274,7 +277,7 @@ package controllers {
 
     class GameController {
         - placedCastles:Boolean
-        + GameController(game:Game, creator:GameCreator)
+        + GameController(game:Game)
         + setView(view:GameView)
         + setDrawView(drawView:DrawView)
         + play()
@@ -312,6 +315,9 @@ package controllers {
 Kingdomino ..> StartMenu : "<<use>>"
 Kingdomino ..> GameCreator : "<<use>>"
 
+CSVReader ..> Tile : <<use>>
+CSVReader ..> Domino : <<use>>
+
 GameCreator *--> "- players \n 2..3" PlayerEditor : > contains
 GameCreator o--> "- view \n 1" StartMenu : > contains
 GameCreator ..> Game : "<<use>>"
@@ -319,8 +325,8 @@ GameCreator ..> GameView : "<<use>>"
 GameCreator ..> GameController : "<<use>>"
 GameCreator ..> CSVReader : "<<use>>"
 
-Game *--> "- players \n 2..4" Player : > contains
-Game *--> "- deck \n 0..48" Domino : > contains
+Game o--> "- players \n 2..4" Player : > contains
+Game o--> "- deck \n 0..48" Domino : > contains
 Game *--> "- draw \n 1" Draw : > contains
 Game *--> "- lastDraw \n 1" Draw : > contains
 Game o--> "- observers \n *" GameObserver : > contains
@@ -333,12 +339,20 @@ GameController o--> "- game \n 1" Game : > controls
 GameController o--> "- view \n 1" GameView : > contains
 GameController ..> DominoPlacement : <<use>>
 GameController ..> DominoController : <<use>>
+GameController ..> ScoreCounter : <<use>>
+GameController ..> TileView : <<use>>
+GameController ..> EndMenu : <<use>>
 
 GameView ..> Game : "<<use>>"
+GameView ..> DrawView : <<use>>
 GameView ..> KingdomView : "<<use>>"
 GameView *--> " - actualDraw \n 1" DrawView : > contains
 
 StartMenu o--> "- controller \n 1" GameCreator : > controlled by
+
+PlayerEditor *--> " - color \n 1" Colors : > contains
+
+EndMenu ..> KingdomView : <<use>>
 
 Player *--> "- kingdom \n 1" Kingdom : > owns
 Player *--> "- kings \n 1..2" King : > contains
@@ -366,6 +380,8 @@ DrawView *--> " -kings \n 3..4" KingView : > contains
 DominoView o--> "- domino \n 1" Domino : > contains
 DominoView ..> TileView : <<use>>
 
+DominoPlacement ..> DominoView : <<use>>
+
 Domino o-> "- tile1 \n 1" Tile : > contains
 Domino o-> "- tile2 \n 1" Tile : > contains
 Domino o--> "+ king \n 0..1" King : > contains
@@ -375,6 +391,7 @@ Tile *-> "- type \n 1" Lands : > contains
 
 TileView o--> "-tile \n 1" Tile : > contains
 
+ScoreCounter o--> " - player \n 1" Player : > contains
 ScoreCounter o--> " - domains \n [][]" Tile : > contains
 
 @enduml

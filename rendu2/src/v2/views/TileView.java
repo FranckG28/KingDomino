@@ -20,7 +20,6 @@ public class TileView extends JPanel {
 
         // TAILLE DE LA TUILE
         setPreferredSize(new Dimension(tileSize, tileSize));
-        setSize(new Dimension(tileSize, tileSize));
 
         // Création du MouseListener
         MouseListener hoverListener = new MouseAdapter() {

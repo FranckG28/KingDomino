@@ -68,15 +68,25 @@ public class Game {
         round ++;
         notifyObservers();
     }
-
     public int getRound() {
         return this.round;
     }
+
     public Draw getDraw() {
         return this.draw;
     }
     public Draw getLastDraw() {
         return this.lastDraw;
+    }
+    public Stack<Domino> getDeck() {
+        return this.deck;
+    }
+
+    public boolean isMiddle() {
+        return this.middle;
+    }
+    public boolean isHarmony() {
+        return this.harmony;
     }
 
     public void notifyObservers() {
@@ -89,15 +99,7 @@ public class Game {
         observers.add(observer);
     }
 
-    public boolean isMiddle() {
-        return this.middle;
-    }
 
-    public boolean isHarmony() {
-        return this.harmony;
-    }
 
-    public Stack<Domino> getDeck() {
-        return this.deck;
-    }
+
 }

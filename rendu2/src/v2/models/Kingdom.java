@@ -117,7 +117,7 @@ public class Kingdom {
     }
 
     private boolean checkLandMatch(Tile tile1, Tile tile2) {
-        // Si l'une des tuile est le chateau, c'est validé
+        // Si l'une des tuiles est le chateau, c'est validé
         if (tile1.getLand() == Lands.CASTLE || tile2.getLand() == Lands.CASTLE) return true;
 
         // Sinon, il faut que les deux soient du même type
