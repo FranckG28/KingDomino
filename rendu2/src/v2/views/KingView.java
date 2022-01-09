@@ -7,8 +7,8 @@ import java.awt.*;
 
 public class KingView extends JPanel {
 
-    public static final int borderSize = 2;
-    public static final Color borderColor = KingDominoDesign.GRAY;
+    private static final int borderSize = 2;
+    private static final Color borderColor = KingDominoDesign.GRAY;
 
     public KingView(King king) {
 

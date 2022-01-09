@@ -182,7 +182,7 @@ public class KingdomView extends JPanel implements KingdomObserver, GameObserver
         updateUI();
     }
 
-    public void setPreview(int x, int y) {
+    private void setPreview(int x, int y) {
         // Seulement si le joueur à un domino a placer
 
         Domino domino = kingdom.getParent().dominoToPlace;
@@ -211,7 +211,7 @@ public class KingdomView extends JPanel implements KingdomObserver, GameObserver
 
     }
 
-    public void removePreview() {
+    private void removePreview() {
         // On supprime la preview uniquement si il y en avait une
         if (previewY != -1 && previewX != -1){
             this.previewX = -1;
