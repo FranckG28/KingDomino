@@ -69,12 +69,22 @@ public class KingDominoDesign {
 
     // OBTENIR LA COULEUR CORRESPONDANTE A UNE VALEUR DE L'ENUM COLORS
     public static Color getColor(Colors color) {
-        return switch (color) {
-            case BLUE -> BLUE;
-            case GREEN -> GREEN;
-            case YELLOW -> YELLOW;
-            case PINK -> PINK;
-        };
+        Color result = null;
+        switch (color) {
+            case BLUE:
+                result = BLUE;
+                break;
+            case GREEN:
+                result = GREEN;
+                break;
+            case YELLOW:
+                result = YELLOW;
+                break;
+            case PINK:
+                result = PINK;
+                break;
+        }
+        return result;
     }
 
 }

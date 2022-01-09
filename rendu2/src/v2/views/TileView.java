@@ -20,6 +20,7 @@ public class TileView extends JPanel {
 
         // TAILLE DE LA TUILE
         setPreferredSize(new Dimension(tileSize, tileSize));
+        setSize(new Dimension(tileSize, tileSize));
 
         // Création du MouseListener
         MouseListener hoverListener = new MouseAdapter() {
@@ -69,19 +70,34 @@ public class TileView extends JPanel {
         );
 
         // COULEUR DE LA TUILE
-        setBackground(
-                tile == null
-                        ? KingDominoDesign.BLACK
-                        : switch (tile.getLand()) {
-                    case MINE -> new Color(106,102,96);
-                    case WATER -> new Color(0,146,213);
-                    case FOREST -> new Color(112,130,50);
-                    case WHEAT -> new Color(255,216,2);
-                    case GRASS -> new Color(192,207,11);
-                    case SWAMP -> new Color(208,202,180);
-                    case CASTLE -> Color.white;
-                }
-        );
+        Color color = KingDominoDesign.BLACK;
+        if (tile != null) {
+            switch (tile.getLand()) {
+                case MINE:
+                    color = new Color(106,102,96);
+                    break;
+                case WATER:
+                    color = new Color(0,146,213);
+                    break;
+                case FOREST:
+                    color = new Color(112,130,50);
+                    break;
+                case WHEAT:
+                    color = new Color(255,216,2);
+                    break;
+                case GRASS:
+                    color = new Color(192,207,11);
+                    break;
+                case SWAMP:
+                    color = new Color(208,202,180);
+                    break;
+                case CASTLE:
+                    color = Color.white;
+                    break;
+            }
+        }
+
+        setBackground(color);
 
         updateUI();
 

@@ -67,7 +67,7 @@ public class GameView extends JFrame implements GameObserver {
         oldDraw.setPreferredSize(new Dimension(150,300));
         game.getLastDraw().addObserver(oldDraw);
 
-        actualDraw.setPreferredSize(new Dimension(250,300));
+        actualDraw.setPreferredSize(new Dimension(300,300));
         game.getDraw().addObserver(actualDraw);
 
         contentGbc.weighty = 1;

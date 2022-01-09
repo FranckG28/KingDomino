@@ -7,6 +7,8 @@ import v2.models.Tile;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
@@ -14,14 +16,15 @@ import java.util.Stack;
 public abstract class CSVReader {
 
     private static ArrayList<String> csvToListString() {
-        
-        String path = "rendu2/Dominos.csv";
+
+        URL url = Thread.currentThread().getContextClassLoader()
+                .getResource("Dominos.csv");
         String line;
 
         ArrayList<String> res = new ArrayList<>();
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader(path));
+            BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
 
             while((line = br.readLine()) != null) {
                 res.add(line);
