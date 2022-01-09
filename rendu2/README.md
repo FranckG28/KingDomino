@@ -1,6 +1,6 @@
 # A31 - KingDomino v2
 
-## **Membres du groupes**
+## **Membres du groupe**
 
  * GUTMANN Franck
  * MANSOURI Sofiane
@@ -18,14 +18,14 @@
 ## Jouer à KingDomino
 
 Pour jouer, rien de plus simple ! Il suffit d'exécuter le fichier `a31-kingdomino.jar` !
-Choisissez vos règles, ajoutez les joueurs, et laissez vous guider par les instruction !
+Choisissez vos règles, ajoutez les joueurs puis laissez vous guider par les instructions !
 
 ![](../img/jeu.png)
 
 Vous ne savez pas comment jouer ? Lisez les [règles du jeu](https://git.unistra.fr/a313/a31-kingdomino/-/blob/master/docs/reglesKingdomino.pdf) !
 
 
-## Générer un éxecutable
+## Générer un executable
 
 **Avec IntelliJ IDEA :**
 
@@ -38,7 +38,7 @@ Vous ne savez pas comment jouer ? Lisez les [règles du jeu](https://git.unistra
     ![](../img/tuto1.png)
 
 
-2. Toujours dans la même fenêtre, selectionnez `Artifacts` dans le menu de gauche
+2. Toujours dans la même fenêtre, sélectionnez `Artifacts` dans le menu de gauche
 
 
 3. Sélectionnez `Add>JAR>From module with dependencies`
@@ -46,7 +46,7 @@ Vous ne savez pas comment jouer ? Lisez les [règles du jeu](https://git.unistra
    ![](../img/tuto2.png)
 
 
-4. Selectionnez `rendu2/KingDomino.java` pour le champ Main class
+4. Sélectionnez `rendu2/KingDomino.java` pour le champ Main class
 
    ![](../img/tuto3.png)
 
