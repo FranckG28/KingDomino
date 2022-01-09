@@ -341,6 +341,7 @@ GameController ..> DominoPlacement : <<use>>
 GameController ..> DominoController : <<use>>
 GameController ..> ScoreCounter : <<use>>
 GameController ..> TileView : <<use>>
+GameController ..> EndMenu : <<use>>
 
 GameView ..> Game : "<<use>>"
 GameView ..> DrawView : <<use>>
