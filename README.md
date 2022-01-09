@@ -1,16 +1,16 @@
-v1.Kingdomino
+Kingdomino
 ==========
 
 ![](img/kingdomino_elements_small.jpg)
 
-L'objectif de ce projet est de concevoir une application permettant de jouer au jeu de société v1.Kingdomino.
+L'objectif de ce projet est de concevoir une application permettant de jouer au jeu de société Kingdomino.
 
 Les règles
 ----------
 
 ### Résumé
 
-v1.Kingdomino se joue de 2 à 4 joueurs. L'objectif est de construire un royaume composé de Dominos :
+Kingdomino se joue de 2 à 4 joueurs. L'objectif est de construire un royaume composé de Dominos :
 
 - Un domino est composé 2 tuiles qui ont chacune un type de terrain (champs, herbe, forêt, etc.) et pour certaines une à 3 couronnes.
 - Un royaume est un domaine carré de 5x5 tuiles dont un château
@@ -63,7 +63,7 @@ Consignes
 ### Sur toute la durée 
 
 - Ce projet est à réaliser **en binôme**.
-- Vous devez concevoir en UML et implémenter en Java le jeu de société v1.Kingdomino, en respectant une **architecture MVC** et en proposant une **interface graphique en Swing**.
+- Vous devez concevoir en UML et implémenter en Java le jeu de société Kingdomino, en respectant une **architecture MVC** et en proposant une **interface graphique en Swing**.
 - Vous devez respecter les **principes de conception** et mettre en œuvre les **patrons de conception** vus en cours, **lorsque cela est pertinent**. Attention, il ne s'agit pas d'essayer d'utiliser tous les patrons de conception vus en cours !
 - Vous rédigerez parallèlement **un (ou des) rapports** pour expliquer vos choix de conception. Il est possible aussi que vous soyez amenés à renoncer à une partie du développement par manque de temps. Dans ce cas, le rapport est l’endroit où signaler ce problème (il aurait fallu faire *ceci* mais je n’avais pas assez de temps devant moi et j’ai préféré me concentrer sur *cela* parce que ...).
 - Votre dépôt devra être **mis à jour au minimum après chaque séance de TP** de façon à ce que nous puissions évaluer votre démarche sur toute la durée du projet.
