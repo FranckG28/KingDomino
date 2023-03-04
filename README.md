@@ -1,9 +1,8 @@
-Kingdomino
-==========
-
-![](img/kingdomino_elements_small.jpg)
+![image](https://user-images.githubusercontent.com/19238963/222908028-0327a0b2-eba7-4ae3-8488-fa493abd3fc2.png)
 
 L'objectif de ce projet est de concevoir une application permettant de jouer au jeu de société Kingdomino.
+
+![](img/kingdomino_elements_small.jpg)
 
 Les règles
 ----------
